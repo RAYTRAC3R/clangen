@@ -81,7 +81,14 @@ def json_load():
                     cat["eye_colour2"] = "COBALT"
                         
             new_cat.pelt = Pelt(
-                name=cat["pelt_name"],
+                marking=cat["marking"],
+                marking_shade=cat["marking_shade"],
+                marking_color=cat["marking_color"],
+                marking_tint=cat["marking_tint"],
+                tint_shade=cat["tint_shade"],
+                tint_color=cat["tint_color"],
+                tint=cat["tint"],
+                underfur=cat["underfur"],
                 length=cat["pelt_length"],
                 colour=cat["pelt_color"],
                 eye_color=cat["eye_colour"],
@@ -102,7 +109,6 @@ def json_load():
                 tortiepattern=cat["tortie_pattern"],
                 pattern=cat["pattern"],
                 skin=cat["skin"],
-                tint=cat["tint"] if "tint" in cat else "none",
                 scars=cat["scars"] if "scars" in cat else [],
                 accessory=cat["accessory"],
                 opacity=cat["opacity"] if "opacity" in cat else 100
