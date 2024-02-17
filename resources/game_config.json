@@ -179,14 +179,14 @@
 	},
 	"cat_generation": {
 		"base_permanent_condition": 90,
-		"base_male_tortie": 50,
-		"base_female_tortie": 4,
+		"base_male_tortie": 1,
+		"base_female_tortie": 1,
 		"base_heterochromia": 120,
 		"direct_inheritance": 15,
 		"wildcard_tortie": 9,
 		"vit_chance": 8,
 		"random_point_chance": 5,
-		"marking_blend_weights": [1, 100, 2],
+		"marking_blend_weights": [1, 600, 2],
 		"comment": [
 			"Marking blend weights are (ADD, MULTIPLY, NO BLEND)"
 		]
