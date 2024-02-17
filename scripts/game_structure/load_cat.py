@@ -81,6 +81,7 @@ def json_load():
                     cat["eye_colour2"] = "COBALT"
                         
             new_cat.pelt = Pelt(
+                name=cat["pelt_name"],
                 marking=cat["marking"],
                 marking_shade=cat["marking_shade"],
                 marking_color=cat["marking_color"],
@@ -130,7 +131,7 @@ def json_load():
                     new_cat.pelt.scars.append(cat["specialty"])
                 if cat["specialty2"] is not None:
                     new_cat.pelt.scars.append(cat["specialty2"])
-            
+
             new_cat.adoptive_parents = cat["adoptive_parents"] if "adoptive_parents" in cat else []
             
             new_cat.genderalign = cat["gender_align"]
