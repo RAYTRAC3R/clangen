@@ -2908,6 +2908,7 @@ class Cat():
                 "no_retire": self.no_retire,
                 "no_mates": self.no_mates,
                 "exiled": self.exiled,
+                "pelt_name": self.pelt.name,
                 "pelt_length": self.pelt.length,
                 "tint_shade": self.pelt.tint_shade,
                 "tint_color": self.pelt.tint_color,
