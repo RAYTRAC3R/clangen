@@ -8,31 +8,35 @@
     "categories": ["cool", "warm", "mono"],
 
     "comment":["The options are color_categories and color_lists"],
-    "inheritance_type": "color_lists",
+    "inheritance_type": "color_categories",
+    "preset": "base",
     
-    "color_categories":
+    "base": 
     {
-        
-        "cool": ["green", "blue", "purple", "real_brown"],
-        "warm": ["red", "orange", "yellow", "pink", "real_orange"],
-        "mono": ["mono", "real_mono"]
 
-    },
-
-    "color_lists":
-    {
-        "red": ["red", "orange", "yellow", "real_brown"],
-        "orange": ["red", "orange", "yellow", "real_orange"],
-        "yellow": ["orange", "yellow", "green"],
-        "green": ["yellow", "green", "blue"],
-        "blue": ["green", "blue", "purple"],
-        "purple": ["blue", "purple", "pink"],
-        "pink": ["purple", "pink", "red"],
-        "mono": ["mono", "real_mono"],
-        "real_mono": ["mono", "real_mono"],
-        "real_brown": ["red", "real_brown", "orange"],
-        "real_orange": ["orange", "real_orange", "brown"]
+        "color_categories":
+        {
+            
+            "cool": ["green", "blue", "purple", "real_brown"],
+            "warm": ["red", "orange", "yellow", "pink", "real_orange"],
+            "mono": ["mono", "real_mono"]
+    
+        },
+    
+        "color_lists":
+        {
+            "red": ["red", "orange", "yellow", "real_brown"],
+            "orange": ["red", "orange", "yellow", "real_orange"],
+            "yellow": ["orange", "yellow", "green"],
+            "green": ["yellow", "green", "blue"],
+            "blue": ["green", "blue", "purple"],
+            "purple": ["blue", "purple", "pink"],
+            "pink": ["purple", "pink", "red"],
+            "mono": ["mono", "real_mono"],
+            "real_mono": ["mono", "real_mono"],
+            "real_brown": ["red", "real_brown", "orange"],
+            "real_orange": ["orange", "real_orange", "brown"]
+        }
     }
-
 
 }

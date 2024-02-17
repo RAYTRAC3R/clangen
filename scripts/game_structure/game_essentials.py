@@ -210,7 +210,8 @@ class Game():
             self.config['fun']['newborns_can_roam'] = True
             self.config['fun']['newborns_can_patrol'] = True
         
-        self.tint_preset = self.tint_pools["preset_select"]
+        self.tint_preset = self.tint_pools["preset"]
+        self.inheritance_preset = self.tint_inheritance["preset"]
         self.config_inheritance = self.tint_inheritance["enabled"]
         self.inheritance_type = self.tint_inheritance["inheritance_type"]
 

@@ -140,13 +140,13 @@ class Sprites():
         self.make_group('base', (0, 0), 'base')
 
         # Markings
-        for a, i in enumerate(['Tabby', 'Masked']):
+        for a, i in enumerate(['Tabby', 'Masked', 'Mackerel', 'Agouti', 'Speckled', 'Classic', 'Wisp', 'Sokoke', 'Singlestripe', 'Ticked', 'Marbled', 'Bengal', 'Smoke', 'Rosette']):
             self.make_group('markings/markings', (a, 0), f'mark{i}')
 
         # Overlays
         for a, i in enumerate(['strong', 'medium']):
             self.make_group('overlays/underfur', (a, 0), f'underfur{i}')
-        for a, i in enumerate(['strong', 'medium']):
+        for a, i in enumerate(['strong', 'medium', 'smoke']):
             self.make_group('overlays/overfur', (a, 0), f'overfur{i}')
 
         # Fading Fog
