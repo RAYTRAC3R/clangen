@@ -1297,7 +1297,6 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
 
         # TORTIE
         if cat.pelt.name in ['Tortie', 'Calico']:
-            print("Tortie")
             patches = sprites.sprites["tortiemask" + cat.pelt.pattern + cat_sprite].copy()
 
             # Base Coat

@@ -470,11 +470,11 @@ class Pelt():
         # Shade weights [dark, medium, light]
         weights = [0, 0, 0]
         for p_ in par_peltshades:
-            if p_ is "dark":
+            if p_ == "dark":
                 add_weight = (40, 10, 0)
-            if p_ is "medium":
+            if p_ == "medium":
                 add_weight = (40, 10, 0)
-            if p_ is "light":
+            if p_ == "light":
                 add_weight = (0, 10, 40)
             elif p_ is None:
                 add_weight = (40, 40, 40)
@@ -517,11 +517,11 @@ class Pelt():
 
             weights = [0, 0, 0]
             for p_ in par_markshades:
-                if p_ is "dark":
+                if p_ == "dark":
                     add_weight = (40, 10, 0)
-                if p_ is "medium":
+                if p_ == "medium":
                     add_weight = (40, 10, 0)
-                if p_ is "light":
+                if p_ == "light":
                     add_weight = (0, 10, 40)
                 elif p_ is None:
                     add_weight = (40, 40, 40)
@@ -564,7 +564,7 @@ class Pelt():
         #A quick check to make sure all the weights aren't 0
         if all([x == 0 for x in weights]):
             weights = [1, 1, 1, 1]
-            
+
         # Now, choose the pelt category and pelt. The extra 0 is for the tortie pelts,
         chosen_marking = choice(
             random.choices(Pelt.pelt_categories, weights=weights + [0], k = 1)[0]
@@ -910,14 +910,6 @@ class Pelt():
                     self.tortie_underfur_tint = choice(color_tints)
 
                     possible_colors = sprites.cat_tints["possible_tints"][f"{self.tortie_color}_{self.tortie_shade}"].copy()
-
-                    print(f"""
-                          
-                            Tortie Tint: {self.tortie_color}
-
-                            Tortie Marking Tint: {self.tortie_marking_tint}
-
-                            """)
 
                     if self.tint in possible_colors:
                         possible_colors.remove(self.tint)
