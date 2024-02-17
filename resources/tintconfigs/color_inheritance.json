@@ -1,0 +1,38 @@
+{
+    "enabled": "true",
+
+    "comment": ["Color categories will have the inheritance select from one of the categories depending on the parents' color categories.",
+        "Color lists will have the inheritance select from the colors in the list depending on the parents' colors.",
+        "With this disabled, it will use the default inheritance in the code where it will pick from either parents' color."
+    ],
+    "categories": ["cool", "warm", "mono"],
+
+    "comment":["The options are color_categories and color_lists"],
+    "inheritance_type": "color_lists",
+    
+    "color_categories":
+    {
+        
+        "cool": ["green", "blue", "purple", "real_brown"],
+        "warm": ["red", "orange", "yellow", "pink", "real_orange"],
+        "mono": ["mono", "real_mono"]
+
+    },
+
+    "color_lists":
+    {
+        "red": ["red", "orange", "yellow", "real_brown"],
+        "orange": ["red", "orange", "yellow", "real_orange"],
+        "yellow": ["orange", "yellow", "green"],
+        "green": ["yellow", "green", "blue"],
+        "blue": ["green", "blue", "purple"],
+        "purple": ["blue", "purple", "pink"],
+        "pink": ["purple", "pink", "red"],
+        "mono": ["mono", "real_mono"],
+        "real_mono": ["mono", "real_mono"],
+        "real_brown": ["red", "real_brown", "orange"],
+        "real_orange": ["orange", "real_orange", "brown"]
+    }
+
+
+}
