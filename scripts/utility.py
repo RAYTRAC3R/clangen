@@ -1245,6 +1245,10 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
         # then blit the surface onto the sprite with pygame.BLEND_RGB_MULT
         base_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
         base_tint.fill(tuple(sprites.cat_tints["tint_colours"][cat.pelt.tint]))
+
+        mark_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+        mark_tint.fill(tuple(sprites.markings_tints["tint_colours"][cat.pelt.marking_tint]))
+        
         new_sprite.blit(base_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
 
         if cat.pelt.underfur:
@@ -1260,22 +1264,29 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
             overfur = sprites.sprites['overfur' + cat.pelt.overfur + cat_sprite].copy()
             over_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
             over_tint.fill(tuple(sprites.markings_tints["tint_colours"][cat.pelt.marking_tint]))
-            overfur.blit(over_tint, (0, 0), special_flags=pygame.BLEND_RGB_MAX)
+            overfur.blit(over_tint, (0, 0), special_flags=pygame.BLEND_RGB_ADD)
             new_sprite.blit(overfur, (0, 0), special_flags=pygame.BLEND_MULT)
         
         # draw markings
         if cat.pelt.marking is not None:
-            markings = sprites.sprites['mark' + cat.pelt.marking + cat_sprite].copy()
-            mark_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-            mark_tint.fill(tuple(sprites.markings_tints["tint_colours"][cat.pelt.marking_tint]))
-            markings.blit(mark_tint, (0, 0), special_flags=pygame.BLEND_RGB_MAX)
-            
+            markings = sprites.sprites['mark' + cat.pelt.marking + cat_sprite].copy().convert_alpha()
+            markings.blit(base_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+            if cat.pelt.underfur:
+                # draw underfur
+                m_underfur = sprites.sprites['underfur' + cat.pelt.underfur + cat_sprite].copy()
+                m_underfur.blit(under_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+                markings.blit(m_underfur, (0, 0), special_flags=pygame.BLEND_ADD)
+
             if cat.pelt.marking_blend == "add":
-                new_sprite.blit(markings, (0, 0), special_flags=pygame.BLEND_ADD)
+                markings.blit(mark_tint, (0, 0), special_flags=pygame.BLEND_RGB_ADD)
             elif cat.pelt.marking_blend == "multiply":
-                new_sprite.blit(markings, (0, 0), special_flags=pygame.BLEND_MULT)
+                markings.blit(mark_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
             else:
-                new_sprite.blit(markings, (0, 0))
+                markings.blit(mark_tint, (0, 0))
+
+            markings.blit(sprites.sprites['mark' + cat.pelt.marking + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+            new_sprite.blit(markings, (0, 0))
 
 
         """markings = sprites.sprites['mark' + cat.pelt.marking + cat_sprite].copy()
@@ -1320,20 +1331,24 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
                 t_overfur = sprites.sprites['overfur' + cat.pelt.overfur + cat_sprite].copy()
                 t_over_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
                 t_over_tint.fill(tuple(sprites.markings_tints["tint_colours"][cat.pelt.tortie_marking_tint]))
-                t_overfur.blit(t_over_tint, (0, 0), special_flags=pygame.BLEND_RGB_MAX)
+                t_overfur.blit(t_over_tint, (0, 0), special_flags=pygame.BLEND_RGB_ADD)
                 patches.blit(t_overfur, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
 
-            # Markings
-            t_markings = sprites.sprites['mark' + cat.pelt.tortiepattern + cat_sprite].copy()
-            t_mark_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
-            t_mark_tint.fill(tuple(sprites.markings_tints["tint_colours"][cat.pelt.tortie_marking_tint]))
-            t_markings.blit(t_mark_tint, (0, 0), special_flags=pygame.BLEND_RGB_MAX)
-            
-            if cat.pelt.marking_blend == "add":
-                patches.blit(t_markings, (0, 0), special_flags=pygame.BLEND_ADD)
-            elif cat.pelt.marking_blend == "multiply":
-                patches.blit(t_markings, (0, 0), special_flags=pygame.BLEND_MULT)
-            else:
+            if cat.pelt.tortiepattern is not None:
+                
+                # Markings
+                t_mark_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                t_mark_tint.fill(tuple(sprites.markings_tints["tint_colours"][cat.pelt.tortie_marking_tint]))
+
+                t_markings = sprites.sprites['mark' + cat.pelt.tortiepattern + cat_sprite].copy().convert_alpha()
+                t_markings.blit(tortie_base_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+                if cat.pelt.marking_blend == "add":
+                    t_markings.blit(t_mark_tint, (0, 0), special_flags=pygame.BLEND_RGB_ADD)
+                elif cat.pelt.marking_blend == "multiply":
+                    t_markings.blit(t_mark_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+                else:
+                    t_markings.blit(t_mark_tint, (0, 0))
+                t_markings.blit(sprites.sprites['mark' + cat.pelt.tortiepattern + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
                 patches.blit(t_markings, (0, 0))
 
             # Add patches onto cat.

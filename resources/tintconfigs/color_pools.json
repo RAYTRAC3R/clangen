@@ -4,7 +4,7 @@
     "Can be used to make better realism.",
     "preset_select is for selecting preset."],
     "use_color_pool": "true",
-    "preset_select": "base",
+    "preset": "base",
 
     "comment":
     ["Color presets for if you want to have different sorts of selections. There are two base mod additions, realism and base.", 

@@ -46,8 +46,8 @@ class Pelt():
         'CHOCOLATE'
     ]
     # Tint categories are pulled from the json file - shade is hard coded in since it is referenced in code
-    inheritance_categories = list(game.tint_inheritance["color_categories"])
-    in_cat_count = len(game.tint_inheritance["color_categories"]) - 1
+    inheritance_categories = list(game.tint_inheritance[f"{game.inheritance_preset}"]["color_categories"])
+    in_cat_count = len(game.tint_inheritance[f"{game.inheritance_preset}"]["color_categories"]) - 1
 
     color_categories = sprites.cat_tints["tint_categories"]["color_categories"]
     shade_categories = ["dark", "medium", "light"]
@@ -58,11 +58,11 @@ class Pelt():
     blend_modes = ["add", "multiply", None]
 
     # Overlay types
-    underfur_types = ['strong', 'medium', None]
-    overfur_types = ['strong', 'medium', None]
+    underfur_types = ['strong', 'medium']
+    overfur_types = ['strong', 'medium', 'smoke']
 
-    overfur_weights = [40, 50, 1]
-    underfur_weights = [40, 50, 1]
+    overfur_weights = [90, 70, 40]
+    underfur_weights = [90, 70]
 
     tortiepatterns = ['ONE', 'TWO', 'THREE', 'FOUR', 'REDTAIL', 'DELILAH', 'MINIMALONE', 'MINIMALTWO', 'MINIMALTHREE', 'MINIMALFOUR', 'HALF',
                     'OREO', 'SWOOP', 'MOTTLED', 'SIDEMASK', 'EYEDOT', 'BANDANA', 'PACMAN', 'STREAMSTRIKE', 'ORIOLE', 'CHIMERA', 'DAUB', 'EMBER', 'BLANKET',
@@ -106,16 +106,13 @@ class Pelt():
         "BLACKNYLON", "SPIKESNYLON", "WHITENYLON", "PINKNYLON", "PURPLENYLON", "MULTINYLON", "INDIGONYLON",
     ]
 
-    #tabbies = ["Tabby", "Ticked", "Mackerel", "Classic", "Sokoke", "Agouti"]
-    tabbies = ["Tabby", "Masked"]
-    spotted = ["Tabby", "Masked"]
-    plain = ["Tabby", "Masked"]
-    exotic = ["Tabby", "Masked"]
-    #spotted = ["Speckled", "Rosette"]
-    #plain = ["SingleColour", "TwoColour", "Smoke", "Singlestripe"]
-    #exotic = ["Bengal", "Marbled", "Masked"]
+    tabbies = ["Tabby", "Ticked", "Mackerel", "Classic", "Sokoke", "Agouti", "Wisp"]
+    spotted = ["Speckled", "Rosette"]
+    plain = [None, "Smoke", "Singlestripe"]
+    exotic = ["Bengal", "Marbled", "Masked"]
     torties = ["Tortie", "Calico"]
     pelt_categories = [tabbies, spotted, plain, exotic, torties]
+    marking_weights = [40, 30, 40, 5, 0]
 
     # SPRITE NAMES
     single_colours = [
@@ -439,7 +436,7 @@ class Pelt():
                     c = 0
                     while c < Pelt.in_cat_count:
                         cat_sel = Pelt.inheritance_categories[c]
-                        category = set(game.tint_inheritance["color_categories"][f"{cat_sel}"])
+                        category = set(game.tint_inheritance[f"{game.inheritance_preset}"]["color_categories"][f"{cat_sel}"])
                         if p_ in category:
                             par_peltcategories.update(category)
                         c += 1
@@ -449,7 +446,7 @@ class Pelt():
             elif game.inheritance_type == "color_lists":
                 colors = set()
                 for p_ in par_peltcolors:
-                    colors.update(set(game.tint_inheritance["color_lists"][f"{p_}"]))
+                    colors.update(set(game.tint_inheritance[f"{game.inheritance_preset}"]["color_lists"][f"{p_}"]))
 
                 par_peltcolors.update(colors)
                 par_markcolors.update(colors)
@@ -663,7 +660,7 @@ class Pelt():
 
         # Determine pattern.
         chosen_marking = choice(
-            random.choices(Pelt.pelt_categories, k=1)[0]
+            random.choices(Pelt.pelt_categories, weights=Pelt.marking_weights, k=1)[0]
         )
 
         # Select overlays
