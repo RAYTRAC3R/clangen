@@ -403,7 +403,7 @@ class Pelt():
             self.eye_s_shade = random.choices(Pelt.eye_shade_categories, weights=weights, k=1)[0]
             weights = [1, 0, 0]
             self.eye_p_shade = random.choices(Pelt.eye_shade_categories, weights=weights, k=1)[0]
-        elif self.eye_shade == "light":
+        else:
             weights = [30, 50, 20]
             self.eye_s_shade = random.choices(Pelt.eye_shade_categories, weights=weights, k=1)[0]
             weights = [1, 0, 0]
@@ -427,10 +427,10 @@ class Pelt():
             num = 1
             
         if not random.randint(0, num):
-            eye_options = Pelt.eye_color_categories
+            eye_options = Pelt.eye_color_categories.copy()
             eye_options.remove(self.eye_color)
 
-            self.eye2_color = choice(eye_options)
+            self.eye2_color = random.choices(eye_options, k=1)[0]
             self.eye2_shade = random.choices(Pelt.eye_shade_categories, weights=(sprites.eye_tints["tint_categories"]["shade_weights"]), k=1)[0]
 
             if sprites.eye_random:
@@ -451,11 +451,11 @@ class Pelt():
                 self.eye2_s_shade = random.choices(Pelt.eye_shade_categories, weights=weights, k=1)[0]
                 weights = [1, 0, 0]
                 self.eye2_p_shade = random.choices(Pelt.eye_shade_categories, weights=weights, k=1)[0]
-            elif self.eye2_shade == "light":
+            else:
                 weights = [30, 50, 20]
-                self.eye_s_shade = random.choices(Pelt.eye_shade_categories, weights=weights, k=1)[0]
+                self.eye2_s_shade = random.choices(Pelt.eye_shade_categories, weights=weights, k=1)[0]
                 weights = [1, 0, 0]
-                self.eye_p_shade = random.choices(Pelt.eye_shade_categories, weights=weights, k=1)[0]
+                self.eye2_p_shade = random.choices(Pelt.eye_shade_categories, weights=weights, k=1)[0]
 
 
     def pattern_color_inheritance(self, parents: tuple=(), gender="female"):
@@ -1168,7 +1168,7 @@ class Pelt():
         color_tints = sprites.eye_tints["possible_tints"][f"{self.eye_p_color}_{self.eye_p_shade}"]
         self.eye_p_tint = choice(color_tints)
 
-        if self.eye2_color:
+        if self.eye2_color is not None:
             color_tints = sprites.eye_tints["possible_tints"][f"{self.eye2_color}_{self.eye2_shade}"]
             self.eye2_tint = choice(color_tints)
 
