@@ -355,7 +355,7 @@ class Cat():
             self.name = Name(status,
                              prefix,
                              suffix,
-                             self.pelt.eye_colour,
+                             self.pelt.eye_color,
                              self.pelt.tint_color,
                              self.pelt.tortiepattern,
                              biome=biome,
@@ -801,41 +801,12 @@ class Cat():
         return output
 
     def describe_eyes(self):
-        colour = str(self.pelt.eye_colour).lower()
-        colour2 = str(self.pelt.eye_colour2).lower()
+        colour = str(self.pelt.eye_color).lower()
+        colour2 = str(self.pelt.eye2_color).lower()
 
-        if colour == 'palegreen':
-            colour = 'pale green'
-        elif colour == 'darkblue':
-            colour = 'dark blue'
-        elif colour == 'paleblue':
-            colour = 'pale blue'
-        elif colour == 'paleyellow':
-            colour = 'pale yellow'
-        elif colour == 'heatherblue':
-            colour = 'heather blue'
-        elif colour == 'blue2':
-            colour = 'blue'
-        elif colour == 'sunlitice':
-            colour = 'sunlit ice'
-        elif colour == 'greenyellow':
-            colour = 'green-yellow'
-        if self.pelt.eye_colour2:
-            if colour2 == 'palegreen':
-                colour2 = 'pale green'
-            if colour2 == 'darkblue':
-                colour2 = 'dark blue'
-            if colour2 == 'paleblue':
-                colour2 = 'pale blue'
-            if colour2 == 'paleyellow':
-                colour2 = 'pale yellow'
-            if colour2 == 'heatherblue':
-                colour2 = 'heather blue'
-            if colour2 == 'sunlitice':
-                colour2 = 'sunlit ice'
-            if colour2 == 'greenyellow':
-                colour2 = 'green-yellow'
+        if self.pelt.eye2_color:
             colour = colour + ' and ' + colour2
+            
         return colour
 
     def convert_history(self, died_by, scar_events):
@@ -2916,23 +2887,29 @@ class Cat():
                 "overfur": self.pelt.overfur,
                 "underfur": self.pelt.underfur,
                 "underfur_tint": self.pelt.underfur_tint,
+                "eye_color": self.pelt.eye_color,
+                "eye_shade": self.pelt.eye_shade,
+                "eye_tint": self.pelt.eye_tint,
+                "eye_shade_color": self.pelt.eye_s_color,
+                "eye_shade_shade": self.pelt.eye_s_shade,
+                "eye_shade_tint": self.pelt.eye_s_tint,
+                "eye_pupil_color": self.pelt.eye_p_color,
+                "eye_pupil_shade": self.pelt.eye_p_shade,
+                "eye_pupil_tint": self.pelt.eye_p_tint,
+                "eye2_color": self.pelt.eye2_color if self.pelt.eye2_color else None,
+                "eye2_shade": self.pelt.eye2_shade,
+                "eye2_tint": self.pelt.eye2_tint,
+                "eye2_shade_color": self.pelt.eye2_s_color,
+                "eye2_shade_shade": self.pelt.eye2_s_shade,
+                "eye2_shade_tint": self.pelt.eye2_s_tint,
+                "eye2_pupil_color": self.pelt.eye2_p_color,
+                "eye2_pupil_shade": self.pelt.eye2_p_shade,
+                "eye2_pupil_tint": self.pelt.eye2_p_tint,
                 "marking": self.pelt.marking,
                 "marking_shade": self.pelt.marking_shade,
                 "marking_color": self.pelt.marking_color,
                 "marking_tint": self.pelt.marking_tint,
                 "marking_blend": self.pelt.marking_blend,
-                "sprite_kitten": self.pelt.cat_sprites['kitten'],
-                "sprite_adolescent": self.pelt.cat_sprites['adolescent'],
-                "sprite_adult": self.pelt.cat_sprites['adult'],
-                "sprite_senior": self.pelt.cat_sprites['senior'],
-                "sprite_para_adult": self.pelt.cat_sprites['para_adult'],
-                "eye_colour": self.pelt.eye_colour,
-                "eye_colour2": self.pelt.eye_colour2 if self.pelt.eye_colour2 else None,
-                "reverse": self.pelt.reverse,
-                "white_patches": self.pelt.white_patches,
-                "vitiligo": self.pelt.vitiligo,
-                "points": self.pelt.points,
-                "white_patches_tint": self.pelt.white_patches_tint,
                 "pattern": self.pelt.pattern,
                 "tortie_pattern": self.pelt.tortiepattern,
                 "tortie_color": self.pelt.tortie_color,
@@ -2942,6 +2919,16 @@ class Cat():
                 "tortie_marking_shade": self.pelt.tortie_shade,
                 "tortie_marking_tint": self.pelt.tortie_tint,
                 "tortie_underfur_tint": self.pelt.tortie_underfur_tint,
+                "sprite_kitten": self.pelt.cat_sprites['kitten'],
+                "sprite_adolescent": self.pelt.cat_sprites['adolescent'],
+                "sprite_adult": self.pelt.cat_sprites['adult'],
+                "sprite_senior": self.pelt.cat_sprites['senior'],
+                "sprite_para_adult": self.pelt.cat_sprites['para_adult'],
+                "reverse": self.pelt.reverse,
+                "white_patches": self.pelt.white_patches,
+                "vitiligo": self.pelt.vitiligo,
+                "points": self.pelt.points,
+                "white_patches_tint": self.pelt.white_patches_tint,
                 "skin": self.pelt.skin,
                 "skill_dict": self.skills.get_skill_dict(),
                 "scars": self.pelt.scars if self.pelt.scars else [],
