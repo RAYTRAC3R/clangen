@@ -62,10 +62,10 @@ class Pelt():
 
     # Overlay types
     underfur_types = ['strong', 'medium']
-    overfur_types = ['strong', 'medium', 'smoke']
+    overfur_types = ['strong', 'medium', 'smoke', 'bubble', 'overcast', 'ash']
 
-    overfur_weights = [90, 70, 40]
-    underfur_weights = [90, 70]
+    overfur_weights = [50, 70, 60, 30, 30, 20]
+    underfur_weights = [60, 80]
 
     tortiepatterns = ['ONE', 'TWO', 'THREE', 'FOUR', 'REDTAIL', 'DELILAH', 'MINIMALONE', 'MINIMALTWO', 'MINIMALTHREE', 'MINIMALFOUR', 'HALF',
                     'OREO', 'SWOOP', 'MOTTLED', 'SIDEMASK', 'EYEDOT', 'BANDANA', 'PACMAN', 'STREAMSTRIKE', 'ORIOLE', 'CHIMERA', 'DAUB', 'EMBER', 'BLANKET',
@@ -799,8 +799,6 @@ class Pelt():
             if not chosen_white:
                 chosen_pelt = "Tortie"
 
-        self.underfur = choice(Pelt.underfur_types)
-        self.overfur = choice(Pelt.overfur_types)
         self.marking = chosen_marking
         self.name = chosen_pelt
         self.marking_shade = chosen_marking_shade
