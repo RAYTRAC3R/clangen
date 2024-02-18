@@ -679,7 +679,11 @@ class ProfileScreen(Screens):
         output += "\n"
 
         # PELT TYPE
-        output += 'pelt: ' + the_cat.pelt.name.lower()
+        if the_cat.pelt.name in ["Tortie", "Calico"]:
+            pelt_name = the_cat.pelt.name
+        else:
+            pelt_name = game.tint_category_names["category_names"][f"{the_cat.pelt.name}"]
+        output += 'pelt: ' + pelt_name
         # NEWLINE ----------
         output += "\n"
 
