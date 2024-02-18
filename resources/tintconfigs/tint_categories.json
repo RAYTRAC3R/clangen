@@ -1,0 +1,19 @@
+{
+    "category_names":
+    {
+    "commment": ["For display on cat profiles. Just for cases where there is something to differentiate the category from another category. I.e orange and real_orange."],
+
+    "red": "red",
+    "orange": "orange",
+    "yellow": "yellow",
+    "green": "green",
+    "blue": "blue",
+    "purple": "purple",
+    "pink": "blue",
+    "mono": "black",
+    "real_orange": "orange",
+    "real_brown": "brown",
+    "real_mono": "black"
+
+    }
+}
