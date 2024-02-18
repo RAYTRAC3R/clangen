@@ -1245,6 +1245,25 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
         # then blit the surface onto the sprite with pygame.BLEND_RGB_MULT
         base_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
         base_tint.fill(tuple(sprites.cat_tints["tint_colours"][cat.pelt.tint]))
+        
+        eye_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+        eye_tint.fill(tuple(sprites.eye_tints["tint_colours"][cat.pelt.eye_tint]))
+
+        if cat.pelt.eye2_color != None:
+            eye2_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+            eye2_tint.fill(tuple(sprites.eye_tints["tint_colours"][cat.pelt.eye2_tint]))
+
+            eye2_shade_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+            eye2_shade_tint.fill(tuple(sprites.eye_tints["tint_colours"][cat.pelt.eye2_s_tint]))
+            
+            eye2_pupil_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+            eye2_pupil_tint.fill(tuple(sprites.eye_tints["tint_colours"][cat.pelt.eye2_p_tint]))
+        
+        eye_shade_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+        eye_shade_tint.fill(tuple(sprites.eye_tints["tint_colours"][cat.pelt.eye_s_tint]))
+        
+        eye_pupil_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+        eye_pupil_tint.fill(tuple(sprites.eye_tints["tint_colours"][cat.pelt.eye_p_tint]))
 
         mark_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
         mark_tint.fill(tuple(sprites.markings_tints["tint_colours"][cat.pelt.marking_tint]))
@@ -1288,7 +1307,7 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
                 markings.blit(mark_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
             else:
                 markings.blit(mark_tint, (0, 0))
-
+            markings.blit(mark_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
             markings.blit(sprites.sprites['mark' + cat.pelt.marking + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
             new_sprite.blit(markings, (0, 0))
 
@@ -1395,12 +1414,60 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
 
         if cat.pelt.vitiligo:
             new_sprite.blit(sprites.sprites['white' + cat.pelt.vitiligo + cat_sprite], (0, 0))
-
+        
+        #
         # draw eyes & scars1
-        eyes = sprites.sprites['eyes' + cat.pelt.eye_colour + cat_sprite].copy()
-        if cat.pelt.eye_colour2 != None:
-            eyes.blit(sprites.sprites['eyes2' + cat.pelt.eye_colour2 + cat_sprite], (0, 0))
+        #
+        eyes = sprites.sprites['eyes' + 'base' + cat_sprite].copy()
+        eyes.blit(eye_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+        # draw eye shade
+        eye_shade = sprites.sprites['eyes' + 'shade' + cat_sprite].copy()
+        eye_shade.blit(eye_shade_tint, (0, 0), special_flags=pygame.BLEND_RGB_ADD)
+        eyes.blit(eye_shade, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+        # draw pupil
+        eye_pupil = sprites.sprites['eyes' + 'pupil' + cat_sprite].copy()
+        eye_pupil.blit(eye_pupil_tint, (0, 0), special_flags=pygame.BLEND_RGB_ADD)
+        eyes.blit(eye_pupil, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+        
+        """markings = sprites.sprites['mark' + cat.pelt.marking + cat_sprite].copy().convert_alpha()
+            markings.blit(base_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+            if cat.pelt.underfur:
+                # draw underfur
+                m_underfur = sprites.sprites['underfur' + cat.pelt.underfur + cat_sprite].copy()
+                m_underfur.blit(under_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+                markings.blit(m_underfur, (0, 0), special_flags=pygame.BLEND_ADD)
+
+            if cat.pelt.marking_blend == "add":
+                markings.blit(mark_tint, (0, 0), special_flags=pygame.BLEND_RGB_ADD)
+            elif cat.pelt.marking_blend == "multiply":
+                markings.blit(mark_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+            else:
+                markings.blit(mark_tint, (0, 0))
+            markings.blit(mark_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+            markings.blit(sprites.sprites['mark' + cat.pelt.marking + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+            
+            ^^ this is for reference for me lol ignore this"""
+
         new_sprite.blit(eyes, (0, 0))
+
+        if cat.pelt.eye2_color != None:
+            eyes2 = sprites.sprites['eyes2' + 'base' + cat_sprite].copy()
+            eyes2.blit(eye2_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+            # draw eye shade
+            eye2_shade = sprites.sprites['eyes2' + 'shade' + cat_sprite].copy()
+            eye2_shade.blit(eye2_shade_tint, (0, 0), special_flags=pygame.BLEND_RGB_ADD)
+            eyes2.blit(eye2_shade, (0, 0), special_flags=pygame.BLEND_MULT)
+
+            # draw pupil
+            eye2_pupil = sprites.sprites['eyes2' + 'pupil' + cat_sprite].copy()
+            eye2_pupil.blit(eye2_pupil_tint, (0, 0), special_flags=pygame.BLEND_RGB_ADD)
+            eyes2.blit(eye2_pupil, (0, 0), special_flags=pygame.BLEND_MULT)
+
+            new_sprite.blit(eyes2, (0,0))
 
         if not scars_hidden:
             for scar in cat.pelt.scars:
