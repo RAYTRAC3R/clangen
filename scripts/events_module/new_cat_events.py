@@ -47,8 +47,8 @@ class NewCatEvents:
                     event_text = event_text + f" They decide to keep their name."
                 elif name_change == 2 and backstory != 'former Clancat':
                     outside_cat.name = Name(outside_cat.status, 
-                                            colour=outside_cat.pelt.colour,
-                                            eyes=outside_cat.pelt.eye_colour,
+                                            colour=outside_cat.pelt.tint_color,
+                                            eyes=outside_cat.pelt.eye_color,
                                             pelt=outside_cat.pelt.name,
                                             tortiepattern=outside_cat.pelt.tortiepattern,
                                             biome=game.clan.biome)
