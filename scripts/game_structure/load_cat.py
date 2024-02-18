@@ -65,23 +65,29 @@ def json_load():
                         parent1=cat["parent1"],
                         parent2=cat["parent2"],
                         moons=cat["moons"],
-                        eye_colour=cat["eye_colour"],
+                        eye_color=cat["eye_color"],
                         loading_cat=True)
-            
-            if cat["eye_colour"] == "BLUE2":
-                cat["eye_colour"] = "COBALT"
-            if cat["eye_colour"] in ["BLUEYELLOW", "BLUEGREEN"]:
-                if cat["eye_colour"] == "BLUEYELLOW":
-                    cat["eye_colour2"] = "YELLOW"
-                elif cat["eye_colour"] == "BLUEGREEN":
-                    cat["eye_colour2"] = "GREEN"
-                cat["eye_colour"] = "BLUE"
-            if "eye_colour2" in cat:
-                if cat["eye_colour2"] == "BLUE2":
-                    cat["eye_colour2"] = "COBALT"
                         
             new_cat.pelt = Pelt(
                 name=cat["pelt_name"],
+                eye_color=cat["eye_color"],
+                eye_shade=cat["eye_shade"],
+                eye_tint=cat["eye_tint"],
+                eye_s_color=cat["eye_shade_color"],
+                eye_s_shade=cat["eye_shade_shade"],
+                eye_s_tint=cat["eye_shade_tint"],
+                eye_p_color=cat["eye_pupil_color"],
+                eye_p_shade=cat["eye_pupil_shade"],
+                eye_p_tint=cat["eye_pupil_tint"],
+                eye2_color=cat["eye2_color"] if "eye2_color" in cat else None,
+                eye2_shade=cat["eye2_shade"],
+                eye2_tint=cat["eye2_tint"],
+                eye2_s_color=cat["eye2_shade_color"],
+                eye2_s_shade=cat["eye2_shade_shade"],
+                eye2_s_tint=cat["eye2_shade_tint"],
+                eye2_p_color=cat["eye2_pupil_color"],
+                eye2_p_shade=cat["eye2_pupil_shade"],
+                eye2_p_tint=cat["eye2_pupil_tint"],
                 marking=cat["marking"],
                 marking_shade=cat["marking_shade"],
                 marking_color=cat["marking_color"],
@@ -103,8 +109,6 @@ def json_load():
                 tortie_marking_tint=cat["tortie_tint"],
                 tortie_underfur_tint=cat["tortie_underfur_tint"],
                 length=cat["pelt_length"],
-                eye_color=cat["eye_colour"],
-                eye_colour2=cat["eye_colour2"] if "eye_colour2" in cat else None,
                 paralyzed=cat["paralyzed"],
                 kitten_sprite=cat["sprite_kitten"] if "sprite_kitten" in cat else cat["spirit_kitten"],
                 adol_sprite=cat["sprite_adolescent"] if "sprite_adolescent" in cat else cat["spirit_adolescent"],

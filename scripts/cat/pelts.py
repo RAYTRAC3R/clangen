@@ -55,6 +55,9 @@ class Pelt():
     marking_color_categories = sprites.markings_tints["tint_categories"]["color_categories"]
     marking_shade_categories = ["dark", "medium", "light"]
 
+    eye_color_categories = sprites.eye_tints["tint_categories"]["color_categories"]
+    eye_shade_categories = ["dark", "medium", "light"]
+
     blend_modes = ["add", "multiply", None]
 
     # Overlay types
@@ -106,7 +109,7 @@ class Pelt():
         "BLACKNYLON", "SPIKESNYLON", "WHITENYLON", "PINKNYLON", "PURPLENYLON", "MULTINYLON", "INDIGONYLON",
     ]
 
-    tabbies = ["Tabby", "Ticked", "Mackerel", "Classic", "Sokoke", "Agouti"]
+    tabbies = ["Tabby", "Ticked", "Mackerel", "Classic", "Sokoke", "Agouti", "Wisp"]
     spotted = ["Speckled", "Rosette"]
     plain = [None, "Smoke", "Singlestripe"]
     exotic = ["Bengal", "Marbled", "Masked"]
@@ -158,8 +161,24 @@ class Pelt():
                  name:str="white",
                  length:str="short",
                  white_patches:str=None,
-                 eye_color:str="BLUE",
-                 eye_colour2:str=None,
+                 eye_color:str=None,
+                 eye_shade:str=None,
+                 eye_tint:str=None,
+                 eye_s_color:str=None,
+                 eye_s_shade:str=None,
+                 eye_s_tint:str=None,
+                 eye_p_color:str=None,
+                 eye_p_shade:str=None,
+                 eye_p_tint:str=None,
+                 eye2_color:str=None,
+                 eye2_shade:str=None,
+                 eye2_tint:str=None,
+                 eye2_s_color:str=None,
+                 eye2_s_shade:str=None,
+                 eye2_s_tint:str=None,
+                 eye2_p_color:str=None,
+                 eye2_p_shade:str=None,
+                 eye2_p_tint:str=None,
                  tint:str=None,
                  tint_color:str=None,
                  tint_shade:str=None,
@@ -198,8 +217,24 @@ class Pelt():
         self.name = name
         self.length = length
         self.white_patches = white_patches
-        self.eye_colour = eye_color
-        self.eye_colour2 = eye_colour2
+        self.eye_color = eye_color
+        self.eye_shade = eye_shade
+        self.eye_tint = eye_tint
+        self.eye_s_color = eye_s_color
+        self.eye_s_shade = eye_s_shade
+        self.eye_s_tint = eye_s_tint
+        self.eye_p_color = eye_p_color
+        self.eye_p_shade = eye_p_shade
+        self.eye_p_tint = eye_p_tint
+        self.eye2_color = eye2_color
+        self.eye2_shade = eye2_shade
+        self.eye2_tint = eye2_tint
+        self.eye2_s_color = eye2_s_color
+        self.eye2_s_shade = eye2_s_shade
+        self.eye2_s_tint = eye2_s_tint
+        self.eye2_p_color = eye2_p_color
+        self.eye2_p_shade = eye2_p_shade
+        self.eye2_p_tint = eye2_p_tint
         self.tint = tint
         self.tint_shade = tint_shade
         self.tint_color = tint_color
@@ -297,19 +332,6 @@ class Pelt():
         elif self.white_patches in ['SEPIAPOINT', 'MINKPOINT', 'SEALPOINT']:
             self.white_patches_tint = "none"
         
-        # Eye Color Convert Stuff
-        if self.eye_colour == "BLUE2":
-            self.eye_colour = "COBALT"
-        if self.eye_colour2 == "BLUE2":
-            self.eye_colour2 = "COBALT"
-            
-        if self.eye_colour in ["BLUEYELLOW", "BLUEGREEN"]:
-            if self.eye_colour == "BLUEYELLOW":
-                self.eye_colour2 = "YELLOW"
-            elif self.eye_colour == "BLUEGREEN":
-                self.eye_colour2 = "GREEN"
-            self.eye_colour = "BLUE"
-        
         if self.length == 'long':
             if self.cat_sprites['adult'] not in [9, 10, 11]:
                 if self.cat_sprites['adult'] == 0:
@@ -352,10 +374,45 @@ class Pelt():
         
     def init_eyes(self, parents):
         if not parents:
-            self.eye_colour = choice(Pelt.eye_colours)
+            self.eye_color = choice(Pelt.eye_color_categories)
+            if sprites.eye_random:
+                self.eye_s_color = choice(Pelt.eye_color_categories)
+                self.eye_p_color = choice(Pelt.eye_color_categories)
+            else:
+                self.eye_s_color = self.eye_color
+                self.eye_p_color = self.eye_color
         else:
-            self.eye_colour = choice([i.pelt.eye_colour for i in parents] + [choice(Pelt.eye_colours)])
-        
+            self.eye_color = choice([i.pelt.eye_color for i in parents] + [choice(Pelt.eye_color_categories)])
+
+            if sprites.eye_random:
+                self.eye_s_color = choice([i.pelt.eye_color for i in parents] + [choice(Pelt.eye_color_categories)])
+                self.eye_p_color = choice([i.pelt.eye_color for i in parents] + [choice(Pelt.eye_color_categories)])
+            else:
+                self.eye_s_color = self.eye_color
+                self.eye_p_color = self.eye_color
+
+        self.eye_shade = random.choices(Pelt.eye_shade_categories, weights=(sprites.eye_tints["tint_categories"]["shade_weights"]), k=1)[0]
+
+        if self.eye_shade == "dark":
+            weights = [100, 10, 0]
+            self.eye_s_shade = random.choices(Pelt.eye_shade_categories, weights=weights, k=1)[0]
+            weights = [1, 0, 0]
+            self.eye_p_shade = random.choices(Pelt.eye_shade_categories, weights=weights, k=1)[0]
+        elif self.eye_shade == "medium":
+            weights = [50, 50, 0]
+            self.eye_s_shade = random.choices(Pelt.eye_shade_categories, weights=weights, k=1)[0]
+            weights = [1, 0, 0]
+            self.eye_p_shade = random.choices(Pelt.eye_shade_categories, weights=weights, k=1)[0]
+        elif self.eye_shade == "light":
+            weights = [30, 50, 20]
+            self.eye_s_shade = random.choices(Pelt.eye_shade_categories, weights=weights, k=1)[0]
+            weights = [1, 0, 0]
+            self.eye_p_shade = random.choices(Pelt.eye_shade_categories, weights=weights, k=1)[0]
+
+        # 
+        #self.tint_color = random.choices(Pelt.color_categories, weights=(sprites.cat_tints["tint_categories"]["color_weights"]), k=1)[0]
+        #self.tint_shade = random.choices(Pelt.shade_categories, weights=(sprites.cat_tints["tint_categories"]["shade_weights"]), k=1)[0]
+
         #White patches must be initalized before eye color. 
         num = game.config["cat_generation"]["base_heterochromia"]
         if self.white_patches in [Pelt.high_white, Pelt.mostly_white, 'FULLWHITE']:
@@ -363,22 +420,43 @@ class Pelt():
         if self.white_patches == 'FULLWHITE':
             num -= 10
         for _par in parents:
-            if _par.pelt.eye_colour2:
+            if _par.pelt.eye2_color:
                 num -= 10
         
         if num < 0:
             num = 1
             
         if not random.randint(0, num):
-            if self.eye_colour in Pelt.yellow_eyes:
-                eye_choice = choice([Pelt.blue_eyes, Pelt.green_eyes])
-                self.eye_colour2 = choice(eye_choice)
-            elif self.eye_colour in Pelt.blue_eyes:
-                eye_choice = choice([Pelt.yellow_eyes, Pelt.green_eyes])
-                self.eye_colour2 = choice(eye_choice)
-            elif self.eye_colour in Pelt.green_eyes:
-                eye_choice = choice([Pelt.yellow_eyes, Pelt.blue_eyes])
-                self.eye_colour2 = choice(eye_choice)
+            eye_options = Pelt.eye_color_categories
+            eye_options.remove(self.eye_color)
+
+            self.eye2_color = choice(eye_options)
+            self.eye2_shade = random.choices(Pelt.eye_shade_categories, weights=(sprites.eye_tints["tint_categories"]["shade_weights"]), k=1)[0]
+
+            if sprites.eye_random:
+                self.eye2_p_color = choice(eye_options)
+                self.eye2_s_color = choice(eye_options)
+            else:
+                self.eye2_s_color = self.eye2_color
+                self.eye2_p_color = self.eye2_color
+            
+            
+            if self.eye2_shade == "dark":
+                weights = [100, 10, 0]
+                self.eye2_s_shade = random.choices(Pelt.eye_shade_categories, weights=weights, k=1)[0]
+                weights = [1, 0, 0]
+                self.eye2_p_shade = random.choices(Pelt.eye_shade_categories, weights=weights, k=1)[0]
+            elif self.eye2_shade == "medium":
+                weights = [50, 50, 0]
+                self.eye2_s_shade = random.choices(Pelt.eye_shade_categories, weights=weights, k=1)[0]
+                weights = [1, 0, 0]
+                self.eye2_p_shade = random.choices(Pelt.eye_shade_categories, weights=weights, k=1)[0]
+            elif self.eye2_shade == "light":
+                weights = [30, 50, 20]
+                self.eye_s_shade = random.choices(Pelt.eye_shade_categories, weights=weights, k=1)[0]
+                weights = [1, 0, 0]
+                self.eye_p_shade = random.choices(Pelt.eye_shade_categories, weights=weights, k=1)[0]
+
 
     def pattern_color_inheritance(self, parents: tuple=(), gender="female"):
         # setting parent pelt categories
@@ -662,7 +740,6 @@ class Pelt():
             
         # Base color - must be picked before other colors for the tint pool
         self.tint_color = random.choices(Pelt.color_categories, weights=(sprites.cat_tints["tint_categories"]["color_weights"]), k=1)[0]
-
         self.tint_shade = random.choices(Pelt.shade_categories, weights=(sprites.cat_tints["tint_categories"]["shade_weights"]), k=1)[0]
     
         if game.tint_pools["use_color_pool"] == "true":
@@ -693,7 +770,7 @@ class Pelt():
         else:
             torbie = random.getrandbits(tortie_chance_m) == 1
 
-        chosen_pelt = self.tint_color.lstrip("_")
+        chosen_pelt = self.tint_color.replace('real_', '')
         chosen_tortie_base = None
         if torbie:
             # If it is tortie, the chosen pelt above becomes the base pelt.
@@ -1080,6 +1157,26 @@ class Pelt():
             # TORTIE MARKING TINT
             color_tints = sprites.markings_tints["possible_tints"][f"{self.tortie_marking_color}_{self.tortie_marking_shade}"]
             self.tortie_marking_tint = choice(color_tints)
+
+        # Eye tints
+        color_tints = sprites.eye_tints["possible_tints"][f"{self.eye_color}_{self.eye_shade}"]
+        self.eye_tint = choice(color_tints)
+
+        color_tints = sprites.eye_tints["possible_tints"][f"{self.eye_s_color}_{self.eye_s_shade}"]
+        self.eye_s_tint = choice(color_tints)
+
+        color_tints = sprites.eye_tints["possible_tints"][f"{self.eye_p_color}_{self.eye_p_shade}"]
+        self.eye_p_tint = choice(color_tints)
+
+        if self.eye2_color:
+            color_tints = sprites.eye_tints["possible_tints"][f"{self.eye2_color}_{self.eye2_shade}"]
+            self.eye2_tint = choice(color_tints)
+
+            color_tints = sprites.eye_tints["possible_tints"][f"{self.eye2_s_color}_{self.eye2_s_shade}"]
+            self.eye2_s_tint = choice(color_tints)
+
+            color_tints = sprites.eye_tints["possible_tints"][f"{self.eye2_p_color}_{self.eye2_p_shade}"]
+            self.eye2_p_tint = choice(color_tints)
 
         # Underfur tint
         weights = [0, 5, 2]
