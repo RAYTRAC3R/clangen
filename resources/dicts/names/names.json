@@ -1,11 +1,5 @@
 {
   "special_suffixes": {
-    "newborn": "kit",
-    "kitten": "kit",
-    "apprentice": "paw",
-    "medicine cat apprentice": "paw",
-    "mediator apprentice": "paw",
-    "leader": "star"
     },
   "normal_suffixes" : [
     "fur", "fur", "fur", "fur", "fur", "fur", "fur", "fur", "fur", "fur", "fur",
@@ -202,10 +196,13 @@
     "Char", "Charred", "Mulberry", "Night", "Evening", "Dark", "Murk", "Ghost"
     ],
     "red": [
-    "Ant", "Apple", "Beet", "Carnation", "Cherry", "Chili", "Fox", "Poppy", "Rose", "Red", "Rhubarb", "Squirrel"
+    "Ant", "Apple", "Beet", "Carnation", "Cherries", "Cherry", "Chili", "Cinnamon", "Fiery", "Fire", "Fox", "July", "Pepper", "Poppy", "Rose", "Red", "Rhubarb", "Squirrel"
     ],
     "orange": [
-    "Ant", "Bell", "Carrot", "Fox", "Monarch", "Pumpkin", "Squirrel", "Tiger"
+    "Ant", "Bell", "Carrot", "Fall", "Fire", "Fox", "Monarch", "Orange", "Pumpkin", "Squash", "Squirrel", "Sun", "Tiger"
+    ],
+    "yellow": [
+    "Amber", "Banana", "Begonia", "Finch", "Honey", "Nectar", "Python", "Snail", "Squash", "Sun", "Warbler", "Weaver", "Yellow"
     ]
   },
 

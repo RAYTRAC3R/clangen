@@ -428,8 +428,8 @@ class ChangeCatName(UIWindow):
                 self.suffix_entry_box.set_text(Name(self.the_cat.status,
                                                     use_prefix,
                                                     None,
-                                                    self.the_cat.pelt.colour,
-                                                    self.the_cat.pelt.eye_colour,
+                                                    self.the_cat.pelt.name,
+                                                    self.the_cat.pelt.eye_tint,
                                                     self.the_cat.pelt.name,
                                                     self.the_cat.pelt.tortiepattern).suffix)
             elif event.ui_element == self.toggle_spec_block_on:
