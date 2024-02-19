@@ -1,13 +1,15 @@
-# clangen
+# my little generator
 
-### [Discord Server](https://discord.gg/clangen) || [Official website](https://clangen.io) || [Itch.io Page](https://sablesteel.itch.io/clan-gen-fan-edit) 
-Fan-edit of the warrior cat clangen game
+### [Clangen Discord Server](https://discord.gg/clangen) || [Official Clangen website](https://clangen.io) || [Clangen Itch.io Page](https://sablesteel.itch.io/clan-gen-fan-edit) 
+My Little Pony mod for Clangen, a Warrior Cats fangame. Heavy WIP.
 
 Original creator: just-some-cat.tumblr.com
 
 Fan-edit creator: SableSteel, and many others
 
-## Downloads
+Mod creator: RAYTRAC3R
+
+<s>## Downloads
 ### Stable
 Stable versions can be downloaded directly from the [official ClanGen website](https://clangen.io/download)
 
@@ -15,7 +17,7 @@ Stable versions can be downloaded directly from the [official ClanGen website](h
 **Note**: Development versions are automatic snapshots of current development efforts. They are _not_ stable, can crash and even corrupt your save files.
 Additionally, we do not provide tech support for development versions.
 
-Download at your own risk here: [ClanGen development download](https://clangen.io/download-development)
+Download at your own risk here: [ClanGen development download](https://clangen.io/download-development)</s>
 
 ## Running from source
 ClanGen uses poetry to manage virtual environments. Therefore it is required to install the dependencies and run the game from source without manual tweaking.
