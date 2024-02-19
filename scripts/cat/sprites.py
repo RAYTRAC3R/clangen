@@ -158,7 +158,7 @@ class Sprites():
             self.make_group('eyes/eyes', (a, 1), f'eyes2{i}')
         
         # Overlays
-        for a, i in enumerate(['strong', 'medium']):
+        for a, i in enumerate(['strong', 'medium', 'bubble', 'ash']):
             self.make_group('overlays/underfur', (a, 0), f'underfur{i}')
         for a, i in enumerate(['strong', 'medium', 'smoke', 'bubble', 'overcast', 'ash']):
             self.make_group('overlays/overfur', (a, 0), f'overfur{i}')
