@@ -17,7 +17,7 @@
         "color_categories":
         {
             
-            "cool": ["green", "blue", "purple", "real_brown"],
+            "cool": ["green", "blue", "purple", "mono"],
             "warm": ["red", "orange", "yellow", "pink", "real_orange"],
             "mono": ["mono", "real_mono"]
     
