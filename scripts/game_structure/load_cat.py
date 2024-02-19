@@ -110,7 +110,7 @@ def json_load():
                 tortie_marking_tint=cat["tortie_tint"],
                 tortie_underfur_tint=cat["tortie_underfur_tint"],
                 tortie_overfur_tint=cat["tortie_overfur_tint"],
-                mane_style=cat["mane_style"] if "mane_style" in cat else "None",
+                mane_style=cat["mane_style"] if "mane_style" in cat else "Test",
                 mane_color=cat["marking_tint"],
                 length=cat["pelt_length"],
                 paralyzed=cat["paralyzed"],
