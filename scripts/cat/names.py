@@ -155,6 +155,7 @@ class Name():
     def give_suffix(self, pelt, biome, tortiepattern):
         if pelt is None or pelt == 'SingleColour':
             self.suffix = random.choice(self.names_dict["normal_suffixes"])
+            print(self.suffix)
         else:
             named_after_pelt = not random.getrandbits(2)  # Chance for True is '1/8'.
             named_after_biome = not random.getrandbits(3)  # 1/8
@@ -173,6 +174,11 @@ class Name():
                     self.suffix = random.choice(self.names_dict["normal_suffixes"])
             else:
                 self.suffix = random.choice(self.names_dict["normal_suffixes"])
+        suffixspacing = random.randint(1, 5)
+        if suffixspacing == 1:
+            self.suffix = self.suffix
+        else:
+            self.suffix = " " + self.suffix.capitalize()
 
     def __repr__(self):
         # Handles predefined suffixes (such as newborns being kit), then suffixes based on ages (fixes #2004, just trust me)
