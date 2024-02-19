@@ -8,8 +8,8 @@
 
     "comment": "Adjust these weights for generation. They MUST be the same number of weights as above. If there are 4 color categories, there must be 4 color weights. Higher the number, higher the chance. Lower the number, lower the chance.",
     "color_weights": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    "color_weights2": [1, 1, 1],
-    "shade_weights": [1, 1, 1]
+    "color_weights2": [0, 0, 0],
+    "shade_weights": [1, 4, 2]
 
 },
   "possible_tints": 
