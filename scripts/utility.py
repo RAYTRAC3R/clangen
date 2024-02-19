@@ -1595,6 +1595,17 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
 
                 new_sprite.blit(acc, (0, 0))
 
+        if cat.pelt.mane_style:
+            print(cat.pelt.mane_style)
+            mane_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+            mane_tint.fill(tuple(sprites.markings_tints["tint_colours"][cat.pelt.mane_color]))
+            
+            mane = sprites.sprites['manecolor' + cat.pelt.mane_style + cat_sprite].copy()
+            mane.blit(mane_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+            mane.blit(sprites.sprites['manelines' + cat.pelt.mane_style + cat_sprite], (0, 0))
+            new_sprite.blit(mane, (0, 0))
+
+            
         # Apply fading fog
         if cat.pelt.opacity <= 97 and not cat.prevent_fading and game.clan.clan_settings["fading"] and dead:
 
