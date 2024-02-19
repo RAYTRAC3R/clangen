@@ -685,7 +685,7 @@ class ProfileScreen(Screens):
         output += "\n"
 
         # PELT LENGTH
-        output += 'fur length: ' + the_cat.pelt.length
+        output += 'race: ' + the_cat.pelt.race.lower()
         # NEWLINE ----------
 
         # ACCESSORY

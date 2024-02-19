@@ -256,6 +256,7 @@ class Pelt():
                  tortie_overfur_tint:str=None,
                  mane_style:str=None,
                  mane_color:str=None,
+                 race:str=None,
                  vitiligo:str=None,
                  points:str=None,
                  accessory_category:str=None,
@@ -323,6 +324,7 @@ class Pelt():
         self.tortie_overfur_tint = tortie_overfur_tint
         self.mane_style = mane_style
         self.mane_color = marking_tint
+        self.race = race
         self.vitiligo = vitiligo
         self.length=length
         self.points = points
@@ -1104,21 +1106,38 @@ class Pelt():
     def init_sprite(self):
         self.cat_sprites = {
             'newborn': 20,
-            'kitten': random.randint(0, 2),
-            'adolescent': random.randint(3, 5),
-            'senior': random.randint(12, 14),
             'sick_young': 19,
             'sick_adult': 18
         }
+        
+        self.race = choice(["Earth", "Pegasus", "Unicorn"])
+        
+        if self.race == "Earth":
+            self.cat_sprites['kitten'] = 0
+            self.cat_sprites['adolescent'] = 3
+            self.cat_sprites['adult'] = 6
+            self.cat_sprites['senior'] = 12
+        elif self.race == "Pegasus":
+            self.cat_sprites['kitten'] = 1
+            self.cat_sprites['adolescent'] = 4
+            self.cat_sprites['adult'] = 7
+            self.cat_sprites['senior'] = 13
+        else:
+            self.cat_sprites['kitten'] = 2
+            self.cat_sprites['adolescent'] = 5
+            self.cat_sprites['adult'] = 8
+            self.cat_sprites['senior'] = 14
         self.reverse = choice([True, False])
         # skin chances
         self.skin = choice(Pelt.skin_sprites)
+        self.cat_sprites['adolescent'] = self.cat_sprites['kitten'] + 3
+        self.cat_sprites['senior'] = self.cat_sprites['kitten'] + 12
                 
         if self.length != 'long':
-            self.cat_sprites['adult'] = random.randint(6, 8)
+            self.cat_sprites['adult'] = self.cat_sprites['kitten'] + 6
             self.cat_sprites['para_adult'] = 16
         else:
-            self.cat_sprites['adult'] = random.randint(9, 11)
+            self.cat_sprites['adult'] = self.cat_sprites['kitten'] + 6
             self.cat_sprites['para_adult'] = 15
         self.cat_sprites['young adult'] = self.cat_sprites['adult']
         self.cat_sprites['senior adult'] = self.cat_sprites['adult']
