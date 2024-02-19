@@ -1,6 +1,6 @@
 {
   "comment": ["Enable_random is to enable or disable different pupil and shade colors from the base eye color."],
-  "enable_random": "false",
+  "enable_random": "true",
 
   "tint_categories":
 {

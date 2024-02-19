@@ -413,7 +413,6 @@ class ChangeCatName(UIWindow):
                     use_suffix = self.suffix_entry_box.text
                 else:
                     use_suffix = self.the_cat.name.suffix
-                print(self.the_cat.pelt)
                 self.prefix_entry_box.set_text(Name(self.the_cat.status,
                                                     None,
                                                     use_suffix,
