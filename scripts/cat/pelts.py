@@ -473,6 +473,8 @@ class Pelt():
         par_markcolors = set()
         par_markshades = set()
         par_peltcategories = set()
+        combo_peltcolors = []
+        combo_markcolors = []
         par_pelts = []
         par_white = []
         
@@ -493,6 +495,9 @@ class Pelt():
                     par_peltcolors.add(p.pelt.tortie_color)
                     par_peltshades.add(p.pelt.tortie_shade)
 
+                combo_peltcolors.append(p.pelt.tint_color)
+                combo_markcolors.append(p.pelt.marking_color)
+
                 par_markcolors.add(p.pelt.marking_color)
                 par_markshades.add(p.pelt.marking_shade)
                 
@@ -502,6 +507,22 @@ class Pelt():
                 # If order for white patches to work correctly, we also want to randomly generate a "pelt_white"
                 # for each "None" parent (missing or unknown parent)
                 par_white.append(bool(random.getrandbits(1)))
+
+                # make random other parent - required for combo genetics = ensures that the default inheritance doesn't end up a carbon copy of the singular parent lol
+                rand_parent_pelt = random.choices(Pelt.color_categories, weights=(sprites.cat_tints["tint_categories"]["color_weights"]), k=1)[0]
+                rand_parent_mark = random.choices(Pelt.color_categories, weights=(sprites.cat_tints["tint_categories"]["color_weights"]), k=1)[0]
+
+                rand_parent_pelt_s = random.choices(Pelt.shade_categories, weights=(sprites.cat_tints["tint_categories"]["shade_weights"]), k=1)[0]
+                rand_parent_mark_s = random.choices(Pelt.shade_categories, weights=(sprites.cat_tints["tint_categories"]["shade_weights"]), k=1)[0]
+
+                combo_peltcolors.append(rand_parent_pelt)
+                combo_markcolors.append(rand_parent_mark)
+
+                par_peltcolors.add(rand_parent_pelt)
+                par_markcolors.add(rand_parent_mark)
+                
+                par_peltshades.add(rand_parent_pelt_s)
+                par_markshades.add(rand_parent_mark_s)
 
                 # Append None
                 # Gather pelt color.
@@ -522,7 +543,19 @@ class Pelt():
                         if p_ in category:
                             par_peltcategories.update(category)
                         c += 1
+
                 par_peltcolors.update(par_peltcategories)
+                par_peltcategories.clear
+                
+                for p_ in par_markcolors:
+                    c = 0
+                    while c < Pelt.in_cat_count:
+                        cat_sel = Pelt.inheritance_categories[c]
+                        category = set(game.tint_inheritance[f"{game.inheritance_preset}"]["color_categories"][f"{cat_sel}"])
+                        if p_ in category:
+                            par_peltcategories.update(category)
+                        c += 1
+
                 par_markcolors.update(par_peltcategories)
 
             elif game.inheritance_type == "color_lists":
@@ -531,7 +564,25 @@ class Pelt():
                     colors.update(set(game.tint_inheritance[f"{game.inheritance_preset}"]["color_lists"][f"{p_}"]))
 
                 par_peltcolors.update(colors)
+                colors.clear
+                
+                for p_ in par_markcolors:
+                    colors.update(set(game.tint_inheritance[f"{game.inheritance_preset}"]["color_lists"][f"{p_}"]))
+
                 par_markcolors.update(colors)
+
+            elif game.inheritance_type == "color_combos":
+                colors = list(combo_peltcolors)
+                p1_color = colors[0]
+                p2_color = colors[1]
+                pelt_weights = game.tint_inheritance[f"{game.inheritance_preset}"]["color_combos"][f"{p1_color}"][f"{p2_color}"]["weights"]
+                pelt_colors = game.tint_inheritance[f"{game.inheritance_preset}"]["color_combos"][f"{p1_color}"][f"{p2_color}"]["outcomes"]
+
+                colors = list(combo_markcolors)
+                p1_color = colors[0]
+                p2_color = colors[1]
+                mark_weights = game.tint_inheritance[f"{game.inheritance_preset}"]["color_combos"][f"{p1_color}"][f"{p2_color}"]["weights"]
+                mark_colors = game.tint_inheritance[f"{game.inheritance_preset}"]["color_combos"][f"{p1_color}"][f"{p2_color}"]["outcomes"]
             else:
                 print("Incorrect inheritance type inputted.")
                 
@@ -566,10 +617,13 @@ class Pelt():
             if all([x == 0 for x in weights]):
                 weights = [1, 1, 1]
 
-        self.tint_color = random.choices(list(par_peltcolors), k=1)[0]
-        self.tint_shade = random.choices(Pelt.marking_shade_categories, weights=weights, k=1)[0]
+        if game.inheritance_type == "color_combos":
+            self.tint_color = random.choices(pelt_colors, weights=pelt_weights, k=1)[0]
+        else:
+            self.tint_color = random.choices(list(par_peltcolors), k=1)[0]
 
-        chosen_pelt = self.tint_color.lstrip("_")
+        self.tint_shade = random.choices(Pelt.marking_shade_categories, weights=weights, k=1)[0]
+        chosen_pelt = self.tint_color
         
         # ------------------------------------------------------------------------------------------------------------#
         #   MARKINGS
@@ -582,43 +636,38 @@ class Pelt():
         self.overfur = random.choices(Pelt.overfur_types, weights=Pelt.overfur_weights, k=1)[0]
         self.underfur = random.choices(Pelt.underfur_types, weights=Pelt.underfur_weights, k=1)[0]
     
-        if game.tint_pools["use_color_pool"] == "true":
-            # Marking color
-            possible_colors = game.tint_pools["color_presets"][f"{game.tint_preset}"]["color_pools"]["marking_pool"][f"{self.tint_color}"]
-            chosen_marking_color = random.choices(possible_colors, k=1)[0]
+    
+        weights = [0, 0, 0]
+        for p_ in par_markshades:
+            if p_ == "dark":
+                add_weight = (40, 10, 0)
+            if p_ == "medium":
+                add_weight = (40, 10, 0)
+            if p_ == "light":
+                add_weight = (0, 10, 40)
+            elif p_ is None:
+                add_weight = (40, 40, 40)
+            else:
+                add_weight = (0, 0, 0)
 
-            weights = game.tint_pools["color_presets"][f"{game.tint_preset}"]["shade_weights"]["marking_pool"][f"{self.tint_shade}"]
-            chosen_marking_shade = random.choices(Pelt.shade_categories, weights=weights, k=1)[0]
+        for x in range(0, len(weights)):
+            weights[x] += add_weight[x]
 
-            # Tortie marking is picked in the pattern init
+        # A quick check to make sure all the weights aren't 0
+        if all([x == 0 for x in weights]):
+            weights = [1, 1, 1]
+        
+        # Marking color
+        
+        if game.inheritance_type == "color_combos":
+            chosen_marking_color = random.choices(mark_colors, weights=mark_weights, k=1)[0]
         else:
-
-            weights = [0, 0, 0]
-            for p_ in par_markshades:
-                if p_ == "dark":
-                    add_weight = (40, 10, 0)
-                if p_ == "medium":
-                    add_weight = (40, 10, 0)
-                if p_ == "light":
-                    add_weight = (0, 10, 40)
-                elif p_ is None:
-                    add_weight = (40, 40, 40)
-                else:
-                    add_weight = (0, 0, 0)
-
-            for x in range(0, len(weights)):
-                weights[x] += add_weight[x]
-
-            # A quick check to make sure all the weights aren't 0
-            if all([x == 0 for x in weights]):
-                weights = [1, 1, 1]
-            # Marking color
             chosen_marking_color = random.choices(Pelt.marking_color_categories, weights=(sprites.markings_tints["tint_categories"]["color_weights"]), k=1)[0]
-            chosen_marking_shade = random.choices(Pelt.marking_shade_categories, weights=weights, k=1)[0]
 
-            # Tortie marking color
-            self.tortie_marking_color = random.choices(Pelt.marking_color_categories, weights=(sprites.markings_tints["tint_categories"]["color_weights"]), k=1)[0]
-            self.tortie_marking_shade = random.choices(Pelt.marking_shade_categories, weights=(sprites.markings_tints["tint_categories"]["shade_weights"]), k=1)[0]
+        chosen_marking_shade = random.choices(Pelt.marking_shade_categories, weights=weights, k=1)[0]
+        # Tortie marking color
+        self.tortie_marking_color = random.choices(Pelt.marking_color_categories, weights=(sprites.markings_tints["tint_categories"]["color_weights"]), k=1)[0]
+        self.tortie_marking_shade = random.choices(Pelt.marking_shade_categories, weights=(sprites.markings_tints["tint_categories"]["shade_weights"]), k=1)[0]
 
         # Determine pelt.
         weights = [0, 0, 0, 0]  #Weights for each pelt group. It goes: (tabbies, spotted, plain, exotic)
@@ -766,6 +815,7 @@ class Pelt():
             self.tortie_marking_color = random.choices(Pelt.marking_color_categories, weights=(sprites.markings_tints["tint_categories"]["color_weights"]), k=1)[0]
             self.tortie_marking_shade = random.choices(Pelt.marking_shade_categories, weights=(sprites.markings_tints["tint_categories"]["shade_weights"]), k=1)[0]
 
+        
         # Tortie chance
         # There is a default chance for female tortie, slightly increased for completely random generation.
         tortie_chance_f = game.config["cat_generation"]["base_female_tortie"] - 1
