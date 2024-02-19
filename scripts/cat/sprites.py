@@ -123,7 +123,7 @@ class Sprites():
         del width, height # unneeded
 
         for x in [
-            'lineart', 'base', 'overlays/underfur', 'overlays/overfur', 'markings/markings', 'eyes/eyes',
+            'lineart', 'base', 'overlays/underfur', 'overlays/overfur', 'markings/markings', 'manes/manelines', 'manes/manecolor', 'eyes/eyes',
             'whitepatches', 'eyes', 'eyes2', 'skin', 'scars', 'missingscars',
             'collars', 'bellcollars', 'bowcollars', 'nyloncollars',
             'shadersnewwhite', 'lineartdead', 'tortiepatchesmasks', 
@@ -150,6 +150,12 @@ class Sprites():
         # Markings
         for a, i in enumerate(['Tabby', 'Masked', 'Mackerel', 'Agouti', 'Speckled', 'Classic', 'Wisp', 'Sokoke', 'Singlestripe', 'Ticked', 'Marbled', 'Bengal', 'Smoke', 'Rosette']):
             self.make_group('markings/markings', (a, 0), f'mark{i}')
+            
+        for a, i in enumerate(['None', 'Test']):
+            self.make_group('manes/manelines', (a, 0), f'manelines{i}')
+            
+        for a, i in enumerate(['None', 'Test']):
+            self.make_group('manes/manecolor', (a, 0), f'manecolor{i}')
 
         # Eyes
         for a, i in enumerate(['base', 'shade', 'pupil']):
