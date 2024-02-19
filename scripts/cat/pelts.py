@@ -775,7 +775,7 @@ class Pelt():
         else:
             torbie = random.getrandbits(tortie_chance_m) == 1
 
-        chosen_pelt = self.tint_color.replace('real_', '')
+        chosen_pelt = self.tint_color
         chosen_tortie_base = None
         if torbie:
             # If it is tortie, the chosen pelt above becomes the base pelt.
