@@ -804,10 +804,10 @@ class Cat():
         return output
 
     def describe_eyes(self):
-        colour = str(self.pelt.eye_s_color).lower()
-        colour2 = str(self.pelt.eye2_s_color).lower()
+        colour = str(self.pelt.eye_color).lower()
+        colour2 = str(self.pelt.eye2_color).lower()
 
-        if self.pelt.eye2_s_color:
+        if self.pelt.eye2_color:
             colour = colour + ' and ' + colour2
             
         return colour
@@ -2912,6 +2912,7 @@ class Cat():
                 "tortie_overfur_tint": self.pelt.tortie_overfur_tint,
                 "mane_style": self.pelt.mane_style,
                 "mane_color": self.pelt.marking_tint,
+                "race": self.pelt.race,
                 "sprite_kitten": self.pelt.cat_sprites['kitten'],
                 "sprite_adolescent": self.pelt.cat_sprites['adolescent'],
                 "sprite_adult": self.pelt.cat_sprites['adult'],
