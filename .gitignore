@@ -161,7 +161,6 @@ dmypy.json
 cython_debug/
 
 /saves/**
-/saves2/**
 *.png~
 scripts/__pycache__/**
 /__pycache__/

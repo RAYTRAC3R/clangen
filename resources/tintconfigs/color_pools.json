@@ -3,7 +3,7 @@
     ["Disabled by default. This is used to restrict colors for torties and markings just to make sure there isn't anything too outlandish.",
     "Can be used to make better realism.",
     "preset_select is for selecting preset."],
-    "use_color_pool": "false",
+    "use_color_pool": "true",
     "preset": "base",
 
     "comment":
