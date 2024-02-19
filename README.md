@@ -9,6 +9,8 @@ Fan-edit creator: SableSteel, and many others
 
 Mod creator: RAYTRAC3R
 
+Creator of PrismGen (code used for coloring system): muxasii
+
 <s>## Downloads
 ### Stable
 Stable versions can be downloaded directly from the [official ClanGen website](https://clangen.io/download)
