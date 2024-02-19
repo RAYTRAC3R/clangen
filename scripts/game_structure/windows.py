@@ -413,11 +413,12 @@ class ChangeCatName(UIWindow):
                     use_suffix = self.suffix_entry_box.text
                 else:
                     use_suffix = self.the_cat.name.suffix
+                print(self.the_cat.pelt)
                 self.prefix_entry_box.set_text(Name(self.the_cat.status,
                                                     None,
                                                     use_suffix,
-                                                    self.the_cat.pelt.name,
-                                                    self.the_cat.pelt.eye_tint,
+                                                    self.the_cat.pelt.colour,
+                                                    self.the_cat.pelt.eye_colour,
                                                     self.the_cat.pelt.name,
                                                     self.the_cat.pelt.tortiepattern).prefix)
             elif event.ui_element == self.random_suffix:

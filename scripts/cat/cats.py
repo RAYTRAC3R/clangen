@@ -807,10 +807,10 @@ class Cat():
         return output
 
     def describe_eyes(self):
-        colour = str(self.pelt.eye_color).lower()
-        colour2 = str(self.pelt.eye2_color).lower()
+        colour = str(self.pelt.eye_s_color).lower()
+        colour2 = str(self.pelt.eye2_s_color).lower()
 
-        if self.pelt.eye2_color:
+        if self.pelt.eye2_s_color:
             colour = colour + ' and ' + colour2
             
         return colour

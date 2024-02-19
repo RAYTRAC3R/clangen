@@ -1273,7 +1273,7 @@ class Pelt():
 
         # Eye tints
         color_tints = sprites.eye_tints["possible_tints"][f"{self.eye_color}_{self.eye_shade}"]
-        self.eye_tint = choice(color_tints)
+        self.eye_tint = "white"
 
         color_tints = sprites.eye_tints["possible_tints"][f"{self.eye_s_color}_{self.eye_s_shade}"]
         self.eye_s_tint = choice(color_tints)
