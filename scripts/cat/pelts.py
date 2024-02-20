@@ -50,13 +50,19 @@ class Pelt():
     in_cat_count = len(game.tint_inheritance[f"{game.inheritance_preset}"]["color_categories"]) - 1
 
     color_categories = sprites.cat_tints["tint_categories"]["color_categories"]
+    color_weights = sprites.cat_tints["tint_categories"]["color_weights"]
     shade_categories = ["dark", "medium", "light"]
+    shade_weights = sprites.cat_tints["tint_categories"]["shade_weights"]
     
     marking_color_categories = sprites.markings_tints["tint_categories"]["color_categories"]
+    m_color_weights = sprites.markings_tints["tint_categories"]["color_weights"]
     marking_shade_categories = ["dark", "medium", "light"]
+    m_shade_weights = sprites.markings_tints["tint_categories"]["shade_weights"]
 
     eye_color_categories = sprites.eye_tints["tint_categories"]["color_categories"]
+    e_color_weights = sprites.eye_tints["tint_categories"]["color_weights"]
     eye_shade_categories = ["dark", "medium", "light"]
+    e_shade_weights = sprites.eye_tints["tint_categories"]["shade_weights"]
 
     blend_modes = ["add", "multiply", None]
 
@@ -293,15 +299,15 @@ class Pelt():
         self.skin = skin
 
     @staticmethod
-    def generate_new_pelt(gender:str, parents:tuple=(), age:str="adult"):
+    def generate_new_pelt(gender:str, parents:tuple=(), age:str="adult", missing_parent:dict=()):
         new_pelt = Pelt()
         
-        pelt_white = new_pelt.init_pattern_color(parents, gender)
+        pelt_white = new_pelt.init_pattern_color(parents, gender, missing_parent)
         new_pelt.init_white_patches(pelt_white, parents)
         new_pelt.init_sprite()
         new_pelt.init_scars(age)
         new_pelt.init_accessories(age)
-        new_pelt.init_eyes(parents)
+        new_pelt.init_eyes(parents, missing_parent)
         new_pelt.init_tint()
         new_pelt.init_pattern()
         new_pelt.init_mane()
@@ -386,7 +392,7 @@ class Pelt():
         elif self.pattern == "MINIMAL4":
             self.pattern = "MINIMALFOUR"
         
-    def init_eyes(self, parents):
+    def init_eyes(self, parents, missing_parent):
         if not parents:
             self.eye_color = choice(Pelt.eye_color_categories)
             if sprites.eye_random:
@@ -396,14 +402,25 @@ class Pelt():
                 self.eye_s_color = self.eye_color
                 self.eye_p_color = self.eye_color
         else:
-            self.eye_color = choice([i.pelt.eye_color for i in parents] + [choice(Pelt.eye_color_categories)])
+            if missing_parent:
+                
+                self.eye_color = choice([i.pelt.eye_color for i in parents] + [missing_parent["eye_color"]] + [choice(Pelt.eye_color_categories)])
 
-            if sprites.eye_random:
-                self.eye_s_color = choice([i.pelt.eye_color for i in parents] + [choice(Pelt.eye_color_categories)])
-                self.eye_p_color = choice([i.pelt.eye_color for i in parents] + [choice(Pelt.eye_color_categories)])
+                if sprites.eye_random:
+                    self.eye_s_color = choice([i.pelt.eye_s_color for i in parents] + [missing_parent["eye_s_color"]] + [choice(Pelt.eye_color_categories)])
+                    self.eye_p_color = choice([i.pelt.eye_p_color for i in parents] + [missing_parent["eye_p_color"]] + [choice(Pelt.eye_color_categories)])
+                else:
+                    self.eye_s_color = self.eye_color
+                    self.eye_p_color = self.eye_color
             else:
-                self.eye_s_color = self.eye_color
-                self.eye_p_color = self.eye_color
+                self.eye_color = choice([i.pelt.eye_color for i in parents] + [choice(Pelt.eye_color_categories)])
+
+                if sprites.eye_random:
+                    self.eye_s_color = choice([i.pelt.eye_color for i in parents] + [choice(Pelt.eye_color_categories)])
+                    self.eye_p_color = choice([i.pelt.eye_color for i in parents] + [choice(Pelt.eye_color_categories)])
+                else:
+                    self.eye_s_color = self.eye_color
+                    self.eye_p_color = self.eye_color
 
         self.eye_shade = random.choices(Pelt.eye_shade_categories, weights=(sprites.eye_tints["tint_categories"]["shade_weights"]), k=1)[0]
 
@@ -471,8 +488,7 @@ class Pelt():
                 weights = [1, 0, 0]
                 self.eye2_p_shade = random.choices(Pelt.eye_shade_categories, weights=weights, k=1)[0]
 
-
-    def pattern_color_inheritance(self, parents: tuple=(), gender="female"):
+    def pattern_color_inheritance(self, parents: tuple=(), gender="female", missing_parent:dict=()):
         # setting parent pelt categories
         #We are using a set, since we don't need this to be ordered, and sets deal with removing duplicates.
         par_peltlength = set()
@@ -482,8 +498,8 @@ class Pelt():
         par_markcolors = set()
         par_markshades = set()
         par_peltcategories = set()
-        combo_peltcolors = []
-        combo_markcolors = []
+        combo_peltcolors = list()
+        combo_markcolors = list()
         par_pelts = []
         par_white = []
         
@@ -517,29 +533,41 @@ class Pelt():
                 # for each "None" parent (missing or unknown parent)
                 par_white.append(bool(random.getrandbits(1)))
 
-                # make random other parent - required for combo genetics = ensures that the default inheritance doesn't end up a carbon copy of the singular parent lol
-                rand_parent_pelt = random.choices(Pelt.color_categories, weights=(sprites.cat_tints["tint_categories"]["color_weights"]), k=1)[0]
-                rand_parent_mark = random.choices(Pelt.color_categories, weights=(sprites.cat_tints["tint_categories"]["color_weights"]), k=1)[0]
-
-                rand_parent_pelt_s = random.choices(Pelt.shade_categories, weights=(sprites.cat_tints["tint_categories"]["shade_weights"]), k=1)[0]
-                rand_parent_mark_s = random.choices(Pelt.shade_categories, weights=(sprites.cat_tints["tint_categories"]["shade_weights"]), k=1)[0]
-
-                combo_peltcolors.append(rand_parent_pelt)
-                combo_markcolors.append(rand_parent_mark)
-
-                par_peltcolors.add(rand_parent_pelt)
-                par_markcolors.add(rand_parent_mark)
-                
-                par_peltshades.add(rand_parent_pelt_s)
-                par_markshades.add(rand_parent_mark_s)
-
                 # Append None
                 # Gather pelt color.
+                par_peltlength.add(None)
                 par_markcolors.add(None)
                 par_markshades.add(None)
                 par_peltcolors.add(None)
                 par_peltlength.add(None)
                 par_peltshades.add(None)
+
+        # If this list is empty, something went wrong.
+        if not par_peltcolors:
+            print("Warning - no parents: pelt randomized")
+            return self.randomize_pattern_color(gender)
+        
+        # check for missing parent to generate missing parent
+        if missing_parent:
+            # Gather pelt markings
+            par_peltmarkings.add(str(missing_parent['marking']))
+
+            # Gather pelt length
+            par_peltlength.add(str(missing_parent["length"]))
+
+            # Gather pelt tints
+            par_peltcolors.add(str(missing_parent["tint_color"]))
+            par_peltshades.add(str(missing_parent["tint_shade"]))
+
+            combo_peltcolors.append(str(missing_parent["tint_color"]))
+            combo_markcolors.append(str(missing_parent["marking_color"]))
+
+            par_markcolors.add(str(missing_parent["marking_color"]))
+            par_markshades.add(str(missing_parent["marking_shade"]))
+            
+            # Gather if they have white in their pelt.
+            par_white.append(str(missing_parent["white"]))
+
 
         if game.config_inheritance == "true":
             if game.inheritance_type == "color_categories":
@@ -581,26 +609,19 @@ class Pelt():
                 par_markcolors.update(colors)
 
             elif game.inheritance_type == "color_combos":
-                colors = list(combo_peltcolors)
-                p1_color = colors[0]
-                p2_color = colors[1]
+                c_colors = combo_peltcolors
+                p1_color = c_colors[0]
+                p2_color = c_colors[1]
                 pelt_weights = game.tint_inheritance[f"{game.inheritance_preset}"]["color_combos"][f"{p1_color}"][f"{p2_color}"]["weights"]
                 pelt_colors = game.tint_inheritance[f"{game.inheritance_preset}"]["color_combos"][f"{p1_color}"][f"{p2_color}"]["outcomes"]
 
-                colors = list(combo_markcolors)
-                p1_color = colors[0]
-                p2_color = colors[1]
+                c_colors = combo_markcolors
+                p1_color = c_colors[0]
+                p2_color = c_colors[1]
                 mark_weights = game.tint_inheritance[f"{game.inheritance_preset}"]["color_combos"][f"{p1_color}"][f"{p2_color}"]["weights"]
                 mark_colors = game.tint_inheritance[f"{game.inheritance_preset}"]["color_combos"][f"{p1_color}"][f"{p2_color}"]["outcomes"]
             else:
                 print("Incorrect inheritance type inputted.")
-                
-
-
-        # If this list is empty, something went wrong.
-        if not par_peltcolors:
-            print("Warning - no parents: pelt randomized")
-            return self.randomize_pattern_color(gender)
 
         # ------------------------------------------------------------------------------------------------------------#
         #   PELT COLOUR
@@ -802,8 +823,8 @@ class Pelt():
         self.underfur = random.choices(Pelt.underfur_types, weights=Pelt.underfur_weights, k=1)[0]
             
         # Base color - must be picked before other colors for the tint pool
-        self.tint_color = random.choices(Pelt.color_categories, weights=(sprites.cat_tints["tint_categories"]["color_weights"]), k=1)[0]
-        self.tint_shade = random.choices(Pelt.shade_categories, weights=(sprites.cat_tints["tint_categories"]["shade_weights"]), k=1)[0]
+        self.tint_color = random.choices(Pelt.color_categories, weights=Pelt.color_weights, k=1)[0]
+        self.tint_shade = random.choices(Pelt.shade_categories, weights=Pelt.shade_weights, k=1)[0]
     
         if game.tint_pools["use_color_pool"] == "true":
             # Marking color
@@ -871,7 +892,7 @@ class Pelt():
         self.tortiebase = chosen_tortie_base   # This will be none if the cat isn't a tortie.
         return chosen_white
 
-    def init_pattern_color(self, parents, gender) -> bool:
+    def init_pattern_color(self, parents, gender, missing_parent) -> bool:
         """Inits self.name, self.tint_color, self.length, 
             self.tortiebase and determines if the cat 
             will have white patche or not. 
@@ -880,7 +901,7 @@ class Pelt():
         
         if parents:
             #If the cat has parents, use inheritance to decide pelt.
-            chosen_white = self.pattern_color_inheritance(parents, gender)
+            chosen_white = self.pattern_color_inheritance(parents, gender, missing_parent)
         else:
             chosen_white = self.randomize_pattern_color(gender)
         
