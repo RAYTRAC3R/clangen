@@ -45,10 +45,14 @@ class Events:
     ceremony_accessory = False
     CEREMONY_TXT = None
     WAR_TXT = None
+    protege = None
         
     def __init__(self):
         self.load_ceremonies()
         self.load_war_resources()
+        self.protege = [i for i in Cat.all_cats_list if
+                                    i.status in ["mediator"] and not (
+                                            i.dead or i.outside)]
 
     def one_moon(self):
         """
@@ -64,6 +68,9 @@ class Events:
         Patrol.used_patrols.clear()
         game.patrolled.clear()
         game.just_died.clear()
+        self.protege = [i for i in Cat.all_cats_list if
+                                    i.status in ["mediator"] and not (
+                                            i.dead or i.outside)]
         
 
         if any(
@@ -943,13 +950,26 @@ class Events:
             # If leader is None, treat them as dead (since they are dead - and faded away.)
             leader_outside = True
 
+        print(self.protege)
+        
+        if self.protege is not None and (leader_dead or leader_outside):
+            game.clan.new_leader(self.protege[0])
+            text = f'{self.protege[0].name} has ascended and become the new princess. '
+            
+            text += f"\nVisit {self.protege[0].name}'s " \
+                        "profile to see their full leader ceremony."
+            game.cur_events_list.append(
+                    Single_Event(text, "ceremony", self.protege[0].ID))
+
+        
         # If a Clan deputy exists, and the leader is dead,
         #  outside, or doesn't exist, make the deputy leader.
         if game.clan.deputy:
             if game.clan.deputy is not None and \
                     not game.clan.deputy.dead and \
                     not game.clan.deputy.outside and \
-                    (leader_dead or leader_outside):
+                    (leader_dead or leader_outside) and \
+                    self.protege is None:
                 game.clan.new_leader(game.clan.deputy)
                 game.clan.leader_lives = 9
                 text = ''

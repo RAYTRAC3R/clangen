@@ -123,7 +123,7 @@ class Pelt():
     exotic = ["Bengal", "Marbled", "Masked"]
     torties = ["Tortie", "Calico"]
     pelt_categories = [tabbies, spotted, plain, exotic, torties]
-    marking_weights = [40, 30, 40, 5, 0]
+    marking_weights = [20, 10, 40, 5, 0]
 
     # SPRITE NAMES
     single_colours = [
@@ -1340,7 +1340,7 @@ class Pelt():
             self.white_patches_tint = "none"
             
     def init_mane(self):
-        self.mane_style = choice(random.choices(Pelt.manestyles, weights=[1,3]))
+        self.mane_style = choice(random.choices(Pelt.manestyles, weights=[1,5]))
         self.mane_color = self.marking_tint
 
     @property
@@ -1460,11 +1460,11 @@ class Pelt():
 
         # Now it's time for gender
         if cat.genderalign in ["female", "trans female"]:
-            color_name = f"{color_name} she-cat"
+            color_name = f"{color_name} mare"
         elif cat.genderalign in ["male", "trans male"]:
-            color_name = f"{color_name} tom"
+            color_name = f"{color_name} stallion"
         else:
-            color_name = f"{color_name} cat"
+            color_name = f"{color_name} pony"
 
         # Here is the place where we can add some additional details about the cat, for the full non-short one
         # These include notable missing limbs, vitiligo, long-furred-ness, and 3 or more scars
