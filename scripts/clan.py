@@ -359,6 +359,7 @@ class Clan():
             self.history.add_lead_ceremony(leader)
             self.leader = leader
             Cat.all_cats[leader.ID].status_change('leader')
+            Cat.all_cats[leader.ID].pelt.race = "Alicorn"
             self.leader_predecessors += 1
             self.leader_lives = 9
         game.switches['new_leader'] = None
