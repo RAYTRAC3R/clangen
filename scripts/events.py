@@ -68,6 +68,7 @@ class Events:
         Patrol.used_patrols.clear()
         game.patrolled.clear()
         game.just_died.clear()
+        self.protege = None
         self.protege = [i for i in Cat.all_cats_list if
                                     i.status in ["mediator"] and not (
                                             i.dead or i.outside)]
@@ -952,7 +953,7 @@ class Events:
 
         print(self.protege)
         
-        if self.protege is not None and (leader_dead or leader_outside):
+        if len(self.protege) is not 0 and (leader_dead or leader_outside):
             game.clan.new_leader(self.protege[0])
             text = f'{self.protege[0].name} has ascended and become the new princess. '
             
@@ -960,11 +961,9 @@ class Events:
                         "profile to see their full leader ceremony."
             game.cur_events_list.append(
                     Single_Event(text, "ceremony", self.protege[0].ID))
-
-        
         # If a Clan deputy exists, and the leader is dead,
         #  outside, or doesn't exist, make the deputy leader.
-        if game.clan.deputy:
+        elif game.clan.deputy:
             if game.clan.deputy is not None and \
                     not game.clan.deputy.dead and \
                     not game.clan.deputy.outside and \

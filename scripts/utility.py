@@ -1229,6 +1229,10 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
             cat_sprite = str(cat.pelt.cat_sprites['newborn'])
         else:
             cat_sprite = str(cat.pelt.cat_sprites[age])
+    #print(cat.pelt.race)
+    if cat.pelt.race == 'Alicorn':
+        #print("Alicorn!")
+        cat_sprite = str(11)
 
     new_sprite = pygame.Surface((sprites.size, sprites.size), pygame.HWSURFACE | pygame.SRCALPHA)
 
@@ -1514,7 +1518,7 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
                 
         # draw mane
         if cat.pelt.mane_style:
-            print(cat.pelt.mane_style)
+            #print(cat.pelt.mane_style)
             mane_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
             mane_tint.fill(tuple(sprites.markings_tints["tint_colours"][cat.pelt.mane_color]))
             
