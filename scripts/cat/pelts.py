@@ -714,7 +714,7 @@ class Pelt():
         if not par_peltcolors:
             print("Warning - no parents: pelt randomized")
             return self.randomize_pattern_color(gender)
-        
+
         # check for missing parent to generate missing parent
         if missing_parent:
             # Gather pelt markings
@@ -732,7 +732,7 @@ class Pelt():
 
             par_markcolors.add(str(missing_parent["marking_color"]))
             par_markshades.add(str(missing_parent["marking_shade"]))
-            
+
             # Gather if they have white in their pelt.
             par_white.append(str(missing_parent["white"]))
 
@@ -1120,6 +1120,11 @@ class Pelt():
             self.cat_sprites['adolescent'] = 4
             self.cat_sprites['adult'] = 7
             self.cat_sprites['senior'] = 13
+        elif self.race == "Alicorn":
+            self.cat_sprites['kitten'] = 0
+            self.cat_sprites['adolescent'] = 3
+            self.cat_sprites['adult'] = 11
+            self.cat_sprites['senior'] = 11
         else:
             self.cat_sprites['kitten'] = 2
             self.cat_sprites['adolescent'] = 5
@@ -1128,15 +1133,14 @@ class Pelt():
         self.reverse = choice([True, False])
         # skin chances
         self.skin = choice(Pelt.skin_sprites)
-        self.cat_sprites['adolescent'] = self.cat_sprites['kitten'] + 3
-        self.cat_sprites['senior'] = self.cat_sprites['kitten'] + 12
-                
-        if self.length != 'long':
-            self.cat_sprites['adult'] = self.cat_sprites['kitten'] + 6
-            self.cat_sprites['para_adult'] = 16
-        else:
-            self.cat_sprites['adult'] = self.cat_sprites['kitten'] + 6
-            self.cat_sprites['para_adult'] = 15
+        
+        self.cat_sprites['para_adult'] = self.cat_sprites['adult']
+        #if self.length != 'long':
+        #    self.cat_sprites['adult'] = self.cat_sprites['kitten'] + 6
+        #    self.cat_sprites['para_adult'] = 16
+        #else:
+        #    self.cat_sprites['adult'] = self.cat_sprites['kitten'] + 6
+        #    self.cat_sprites['para_adult'] = 15
         self.cat_sprites['young adult'] = self.cat_sprites['adult']
         self.cat_sprites['senior adult'] = self.cat_sprites['adult']
 
