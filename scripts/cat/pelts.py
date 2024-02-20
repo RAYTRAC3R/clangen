@@ -494,7 +494,6 @@ class Pelt():
         combo_markcolors = list()
         par_pelts = []
         par_white = []
-        print(missing_parent)
         
         for p in parents:
             if p:
@@ -513,7 +512,6 @@ class Pelt():
                     par_peltcolors.add(p.pelt.tortie_color)
                     par_peltshades.add(p.pelt.tortie_shade)
 
-                print(p.pelt.tint_color)
                 combo_peltcolors.append(p.pelt.tint_color)
                 combo_markcolors.append(p.pelt.marking_color)
 
