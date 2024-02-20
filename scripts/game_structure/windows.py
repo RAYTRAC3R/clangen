@@ -417,7 +417,7 @@ class ChangeCatName(UIWindow):
                                                     None,
                                                     use_suffix,
                                                     self.the_cat.pelt.name,
-                                                    self.the_cat.pelt.eye_tint,
+                                                    self.the_cat.pelt.eye_color,
                                                     self.the_cat.pelt.name,
                                                     self.the_cat.pelt.tortiepattern).prefix)
             elif event.ui_element == self.random_suffix:
@@ -429,7 +429,7 @@ class ChangeCatName(UIWindow):
                                                     use_prefix,
                                                     None,
                                                     self.the_cat.pelt.name,
-                                                    self.the_cat.pelt.eye_tint,
+                                                    self.the_cat.pelt.eye_color,
                                                     self.the_cat.pelt.name,
                                                     self.the_cat.pelt.tortiepattern).suffix)
             elif event.ui_element == self.toggle_spec_block_on:
