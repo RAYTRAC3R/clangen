@@ -744,7 +744,6 @@ class Pregnancy_Events():
                     "marking": bp_sel[7],
                     "length": bp_sel[8],
                     "white": bool(random.getrandbits(1))})
-                print(blood_parent_missing)
                 kit = Cat(parent1=cat.ID, moons=0, backstory=backstory, status='newborn', missing_parent=dict(blood_parent_missing))
                 kit.thought = f"Snuggles up to the belly of {cat.name}"
 
