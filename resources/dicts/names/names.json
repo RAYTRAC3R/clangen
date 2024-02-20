@@ -200,6 +200,15 @@
     "Black", "Black", "Black", "Shade", "Shaded", "Crow", "Raven", "Ebony", "Dark", "Grackle", 
     "Night", "Shadow", "Scorch", "Midnight", "Pepper", "Pitch", "Bat", "Burnt", "Coal", "Ink", "Inky",
     "Char", "Charred", "Mulberry", "Night", "Evening", "Dark", "Murk", "Ghost"
+    ],
+    "red": [
+    "Ant", "Apple", "Beet", "Carnation", "Cherry", "Chili", "Fox", "Poppy", "Rose", "Red", "Rhubarb", "Squirrel"
+    ],
+    "orange": [
+    "Ant", "Bell", "Carrot", "Fall", "Fire", "Fox", "Monarch", "Orange", "Pumpkin", "Squash", "Squirrel", "Sun", "Tiger"
+    ],
+    "yellow": [
+    "Amber", "Banana", "Begonia", "Finch", "Honey", "Nectar", "Python", "Snail", "Squash", "Sun", "Warbler", "Weaver", "Yellow"
     ]
   },
 
