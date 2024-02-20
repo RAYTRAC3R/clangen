@@ -192,7 +192,7 @@
 		]
 	},
 	"cat_name_controls": {
-		"always_name_after_appearance": true,
+		"always_name_after_appearance": false,
 		"allow_eye_names": true,
 		"comment": [
 			"Set always_name_after_appearance to true if you always want cats named after the color of their pelt.",
