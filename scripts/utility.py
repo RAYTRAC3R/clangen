@@ -221,7 +221,8 @@ def create_new_cat(Cat,
                    alive:bool=True,
                    outside:bool=False,
                    parent1:str=None,
-                   parent2:str=None
+                   parent2:str=None,
+                   create:bool=False
     ) -> list:
     """
     This function creates new cats and then returns a list of those cats
@@ -410,15 +411,16 @@ def create_new_cat(Cat,
 
         # and they exist now
         created_cats.append(new_cat)
-        game.clan.add_cat(new_cat)
-        history = History()
-        history.add_beginning(new_cat)
+        if create:
+            game.clan.add_cat(new_cat)
+            history = History()
+            history.add_beginning(new_cat)
 
-        # create relationships
-        new_cat.create_relationships_new_cat()
-        # Note - we always update inheritance after the cats are generated, to
-        # allow us to add parents. 
-        #new_cat.create_inheritance_new_cat() 
+            # create relationships
+            new_cat.create_relationships_new_cat()
+            # Note - we always update inheritance after the cats are generated, to
+            # allow us to add parents. 
+            #new_cat.create_inheritance_new_cat() 
 
     return created_cats
 
