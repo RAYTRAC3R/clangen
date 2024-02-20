@@ -656,7 +656,6 @@ class Pelt():
                 weights = [1, 0, 0]
                 self.eye2_p_shade = random.choices(Pelt.eye_shade_categories, weights=weights, k=1)[0]
 
-
     def pattern_color_inheritance(self, parents: tuple=(), gender="female", missing_parent:dict=()):
         # setting parent pelt categories
         #We are using a set, since we don't need this to be ordered, and sets deal with removing duplicates.
@@ -788,7 +787,6 @@ class Pelt():
             else:
                 print("Incorrect inheritance type inputted.")
                 
-
         # ------------------------------------------------------------------------------------------------------------#
         #   PELT COLOUR
         # ------------------------------------------------------------------------------------------------------------#

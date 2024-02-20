@@ -182,7 +182,6 @@ class Cat():
         self.parent1 = parent1
         self.parent2 = parent2
         self.missing_parent = missing_parent
-
         self.adoptive_parents = []
         self.pelt = pelt if pelt else Pelt()
         self.former_mentor = []
@@ -312,7 +311,6 @@ class Cat():
 
             # APPEARANCE
             if missing_parent is not None:
-                print(missing_parent)
                 self.pelt = Pelt.generate_new_pelt(self.gender, [Cat.fetch_cat(i) for i in (self.parent1, self.parent2) if i], self.age, self.missing_parent)
             else:
                 self.pelt = Pelt.generate_new_pelt(self.gender, [Cat.fetch_cat(i) for i in (self.parent1, self.parent2) if i], self.age)
