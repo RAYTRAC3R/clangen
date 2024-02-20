@@ -891,7 +891,6 @@ class Pelt():
             will have white patche or not. 
             Return TRUE is the cat should have white patches, 
             false is not. """
-        print(missing_parent)
         
         if parents:
             #If the cat has parents, use inheritance to decide pelt.
