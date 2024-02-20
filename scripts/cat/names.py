@@ -123,8 +123,6 @@ class Name():
 
     # Generate possible prefix
     def give_prefix(self, eyes, colour, biome):
-        print(colour)
-        print(self.names_dict["colour_prefixes"])
         # decided in game config: cat_name_controls
         if game.config["cat_name_controls"]["always_name_after_appearance"]:
             named_after_appearance = True
