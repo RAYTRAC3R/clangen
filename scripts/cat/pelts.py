@@ -516,8 +516,6 @@ class Pelt():
                 print(p.pelt.tint_color)
                 combo_peltcolors.append(p.pelt.tint_color)
                 combo_markcolors.append(p.pelt.marking_color)
-                print(f"P1: {combo_peltcolors}")
-                print(f"P1: {combo_markcolors}")
 
                 par_markcolors.add(p.pelt.marking_color)
                 par_markshades.add(p.pelt.marking_shade)
@@ -543,10 +541,8 @@ class Pelt():
             print("Warning - no parents: pelt randomized")
             return self.randomize_pattern_color(gender)
         
-        print(missing_parent)
         # check for missing parent to generate missing parent
         if missing_parent:
-            print("Parent missing.")
             # Gather pelt markings
             par_peltmarkings.add(str(missing_parent['marking']))
 
@@ -608,18 +604,12 @@ class Pelt():
 
             elif game.inheritance_type == "color_combos":
                 c_colors = combo_peltcolors
-                print(combo_markcolors)
-                print(combo_peltcolors)
-                print(c_colors)
                 p1_color = c_colors[0]
                 p2_color = c_colors[1]
                 pelt_weights = game.tint_inheritance[f"{game.inheritance_preset}"]["color_combos"][f"{p1_color}"][f"{p2_color}"]["weights"]
                 pelt_colors = game.tint_inheritance[f"{game.inheritance_preset}"]["color_combos"][f"{p1_color}"][f"{p2_color}"]["outcomes"]
 
                 c_colors = combo_markcolors
-                print(combo_markcolors)
-                print(combo_peltcolors)
-                print(c_colors)
                 p1_color = c_colors[0]
                 p2_color = c_colors[1]
                 mark_weights = game.tint_inheritance[f"{game.inheritance_preset}"]["color_combos"][f"{p1_color}"][f"{p2_color}"]["weights"]
