@@ -13,7 +13,17 @@
     "mono": "black",
     "real_orange": "orange",
     "real_brown": "brown",
-    "real_mono": "black"
+    "real_mono": "black",
+    "cg_black": "black",
+    "cg_brown": "brown",
+    "cg_ginger": "ginger",
+    "cg_white": "white"
 
+    },
+
+    "tint_names":
+    {
+        "comment": ["For the removal of prefixes in tint names that are just to differentiate them from other names when showing in allegiances."],
+        "ID_prefixes": ["r__ ", "cg__ "]
     }
 }
