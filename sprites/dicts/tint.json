@@ -3,11 +3,13 @@
 {
     "comment": "Change these categories when you want to remove or add categories. NOTE: You must add accordingly down below as it pulls from both {color}_{shade}. It is case sensitive so make sure it is the same case across.",
 
+    "color_categories3": ["cg_white", "cg_black", "cg_ginger", "cg_brown"],
     "color_categories": ["red", "orange", "yellow", "green", "blue", "purple", "pink", "mono", "real_orange", "real_brown", "real_mono"],
 
     "comment": "Adjust these weights for generation. They MUST be the same number of weights as above. If there are 4 color categories, there must be 4 color weights. Higher the number, higher the chance. Lower the number, lower the chance.",
+    "color_weights3": [1, 1, 1, 1],
     "color_weights": [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-    "shade_weights": [1, 1, 1]
+    "color_weights2": [1, 1, 1],
 
 },
   "possible_tints": 
