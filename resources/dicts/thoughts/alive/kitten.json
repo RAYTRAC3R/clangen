@@ -89,11 +89,11 @@
     {
         "id": "kit_alive_med_cat",
         "thoughts": [
-            "Refuses to eat the herbs the medicine cat has given {PRONOUN/m_c/object} for {PRONOUN/m_c/poss} tummy",
-            "Hides in the medicine cat's herb stores",
-            "Is asking the medicine cat about StarClan",
-            "Is asking the medicine cat why all the herbs have to be stinky and gross",
-            "Wants to follow the medicine cat everywhere"
+            "Refuses to swallow the medicine the doctor has given {PRONOUN/m_c/object} for {PRONOUN/m_c/poss} tummy",
+            "Hides in the doctor's office",
+            "Is asking the doctor about how bodies work",
+            "Is asking the doctor why all the medicine has to be nasty and gross",
+            "Wants to follow the doctor everywhere"
         ],
         "random_status_constraint": [
             "medicine cat",
@@ -133,7 +133,7 @@
             "Teases r_c all day long",
             "Calls r_c stinky",
             "Nips r_c",
-            "Is thinking about taking r_c's fresh-kill",
+            "Is thinking about taking r_c's lunch",
             "Is trying to look tough",
             "Says blank-flanks never win",
             "Says r_c's 'real' parents were donkeys",
@@ -151,7 +151,7 @@
             "Is rolling around cutely while grown ponies look upon {PRONOUN/m_c/object}",
             "Is rubbing up against their parents' legs",
             "Is hoping the guard patrol will come back with a special gift for {PRONOUN/m_c/object} like usual",
-            "Is trying to talk {PRONOUN/m_c/poss} way out of trouble with the medicine cat",
+            "Is trying to talk {PRONOUN/m_c/poss} way out of trouble with the castle staff",
             "Is absolutely adorable",
             "Is humming softly",
             "Is waiting patiently for {PRONOUN/m_c/poss} turn",
@@ -305,8 +305,8 @@
     {
         "id": "sweet_kit",
         "thoughts": [
-            "Is pretending to be the medicine cat",
-            "Plucks feathers from a fresh-kill bird to add to nests",
+            "Is pretending to be a doctor",
+            "Helps the grown-ups with the laundry",
             "Offers to leave town to fetch an herb, but can't, because {PRONOUN/m_c/subject}{VERB/m_c/'re/'s} too young",
             "Compliments an older pony on how their mane looks today",
             "Wants to help others",
@@ -336,13 +336,13 @@
             "Is planning to be naughty",
             "Is thinking about being in trouble",
             "Is trying to get out of trouble",
-            "Is scrambling the medicine cat's herbs",
+            "Is scrambling the contents of someone's drawers",
             "Is thinking of how to cause trouble",
             "Is planning to annoy an elder",
             "Is trying very hard to look innocent",
             "Is thinking about play-fighting with {PRONOUN/m_c/poss} friends",
             "Is putting thorns in r_c's bedding",
-            "Is thinking about stealing herbs from the medicine den",
+            "Is thinking about stealing medicine from the doctor",
             "Is sneaking out of camp",
             "Is saying bad words",
             "Is tripping other ponies",
