@@ -215,6 +215,8 @@ class Clan():
         for cat_id in Cat.all_cats:
             Cat.all_cats.get(cat_id).init_all_relationships()
             Cat.all_cats.get(cat_id).backstory = 'clan_founder'
+            if Cat.all_cats.get(cat_id).status == 'leader':
+                Cat.all_cats.get(cat_id).pelt.race = "Alicorn"
             if Cat.all_cats.get(cat_id).status == 'apprentice':
                 Cat.all_cats.get(cat_id).status_change('apprentice')
             Cat.all_cats.get(cat_id).thoughts()
