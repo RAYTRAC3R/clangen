@@ -1394,19 +1394,19 @@ class Pelt():
             }
 
         pattern_des = {
-            "Tabby": "c_n tabby",
-            "Speckled": "speckled c_n",
-            "Bengal": "unusually dappled c_n",
-            "Marbled": "c_n tabby",
-            "Ticked": "c_n ticked",
-            "Smoke": "c_n smoke",
-            "Mackerel": "c_n tabby",
-            "Classic": "c_n tabby",
-            "Agouti": "c_n tabby",
-            "Singlestripe": "dorsal-striped c_n",
-            "Rosette": "unusually spotted c_n",
-            "Sokoke": "c_n tabby",
-            "Masked": "masked c_n tabby"
+            "Tabby": "c_n",
+            "Speckled": "c_n",
+            "Bengal": "c_n",
+            "Marbled": "c_n",
+            "Ticked": "c_n",
+            "Smoke": "c_n",
+            "Mackerel": "c_n",
+            "Classic": "c_n",
+            "Agouti": "c_n",
+            "Singlestripe": "c_n",
+            "Rosette": "c_n",
+            "Sokoke": "c_n",
+            "Masked": "c_n"
         }
 
         # Start with determining the base color name
@@ -1441,7 +1441,7 @@ class Pelt():
                 
                 if cat.pelt.colour in Pelt.black_colours + Pelt.brown_colours + Pelt.white_colours and \
                     cat.pelt.tortiecolour in Pelt.black_colours + Pelt.brown_colours + Pelt.white_colours:
-                        color_name = f"{color_name} mottled"
+                        color_name = f"{color_name}"
                 else:
                     color_name = f"{color_name} {cat.pelt.marking.lower()}"
 
@@ -1450,9 +1450,9 @@ class Pelt():
                 # If the cat is fullwhite, discard all other information. They are just white
                 color_name = "white"
             if cat.pelt.white_patches in Pelt.mostly_white and cat.pelt.name != "Calico":
-                color_name = f"white and {color_name}"
+                color_name = f"{color_name}"
             elif cat.pelt.name != "Calico":
-                color_name = f"{color_name} and white"
+                color_name = f"{color_name}"
 
         if cat.pelt.points:
             color_name = f"{color_name} point"
@@ -1461,6 +1461,19 @@ class Pelt():
 
         if "white and white" in color_name:
             color_name = color_name.replace("white and white", "white")
+            
+        #races
+        if cat.pelt.race == "Earth":
+            if cat.genderalign in ["female", "male", "trans female", "trans male"]:
+                color_name = f"{color_name} earth pony"
+            else:
+                color_name = f"{color_name} earth"
+        elif cat.pelt.race == "Pegasus":
+            color_name = f"{color_name} pegasus"
+        elif cat.pelt.race == "Unicorn":
+            color_name = f"{color_name} unicorn"
+        elif cat.pelt.race == "Alicorn":
+            color_name = f"{color_name} alicorn"
 
         # Now it's time for gender
         if cat.genderalign in ["female", "trans female"]:
@@ -1498,8 +1511,14 @@ class Pelt():
         
             if len(cat.pelt.scars) >= 3:
                 color_name = f"scarred {color_name}"
-            if cat.pelt.length == "long":
-                color_name = f"long-furred {color_name}"
+            #if cat.pelt.length == "long":
+            #    color_name = f"long-furred {color_name}"
+        if cat.pelt.marking == "Tabby" and cat.pelt.race == "Pegasus":
+            color_name = f"{color_name} with a {cat.pelt.marking_tint} wing gradient"
+        elif cat.pelt.marking == "Tabby" and cat.pelt.race == "Unicorn":
+            color_name = f"{color_name} with a {cat.pelt.marking_tint} horn gradient"
+        elif cat.pelt.marking == "Tabby" and cat.pelt.race == "Alicorn":
+            color_name = f"{color_name} with a {cat.pelt.marking_tint} horn and wing gradient"
 
         return color_name
     
