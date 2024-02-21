@@ -78,7 +78,7 @@ class Pelt():
                     'BRIE', 'BELOVED', 'BODY', 'SHILOH', 'FRECKLED', 'HEARTBEAT']
     tortiebases = ["Tabby", "Ticked", "Mackerel", "Classic", "Sokoke", "Agouti", "Wisp", "Speckled", "Rosette", None, "Smoke", "Singlestripe", "Bengal", "Marbled", "Masked"]
 
-    manestyles = ['None', 'Test', 'Twilight', 'Bun']
+    manestyles = ['None', 'Test', 'Twilight', 'Bun', 'Curled']
 
     pelt_length = ["short", "medium", "long"]
     eye_colours = ['YELLOW', 'AMBER', 'HAZEL', 'PALEGREEN', 'GREEN', 'BLUE', 'DARKBLUE', 'GREY', 'CYAN', 'EMERALD', 'PALEBLUE', 
@@ -1722,7 +1722,7 @@ class Pelt():
         #print(color_tints)
             
     def init_mane(self):
-        self.mane_style = choice(random.choices(Pelt.manestyles, weights=[1,5,5,5]))
+        self.mane_style = choice(random.choices(Pelt.manestyles, weights=[1,5,5,5,5]))
         #self.mane_color = self.marking_tint
 
     @property
