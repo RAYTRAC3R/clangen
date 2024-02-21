@@ -3,21 +3,21 @@
     {
     "commment": ["For display on cat profiles. Just for cases where there is something to differentiate the category from another category. I.e orange and real_orange."],
 
-    "red": "red",
-    "orange": "orange",
-    "yellow": "yellow",
-    "green": "green",
-    "blue": "blue",
-    "purple": "purple",
-    "pink": "pink",
-    "mono": "black",
-    "real_orange": "orange",
-    "real_brown": "brown",
-    "real_mono": "black",
-    "cg_black": "black",
-    "cg_brown": "brown",
-    "cg_ginger": "ginger",
-    "cg_white": "white"
+    "red": "Red",
+    "orange": "Orange",
+    "yellow": "Yellow",
+    "green": "Green",
+    "blue": "Blue",
+    "purple": "Purple",
+    "pink": "Pink",
+    "mono": "Black",
+    "real_orange": "Orange",
+    "real_brown": "Brown",
+    "real_mono": "Black",
+    "cg_black": "Black",
+    "cg_brown": "Brown",
+    "cg_ginger": "Ginger",
+    "cg_white": "White"
 
     },
 
