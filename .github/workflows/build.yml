@@ -2,9 +2,6 @@ name: PyInstaller build
 
 on: [push]
 
-permissions:
-  contents: write
-
 jobs:
   build_ubuntu_20_04:
     runs-on: ubuntu-20.04
@@ -168,7 +165,7 @@ jobs:
       - name: Upload artifact to API
         if: ${{ env.update_api_push_token != '' }}
         run: |
-          gpg --output Clangen_Linux64_glibc2.35+.tar.xz.sig --detach-sig -a Clangen_Linux64_glibc2.35+.tar.xz
+          gpg --output PrismGen_Linux64_glibc2.35+.tar.xz.sig --detach-sig -a PrismGen_Linux64_glibc2.35+.tar.xz
           curl -X 'POST' \
             'https://clangen.io/api/v1/Update/Channels/${{ env.RELEASE_CHANNEL }}/Releases/${{ env.VERSION_NUMBER }}/Appoint' \
             -H 'X-API-Key: ${{ secrets.UPDATE_API_DEPLOY_KEY }}' \
@@ -269,7 +266,7 @@ jobs:
           IS_RELEASE: 1
       - name: Create archive (.zip)
         run: |
-          cp dist/PrismGen/.itch.toml dist/ 
+          cp dist/Clangen/.itch.toml dist/ 
           tar.exe -a -c -f PrismGen_Win32.zip -C dist Clangen .itch.toml
       - uses: actions/upload-artifact@v3
         with:
@@ -393,7 +390,7 @@ jobs:
           IS_RELEASE: 1
       - name: Create archive (.zip)
         run: |
-          cp dist/PrismGen/.itch.toml dist/ 
+          cp dist/Clangen/.itch.toml dist/ 
           tar.exe -a -c -f PrismGen_Win64.zip -C dist Clangen .itch.toml
       - uses: actions/upload-artifact@v3
         with:
@@ -517,7 +514,7 @@ jobs:
           IS_RELEASE: 1
       - name: Create archive (.zip)
         run: |
-          cp dist/PrismGen/.itch.toml dist/ 
+          cp dist/Clangen/.itch.toml dist/ 
           tar.exe -a -c -f PrismGen_Win64_Windows10+.zip -C dist Clangen .itch.toml
       - uses: actions/upload-artifact@v3
         with:
@@ -626,7 +623,7 @@ jobs:
         env:
           IS_RELEASE: 1
       - name: Create archive (.tar.xz)
-        run: rm -r dist/PrismGen
+        run: rm -r dist/Clangen
       - name: Install appdmg
         run: "npm install -g appdmg"
       - name: Generate .dmg
