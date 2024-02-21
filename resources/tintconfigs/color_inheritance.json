@@ -12,7 +12,7 @@
     
     "base": 
     {
-        "marking_inheritance": "false",
+        "marking_inheritance": "true",
         "categories": ["cool", "warm", "mono"],
 
         "color_categories":
