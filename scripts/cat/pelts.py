@@ -78,7 +78,7 @@ class Pelt():
                     'BRIE', 'BELOVED', 'BODY', 'SHILOH', 'FRECKLED', 'HEARTBEAT']
     tortiebases = ["Tabby", "Ticked", "Mackerel", "Classic", "Sokoke", "Agouti", "Wisp", "Speckled", "Rosette", None, "Smoke", "Singlestripe", "Bengal", "Marbled", "Masked"]
 
-    manestyles = ['None', 'Test']
+    manestyles = ['None', 'Test', 'Twilight']
 
     pelt_length = ["short", "medium", "long"]
     eye_colours = ['YELLOW', 'AMBER', 'HAZEL', 'PALEGREEN', 'GREEN', 'BLUE', 'DARKBLUE', 'GREY', 'CYAN', 'EMERALD', 'PALEBLUE', 
@@ -323,7 +323,7 @@ class Pelt():
         self.tortie_underfur_tint = tortie_underfur_tint
         self.tortie_overfur_tint = tortie_overfur_tint
         self.mane_style = mane_style
-        self.mane_color = marking_tint
+        self.mane_color = mane_color
         self.race = race
         self.vitiligo = vitiligo
         self.length=length
@@ -1704,9 +1704,21 @@ class Pelt():
         else:
             self.white_patches_tint = "none"
             
+        #mane tint
+        
+        weights = [0, 5, 2]
+        shade_selection = random.choices(Pelt.shade_categories, weights=weights, k=1)[0]
+        color_tints = sprites.cat_tints["possible_tints"][f"{self.tint_color}_{shade_selection}"]
+        color_tints.append(self.marking_tint)
+        color_tints.append(self.overfur_tint)
+        color_tints.append(self.underfur_tint)
+        color_tints.append(self.eye_s_tint)
+        self.mane_color = choice(color_tints)
+        print(color_tints)
+            
     def init_mane(self):
-        self.mane_style = choice(random.choices(Pelt.manestyles, weights=[1,5]))
-        self.mane_color = self.marking_tint
+        self.mane_style = choice(random.choices(Pelt.manestyles, weights=[1,5,5]))
+        #self.mane_color = self.marking_tint
 
     @property
     def white(self):
