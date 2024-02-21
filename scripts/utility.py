@@ -1606,7 +1606,16 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
             
             mane = sprites.sprites['manecolor' + cat.pelt.mane_style + cat_sprite].copy()
             mane.blit(mane_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+            
+            if cat.pelt.mane_color2:
+                mane_streak = sprites.sprites['manecolor2' + cat.pelt.mane_style + cat_sprite].copy()
+                mane_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                mane_tint.fill(tuple(sprites.markings_tints["tint_colours"][cat.pelt.mane_color2]))
+                mane_streak.blit(mane_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+                mane.blit(mane_streak, (0, 0))
+            
             mane.blit(sprites.sprites['manelines' + cat.pelt.mane_style + cat_sprite], (0, 0))
+            
             new_sprite.blit(mane, (0, 0))
 
             
