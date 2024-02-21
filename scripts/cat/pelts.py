@@ -47,7 +47,6 @@ class Pelt():
     ]
     # Tint categories are pulled from the json file - shade is hard coded in since it is referenced in code
     inheritance_categories = list(game.tint_inheritance[f"{game.inheritance_preset}"]["color_categories"])
-    in_cat_count = len(game.tint_inheritance[f"{game.inheritance_preset}"]["color_categories"]) - 1
 
     color_categories = sprites.cat_tints["tint_categories"]["color_categories"]
     color_weights = sprites.cat_tints["tint_categories"]["color_weights"]
@@ -575,9 +574,8 @@ class Pelt():
             if game.inheritance_type == "color_categories":
 
                 for p_ in par_peltcolors:
-                    c = 0
-                    while c < Pelt.in_cat_count:
-                        cat_sel = Pelt.inheritance_categories[c]
+                    for c in Pelt.inheritance_categories:
+                        cat_sel = Pelt.inheritance_categories[f"{c}"]
                         category = set(game.tint_inheritance[f"{game.inheritance_preset}"]["color_categories"][f"{cat_sel}"])
                         if p_ in category:
                             par_peltcategories.update(category)
@@ -587,9 +585,8 @@ class Pelt():
                 par_peltcategories.clear
                 
                 for p_ in par_markcolors:
-                    c = 0
-                    while c < Pelt.in_cat_count:
-                        cat_sel = Pelt.inheritance_categories[c]
+                    for c in Pelt.inheritance_categories:
+                        cat_sel = Pelt.inheritance_categories[f"{c}"]
                         category = set(game.tint_inheritance[f"{game.inheritance_preset}"]["color_categories"][f"{cat_sel}"])
                         if p_ in category:
                             par_peltcategories.update(category)
@@ -691,15 +688,27 @@ class Pelt():
         
         # Marking color
         
-        if game.inheritance_type == "color_combos":
+        if game.inheritance_type == "color_combos" and game.tint_inheritance[f"{game.inheritance_preset}"]["marking_inheritance"] == "true":
             chosen_marking_color = random.choices(mark_colors, weights=mark_weights, k=1)[0]
         else:
-            chosen_marking_color = random.choices(Pelt.marking_color_categories, weights=(sprites.markings_tints["tint_categories"]["color_weights"]), k=1)[0]
+            if game.tint_pools["use_color_pool"] == "true":
+                # Marking color
+                possible_colors = game.tint_pools["color_presets"][f"{game.tint_preset}"]["color_pools"]["marking_pool"][f"{self.tint_color}"]
+                chosen_marking_color = random.choices(possible_colors, k=1)[0]
 
-        chosen_marking_shade = random.choices(Pelt.marking_shade_categories, weights=weights, k=1)[0]
-        # Tortie marking color
-        self.tortie_marking_color = random.choices(Pelt.marking_color_categories, weights=(sprites.markings_tints["tint_categories"]["color_weights"]), k=1)[0]
-        self.tortie_marking_shade = random.choices(Pelt.marking_shade_categories, weights=(sprites.markings_tints["tint_categories"]["shade_weights"]), k=1)[0]
+                weights = game.tint_pools["color_presets"][f"{game.tint_preset}"]["shade_weights"]["marking_pool"][f"{self.tint_shade}"]
+                chosen_marking_shade = random.choices(Pelt.shade_categories, weights=weights, k=1)[0]
+
+                # Tortie marking is picked in the pattern init
+            else:
+
+                # Marking color
+                chosen_marking_color = random.choices(Pelt.marking_color_categories, weights=(sprites.markings_tints["tint_categories"]["color_weights"]), k=1)[0]
+                chosen_marking_shade = random.choices(Pelt.marking_shade_categories, weights=(sprites.markings_tints["tint_categories"]["shade_weights"]), k=1)[0]
+
+                # Tortie marking color
+                self.tortie_marking_color = random.choices(Pelt.marking_color_categories, weights=(sprites.markings_tints["tint_categories"]["color_weights"]), k=1)[0]
+                self.tortie_marking_shade = random.choices(Pelt.marking_shade_categories, weights=(sprites.markings_tints["tint_categories"]["shade_weights"]), k=1)[0]
 
         # Determine pelt.
         weights = [0, 0, 0, 0]  #Weights for each pelt group. It goes: (tabbies, spotted, plain, exotic)
@@ -1427,7 +1436,8 @@ class Pelt():
         }
 
         # Start with determining the base color name
-        color_name = cat.pelt.tint.replace('r__ ', '')
+        for re in game.tint_category_names["tint_names"]["ID_prefixes"]:
+            color_name = cat.pelt.tint.replace(re, '')
         if color_name in renamed_colors:
             color_name = renamed_colors[color_name]
         

@@ -12,6 +12,7 @@
     
     "base": 
     {
+        "marking_inheritance": "true",
         "categories": ["cool", "warm", "mono"],
 
         "color_categories":
@@ -825,6 +826,919 @@
 
 
         }
-    }
+    },
 
+    "realism":
+    {
+        "comment": ["It's recommended to use color combos with this preset. Note that this preset isn't meant to 100% accurately mimic genetic accuracy with irl cats - just some barebones realism."],
+        "marking_inheritance": "false",
+        "categories": ["orange", "brown", "mono"],
+
+        "color_categories":
+        {
+            
+            "brown": ["real_brown"],
+            "orange": ["real_orange"],
+            "mono": ["real_mono"]
+    
+        },
+    
+        "color_lists":
+        {
+            "mono": ["real_mono"],
+            "real_mono": ["real_mono", "real_brown"],
+            "real_brown": ["real_mono", "real_brown"],
+            "real_orange": ["real_orange"]
+        },
+
+        "color_combos":
+        {
+            
+            "real_mono": 
+            {
+
+                "real_mono": 
+                {
+                    "outcomes": ["real_mono", "mono", "real_brown"],
+                    "weights": [20, 20, 3]
+                },
+
+                "real_orange":
+                {
+                    "outcomes": ["real_mono", "real_brown", "mono", "real_orange"],
+                    "weights": [25, 10, 25, 50]
+                },
+
+                "real_brown": 
+                {
+                    "outcomes": ["real_mono", "real_orange", "real_brown", "mono"],
+                    "weights": [20, 1, 30, 20]
+                }
+
+            },
+            
+            "real_orange": 
+            {
+                "real_mono": 
+                {
+                    "outcomes": ["real_mono", "real_brown", "real_orange"],
+                    "weights": [25, 10, 25, 50]
+                },
+
+                "real_orange":
+                {
+                    "outcomes": ["real_orange"],
+                    "weights": [1]
+                },
+
+                "real_brown": 
+                {
+                    "outcomes": ["real_brown", "real_orange", "real_mono"],
+                    "weights": [50, 5, 5, 5]
+                }
+
+            },
+            
+            "real_brown": 
+            {
+                "real_mono": 
+                {
+                    "outcomes": ["real_mono", "real_orange", "real_brown"],
+                    "weights": [20, 1, 30, 20]
+                },
+
+                "real_orange":
+                {
+                    "outcomes": ["real_brown", "real_orange", "real_mono"],
+                    "weights": [50, 5, 5, 5]
+                },
+
+                "real_brown": 
+                {
+                    "outcomes": ["real_brown"],
+                    "weights": [1]
+                }
+
+            }
+
+
+        }
+    },
+
+    "clangen":
+    {
+        "marking_inheritance": "false",
+        "categories": ["cool", "warm", "mono"],
+
+        "color_categories":
+        {
+            
+            "cool": ["green", "blue", "purple", "mono"],
+            "warm": ["red", "orange", "yellow", "pink", "real_orange"],
+            "mono": ["mono", "real_mono"]
+    
+        },
+    
+        "color_lists":
+        {
+            "red": ["red", "orange", "yellow", "real_brown"],
+            "orange": ["red", "orange", "yellow", "real_orange"],
+            "yellow": ["orange", "yellow", "green"],
+            "green": ["yellow", "green", "blue"],
+            "blue": ["green", "blue", "purple"],
+            "purple": ["blue", "purple", "pink"],
+            "pink": ["purple", "pink", "red"],
+            "mono": ["mono", "real_mono"],
+            "real_mono": ["mono", "real_mono"],
+            "real_brown": ["red", "real_brown", "orange"],
+            "real_orange": ["orange", "real_orange", "brown"]
+        },
+
+        "color_combos":
+        {
+
+            "red": 
+            {
+
+                "red": 
+                {
+                    "outcomes": ["red"],
+                    "weights": [1]
+                },
+
+                "orange": 
+                {
+                    "outcomes": ["red", "orange", "real_orange", "real_brown"],
+                    "weights": [13, 13, 3, 3]
+                },
+
+                "yellow": 
+                {
+                    "outcomes": ["red", "orange", "real_brown", "real_orange", "yellow"],
+                    "weights": [40, 10, 10, 10, 40]
+                },
+
+                "green": 
+                {
+                    "outcomes": ["red", "orange", "yellow", "real_orange", "real_brown", "green"],
+                    "weights": [30, 10, 10, 10, 15, 30]
+                },
+
+                "blue": 
+                {
+                    "outcomes": ["red", "pink", "purple", "mono", "real_mono", "blue"],
+                    "weights": [40, 20, 10, 5, 5, 40]
+                },
+
+                "purple": 
+                {
+                    "outcomes": ["red", "pink", "purple", "mono"],
+                    "weights": [40, 20, 40, 2]
+                },
+
+                "pink": 
+                {
+                    "outcomes": ["red", "pink"],
+                    "weights": [1, 1]
+                },
+
+                "mono": 
+                {
+                    "outcomes": ["red", "real_mono", "real_brown", "mono"],
+                    "weights": [40, 10, 15, 30]
+                },
+
+                "real_mono": 
+                {
+                    "outcomes": ["red", "real_mono", "real_brown", "mono"],
+                    "weights": [45, 30, 15, 10]
+                },
+
+                "real_orange": 
+                {
+                    "outcomes": ["red", "orange", "real_orange", "yellow"],
+                    "weights": [40, 10, 30, 2]
+                },
+
+                "real_brown": 
+                {
+                    "outcomes": ["red", "real_orange", "real_brown", "yellow"],
+                    "weights": [40, 10, 40, 2]
+                }
+
+            },
+            
+            "orange": 
+            {
+
+                "red": 
+                {
+                    "outcomes": ["red", "orange", "real_orange", "real_brown"],
+                    "weights": [10, 8, 5, 3]
+                },
+
+                "orange": 
+                {
+                    "outcomes": ["orange", "real_orange", "real_brown"],
+                    "weights": [30, 20, 1]
+                },
+
+                "yellow": 
+                {
+                    "outcomes": ["orange", "real_orange", "real_brown", "yellow"],
+                    "weights": [25, 20, 5, 45]
+                },
+
+                "green": 
+                {
+                    "outcomes": ["orange", "yellow", "real_orange", "real_brown", "green"],
+                    "weights": [40, 20, 35, 10, 40]
+                },
+
+                "blue": 
+                {
+                    "outcomes": ["orange", "red", "real_brown", "green", "purple", "mono", "real_mono", "blue", "real_orange"],
+                    "weights": [40, 30, 30, 2, 40, 25, 25, 60, 20]
+                },
+
+                "purple": 
+                {
+                    "outcomes": ["orange", "red", "pink", "purple", "mono", "real_orange"],
+                    "weights": [40, 20, 30, 40, 4, 20]
+                },
+
+                "pink": 
+                {
+                    "outcomes": ["blue", "red", "pink"],
+                    "weights": [30, 15, 30]
+                },
+
+                "mono": 
+                {
+                    "outcomes": ["orange", "real_mono", "real_brown", "mono", "real_orange"],
+                    "weights": [25, 20, 10, 25, 20]
+                },
+
+                "real_mono": 
+                {
+                    "outcomes": ["orange", "real_mono", "real_brown", "mono"],
+                    "weights": [40, 40, 15, 30]
+                },
+
+                "real_orange": 
+                {
+                    "outcomes": ["orange", "real_orange", "yellow"],
+                    "weights": [40, 40, 2]
+                },
+
+                "real_brown": 
+                {
+                    "outcomes": ["red", "orange", "real_orange", "real_brown", "yellow"],
+                    "weights": [20, 40, 10, 50, 2]
+                }
+
+            },
+            
+            "yellow": 
+            {
+
+                "red": 
+                {
+                    "outcomes": ["red", "orange", "yellow"],
+                    "weights": [30, 20, 30]
+                },
+
+                "orange": 
+                {
+                    "outcomes": ["orange", "real_orange", "real_brown", "yellow"],
+                    "weights": [25, 20, 5, 45]
+                },
+
+                "yellow": 
+                {
+                    "outcomes": ["yellow"],
+                    "weights": [1]
+                },
+
+                "green": 
+                {
+                    "outcomes": ["yellow", "real_orange", "real_brown", "green"],
+                    "weights": [60, 1, 1, 60]
+                },
+
+                "blue":
+                {
+                    "outcomes": ["yellow", "green", "blue", "mono", "real_mono", "real_brown", "purple"],
+                    "weights": [60, 45, 60, 10, 10, 5, 5]
+                },
+
+                "purple": 
+                {
+                    "outcomes": ["yellow", "orange", "real_orange", "red", "pink", "purple", "mono", "real_mono", "real_brown"],
+                    "weights": [70, 20, 20, 40, 30, 70, 5, 5, 5]
+                },
+
+                "pink": 
+                {
+                    "outcomes": ["yellow", "orange", "red", "pink"],
+                    "weights": [60, 20, 20, 60]
+                },
+
+                "mono": 
+                {
+                    "outcomes": ["yellow", "real_mono", "real_brown", "mono"],
+                    "weights": [40, 30, 15, 40]
+                },
+
+                "real_mono": 
+                {
+                    "outcomes": ["yellow", "real_mono", "real_brown", "mono"],
+                    "weights": [40, 40, 15, 30]
+                },
+
+                "real_orange": 
+                {
+                    "outcomes": ["orange", "real_orange", "yellow"],
+                    "weights": [10, 40, 50]
+                },
+
+                "real_brown": 
+                {
+                    "outcomes": ["real_orange", "real_brown", "yellow"],
+                    "weights": [10, 50, 50]
+                }
+
+            },
+            
+            "green": 
+            {
+
+                "red": 
+                {
+                    "outcomes": ["red", "real_brown", "orange", "real_orange", "green"],
+                    "weights": [60, 30, 15, 15, 60]
+                },
+
+                "orange": 
+                {
+                    "outcomes": ["orange", "yellow", "real_orange", "real_brown", "green"],
+                    "weights": [40, 20, 35, 10, 40]
+                },
+                
+                "yellow":
+                {
+                    "outcomes": ["yellow", "real_orange", "real_brown", "green"],
+                    "weights": [60, 1, 1, 60]
+                },
+
+                "green": 
+                {
+                    "outcomes": ["red", "orange", "yellow", "real_orange", "real_brown", "green"],
+                    "weights": [30, 10, 10, 10, 15, 30]
+                },
+
+                "blue":
+                {
+                    "outcomes": ["green", "blue", "mono", "real_mono"],
+                    "weights": [60, 60, 2, 2]
+                },
+
+                "purple": 
+                {
+                    "outcomes": ["green", "blue", "purple", "mono", "real_mono"],
+                    "weights": [70, 40, 70, 10, 10]
+                },
+
+                "pink": 
+                {
+                    "outcomes": ["green", "pink", "real_brown", "mono", "real_mono"],
+                    "weights": [50, 50, 10, 5, 5]
+                },
+
+                "mono": 
+                {
+                    "outcomes": ["green", "real_mono", "mono"],
+                    "weights": [70, 25, 45]
+                },
+
+                "real_mono": 
+                {
+                    "outcomes": ["green", "real_mono", "mono"],
+                    "weights": [70, 45, 25]
+                },
+
+                "real_orange": 
+                {
+                    "outcomes": ["green", "real_brown", "real_orange", "orange"],
+                    "weights": [70, 10, 45, 25]
+                },
+
+                "real_brown": 
+                {
+                    "outcomes": ["green", "real_brown", "mono"],
+                    "weights": [60, 60, 1]
+                }
+
+            },
+            
+            "blue": 
+            {
+
+                "red":
+                {
+                    "outcomes": ["red", "pink", "purple", "mono", "real_mono", "blue"],
+                    "weights": [40, 20, 10, 5, 5, 40]
+                },
+
+                "orange":
+                {
+                    "outcomes": ["orange", "red", "real_brown", "green", "purple", "mono", "real_mono", "blue", "real_orange"],
+                    "weights": [40, 30, 30, 2, 40, 25, 25, 60, 20]
+                },
+
+                "yellow":
+                {
+                    "outcomes": ["yellow", "green", "blue", "mono", "real_mono", "real_brown", "purple"],
+                    "weights": [60, 45, 60, 10, 10, 5, 5]
+                },
+
+                "green":
+                {
+                    "outcomes": ["green", "blue", "mono", "real_mono"],
+                    "weights": [60, 60, 2, 2]
+                },
+
+                "blue": 
+                {
+                    "outcomes": ["blue"],
+                    "weights": [1]
+                },
+
+                "purple": 
+                {
+                    "outcomes": ["blue", "purple"],
+                    "weights": [1, 1]
+                },
+
+                "pink": 
+                {
+                    "outcomes": ["blue", "purple", "pink"],
+                    "weights": [10, 5, 10]
+                },
+
+                "mono": 
+                {
+                    "outcomes": ["blue", "real_mono", "mono"],
+                    "weights": [50, 20, 30]
+                },
+
+                "real_mono": 
+                {
+                    "outcomes": ["blue", "real_mono", "mono"],
+                    "weights": [50, 30, 20]
+                },
+
+                "real_orange": 
+                {
+                    "outcomes": ["blue", "orange", "yellow", "real_orange"],
+                    "weights": [50, 20, 10, 30]
+                },
+
+                "real_brown": 
+                {
+                    "outcomes": ["blue", "real_brown", "yellow", "green"],
+                    "weights": [50, 50, 20, 5]
+                }
+
+            },
+            
+            "purple": 
+            {
+
+                "red":
+                {
+                    "outcomes": ["red", "pink", "purple", "mono"],
+                    "weights": [40, 20, 40, 2]
+                },
+
+                "orange":
+                {
+                    "outcomes": ["orange", "red", "pink", "purple", "mono", "real_orange"],
+                    "weights": [40, 20, 30, 40, 4, 20]
+                },
+
+                "yellow":
+                {
+                    "outcomes": ["yellow", "orange", "real_orange", "red", "pink", "purple", "mono", "real_mono", "real_brown"],
+                    "weights": [70, 20, 20, 40, 30, 70, 5, 5, 5]
+                },
+
+                "green":
+                {
+                    "outcomes": ["green", "blue", "purple", "mono", "real_mono"],
+                    "weights": [70, 40, 70, 10, 10]
+                },
+
+                "blue":
+                {
+                    "outcomes": ["blue", "purple"],
+                    "weights": [1, 1]
+                },
+
+                "purple": 
+                {
+                    "outcomes": ["purple"],
+                    "weights": [1]
+                },
+
+                "pink": 
+                {
+                    "outcomes": ["purple", "pink"],
+                    "weights": [1, 1]
+                },
+
+                "mono":
+                {
+                    "outcomes": ["purple", "real_mono", "mono"],
+                    "weights": [50, 20, 30]
+                },
+
+                "real_mono":
+                {
+                    "outcomes": ["purple", "real_mono", "mono"],
+                    "weights": [50, 30, 20]
+                },
+
+                "real_orange": 
+                {
+                    "outcomes": ["purple", "orange", "real_orange", "yellow", "green"],
+                    "weights": [50, 10, 40, 10, 3]
+                },
+
+                "real_brown": 
+                {
+                    "outcomes": ["purple", "real_brown", "yellow", "green"],
+                    "weights": [40, 40, 2, 5]
+                }
+
+            },
+            
+            "pink": 
+            {
+
+                "red":
+                {
+                    "outcomes": ["red", "pink"],
+                    "weights": [1, 1]
+                },
+
+                "orange":
+                {
+                    "outcomes": ["blue", "red", "pink"],
+                    "weights": [30, 15, 30]
+                },
+
+                "yellow":
+                {
+                    "outcomes": ["yellow", "orange", "red", "pink"],
+                    "weights": [60, 20, 20, 60]
+                },
+
+                "green": 
+                {
+                    "outcomes": ["green", "pink", "real_brown", "mono", "real_mono"],
+                    "weights": [50, 50, 10, 5, 5]
+                },
+
+                "blue":
+                {
+                    "outcomes": ["blue", "purple", "pink"],
+                    "weights": [10, 5, 10]
+                },
+
+                "purple":
+                {
+                    "outcomes": ["purple", "pink"],
+                    "weights": [1, 1]
+                },
+
+                "pink": 
+                {
+                    "outcomes": ["pink"],
+                    "weights": [1]
+                },
+
+                "mono": 
+                {
+                    "outcomes": ["pink", "real_mono", "mono"],
+                    "weights": [30, 10, 20]
+                },
+
+                "real_mono": 
+                {
+                    "outcomes": ["pink", "real_mono", "mono"],
+                    "weights": [30, 20, 10]
+                },
+
+                "real_orange": 
+                {
+                    "outcomes": ["pink", "orange", "real_orange", "yellow"],
+                    "weights": [50, 10, 40, 2]
+                },
+
+                "real_brown": 
+                {
+                    "outcomes": ["pink", "red", "real_orange", "real_brown", "yellow"],
+                    "weights": [40, 10, 10, 40, 1]
+                }
+
+            },
+            
+            "mono": 
+            {
+
+                "red":
+                {
+                    "outcomes": ["red", "real_mono", "real_brown", "mono"],
+                    "weights": [40, 10, 15, 30]
+                },
+
+                "orange":
+                {
+                    "outcomes": ["orange", "real_mono", "real_brown", "mono", "real_orange"],
+                    "weights": [25, 20, 10, 25, 20]
+                },
+
+                "yellow":
+                {
+                    "outcomes": ["yellow", "real_mono", "real_brown", "mono"],
+                    "weights": [40, 30, 15, 40]
+                },
+
+                "green": 
+                {
+                    "outcomes": ["green", "real_mono", "mono"],
+                    "weights": [70, 25, 45]
+                },
+
+                "blue": 
+                {
+                    "outcomes": ["blue", "real_mono", "mono"],
+                    "weights": [50, 20, 30]
+                },
+
+                "purple":
+                {
+                    "outcomes": ["purple", "real_mono", "mono"],
+                    "weights": [50, 20, 30]
+                },
+
+                "pink":
+                {
+                    "outcomes": ["pink", "real_mono", "mono"],
+                    "weights": [30, 10, 20]
+                },
+
+                "mono": 
+                {
+                    "outcomes": ["real_mono", "mono"],
+                    "weights": [1, 1]
+                },
+
+                "real_mono": 
+                {
+                    "outcomes": ["real_mono", "mono"],
+                    "weights": [1, 1]
+                },
+
+                "real_orange":
+                {
+                    "outcomes": ["orange", "real_mono", "real_brown", "mono", "real_orange"],
+                    "weights": [20, 20, 10, 25, 25]
+                },
+
+                "real_brown": 
+                {
+                    "outcomes": ["real_mono", "real_orange", "real_brown", "mono"],
+                    "weights": [30, 1, 40, 40]
+                }
+
+            },
+            
+            "real_mono": 
+            {
+
+                "red": 
+                {
+                    "outcomes": ["red", "real_mono", "real_brown", "mono"],
+                    "weights": [45, 30, 15, 10]
+                },
+
+                "orange": 
+                {
+                    "outcomes": ["orange", "real_mono", "real_brown", "mono"],
+                    "weights": [40, 40, 15, 30]
+                },
+
+                "yellow": 
+                {
+                    "outcomes": ["yellow", "real_mono", "real_brown", "mono"],
+                    "weights": [40, 40, 15, 30]
+                },
+
+                "green": 
+                {
+                    "outcomes": ["green", "real_mono", "mono"],
+                    "weights": [70, 45, 25]
+                },
+
+                "blue": 
+                {
+                    "outcomes": ["blue", "real_mono", "mono"],
+                    "weights": [50, 30, 20]
+                },
+
+                "purple":
+                {
+                    "outcomes": ["purple", "real_mono", "mono"],
+                    "weights": [50, 30, 20]
+                },
+
+                "pink":
+                {
+                    "outcomes": ["pink", "real_mono", "mono"],
+                    "weights": [30, 20, 10]
+                },
+
+                "mono":
+                {
+                    "outcomes": ["real_mono", "mono"],
+                    "weights": [1, 1]
+                },
+
+                "real_mono": 
+                {
+                    "outcomes": ["real_mono", "mono"],
+                    "weights": [1, 1]
+                },
+
+                "real_orange":
+                {
+                    "outcomes": ["orange", "real_mono", "real_brown", "mono", "real_orange"],
+                    "weights": [20, 25, 10, 20, 25]
+                },
+
+                "real_brown": 
+                {
+                    "outcomes": ["real_mono", "real_orange", "real_brown", "mono"],
+                    "weights": [40, 1, 40, 30]
+                }
+
+            },
+            
+            "real_orange": 
+            {
+
+                "red": 
+                {
+                    "outcomes": ["red", "orange", "real_orange", "yellow"],
+                    "weights": [40, 10, 30, 2]
+                },
+
+                "orange": 
+                {
+                    "outcomes": ["orange", "real_orange", "yellow"],
+                    "weights": [40, 40, 2]
+                },
+
+                "yellow": 
+                {
+                    "outcomes": ["orange", "real_orange", "yellow"],
+                    "weights": [10, 40, 50]
+                },
+
+                "green": 
+                {
+                    "outcomes": ["green", "real_brown", "real_orange", "orange"],
+                    "weights": [70, 10, 45, 25]
+                },
+
+                "blue": 
+                {
+                    "outcomes": ["blue", "orange", "yellow", "real_orange"],
+                    "weights": [50, 20, 10, 30]
+                },
+
+                "purple": 
+                {
+                    "outcomes": ["purple", "orange", "real_orange", "yellow", "green"],
+                    "weights": [50, 10, 40, 10, 3]
+                },
+
+                "pink": 
+                {
+                    "outcomes": ["pink", "orange", "real_orange", "yellow"],
+                    "weights": [50, 10, 40, 2]
+                },
+
+                "mono": 
+                {
+                    "outcomes": ["orange", "real_mono", "real_brown", "mono", "real_orange"],
+                    "weights": [20, 20, 10, 25, 25]
+                },
+
+                "real_mono": 
+                {
+                    "outcomes": ["orange", "real_mono", "real_brown", "mono", "real_orange"],
+                    "weights": [20, 25, 10, 20, 25]
+                },
+
+                "real_orange":
+                {
+                    "outcomes": ["orange", "real_orange", "yellow"],
+                    "weights": [30, 40, 2]
+                },
+
+                "real_brown": 
+                {
+                    "outcomes": ["real_brown", "orange", "real_orange", "yellow"],
+                    "weights": [50, 20, 30, 5]
+                }
+
+            },
+            
+            "real_brown": 
+            {
+
+                "red": 
+                {
+                    "outcomes": ["red", "real_orange", "real_brown", "yellow"],
+                    "weights": [40, 10, 40, 2]
+                },
+
+                "orange": 
+                {
+                    "outcomes": ["red", "orange", "real_orange", "real_brown", "yellow"],
+                    "weights": [20, 40, 10, 50, 2]
+                },
+
+                "yellow": 
+                {
+                    "outcomes": ["real_orange", "real_brown", "yellow"],
+                    "weights": [10, 50, 50]
+                },
+
+                "green": 
+                {
+                    "outcomes": ["green", "real_brown", "mono"],
+                    "weights": [60, 60, 1]
+                },
+
+                "blue": 
+                {
+                    "outcomes": ["blue", "real_brown", "yellow", "green"],
+                    "weights": [50, 50, 20, 5]
+                },
+
+                "purple": 
+                {
+                    "outcomes": ["purple", "real_brown", "yellow", "green"],
+                    "weights": [40, 40, 2, 5]
+                },
+
+                "pink": 
+                {
+                    "outcomes": ["pink", "red", "real_orange", "real_brown", "yellow"],
+                    "weights": [40, 10, 10, 40, 1]
+                },
+
+                "mono": 
+                {
+                    "outcomes": ["real_mono", "real_orange", "real_brown", "mono"],
+                    "weights": [30, 1, 40, 40]
+                },
+
+                "real_mono": 
+                {
+                    "outcomes": ["real_mono", "real_orange", "real_brown", "mono"],
+                    "weights": [40, 1, 40, 30]
+                },
+
+                "real_orange": 
+                {
+                    "outcomes": ["real_brown", "orange", "real_orange", "yellow"],
+                    "weights": [50, 20, 30, 5]
+                },
+
+                "real_brown": 
+                {
+                    "outcomes": ["real_brown"],
+                    "weights": [1]
+                }
+
+            }
+
+
+        }
+    }
 }
