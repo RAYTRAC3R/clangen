@@ -30,7 +30,7 @@ class AllegiancesScreen(Screens):
         # Set Menu Buttons.
         self.show_menu_buttons()
         self.set_disabled_menu_buttons(["allegiances"])
-        self.update_heading_text(f'{game.clan.name}Clan')
+        self.update_heading_text(f'{game.clan.name}')
         allegiance_list = self.get_allegiances_text()
 
 
@@ -125,14 +125,14 @@ class AllegiancesScreen(Screens):
         outputs = []
         if game.clan.leader and not (game.clan.leader.dead or game.clan.leader.outside):
                 outputs.append([
-                    '<b><u>LEADER</u></b>',
+                    '<b><u>PRINCESS</u></b>',
                     self.generate_one_entry(game.clan.leader)
                 ])
 
         # Deputy Box:
         if game.clan.deputy and not (game.clan.deputy.dead or game.clan.deputy.outside):
             outputs.append([
-                '<b><u>DEPUTY</u></b>',
+                '<b><u>GUARD CAPTAIN</u></b>',
                 self.generate_one_entry(game.clan.deputy)
             ])
         
@@ -140,9 +140,9 @@ class AllegiancesScreen(Screens):
         if living_meds:
             _box = ["", ""]
             if len(living_meds) == 1:
-                _box[0] = '<b><u>MEDICINE CAT</u></b>'
+                _box[0] = '<b><u>DOCTOR</u></b>'
             else:
-                _box[0] = '<b><u>MEDICINE CATS</u></b>'
+                _box[0] = '<b><u>DOCTORS</u></b>'
             
             _box[1] = "\n".join([self.generate_one_entry(i) for i in living_meds])
             outputs.append(_box)
@@ -151,9 +151,9 @@ class AllegiancesScreen(Screens):
         if living_mediators:
             _box = ["", ""]
             if len(living_mediators) == 1:
-                _box[0] = '<b><u>MEDIATOR</u></b>'
+                _box[0] = '<b><u>PROTEGE</u></b>'
             else:
-                _box[0] = '<b><u>MEDIATORS</u></b>'
+                _box[0] = '<b><u>PROTEGES</u></b>'
             
             _box[1] = "\n".join([self.generate_one_entry(i) for i in living_mediators])
             outputs.append(_box)
@@ -162,9 +162,9 @@ class AllegiancesScreen(Screens):
         if living_warriors:
             _box = ["", ""]
             if len(living_warriors) == 1:
-                _box[0] = '<b><u>WARRIOR</u></b>'
+                _box[0] = '<b><u>CITIZEN</u></b>'
             else:
-                _box[0] = '<b><u>WARRIORS</u></b>'
+                _box[0] = '<b><u>CITIZENS</u></b>'
             
             _box[1] = "\n".join([self.generate_one_entry(i) for i in living_warriors])
             outputs.append(_box)
@@ -183,7 +183,7 @@ class AllegiancesScreen(Screens):
          # Queens and Kits Box:
         if queen_dict or living_kits:
             _box = ["", ""]
-            _box[0] = '<b><u>QUEENS AND KITS</u></b>'
+            _box[0] = '<b><u>PARENTS AND FOALS</u></b>'
             
             # This one is a bit different.  First all the queens, and the kits they are caring for. 
             all_entries = []
@@ -212,9 +212,9 @@ class AllegiancesScreen(Screens):
         if living_elders:
             _box = ["", ""]
             if len(living_elders) == 1:
-                _box[0] = '<b><u>ELDER</u></b>'
+                _box[0] = '<b><u>ELDERLY</u></b>'
             else:
-                _box[0] = '<b><u>ELDERS</u></b>'
+                _box[0] = '<b><u>ELDERLY</u></b>'
             
             _box[1] = "\n".join([self.generate_one_entry(i) for i in living_elders])
             outputs.append(_box)

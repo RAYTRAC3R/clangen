@@ -565,9 +565,9 @@ class ListScreen(Screens):
 
         # update title
         if self.current_group == 'clan':
-            self.update_heading_text(f'{game.clan.name}Clan')
+            self.update_heading_text(f'{game.clan.name}')
         elif self.current_group == 'cotc':
-            self.update_heading_text(f'Cats Outside the Clan')
+            self.update_heading_text(f'Cats Outside the Town')
         elif self.current_group == 'sc':
             self.update_heading_text(f'StarClan')
         elif self.current_group == 'ur':
