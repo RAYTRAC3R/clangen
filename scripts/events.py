@@ -1511,7 +1511,7 @@ class Events:
         new cats
         """
         chance = 200
-
+        
         alive_cats = list(
             filter(
                 lambda kitty: (kitty.status != "leader" and not kitty.dead and

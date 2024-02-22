@@ -1049,8 +1049,7 @@ class PatrolOutcome():
         if "dead" in attribute_list:
             alive = False
             thought = "Explores a new starry world"
-        
-           
+
         # Now, it's time to generate the new cat
         # This is a bit of a pain, but I can't re-write this function
         new_cats = create_new_cat(Cat,
@@ -1069,7 +1068,7 @@ class PatrolOutcome():
                                 alive=alive,
                                 outside=outside,
                                 parent1=parent1.ID if parent1 else None,
-                                parent2=parent2.ID if parent2 else None  
+                                parent2=parent2.ID if parent2 else None
                                  )
         
         # Add relations to biological parents, if needed
