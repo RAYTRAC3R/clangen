@@ -324,7 +324,6 @@ def create_new_cat(Cat,
 
         # other Clan cats, apps, and kittens (kittens and apps get indoctrinated lmao no old names for them)
         if other_clan or kit or litter or age < 12:
-            print(blood_parent_missing)
             new_cat = Cat(moons=age,
                           status=status,
                           gender=_gender,
