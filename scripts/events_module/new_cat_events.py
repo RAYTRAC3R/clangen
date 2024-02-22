@@ -138,7 +138,6 @@ class NewCatEvents:
                                           age=random.randint(15,120),
                                           outside=True)[0]
             
-            
         for new_cat in created_cats:
             
             involved_cats.append(new_cat.ID)
