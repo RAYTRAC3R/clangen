@@ -151,13 +151,13 @@ class Sprites():
         for a, i in enumerate(['Tabby', 'Masked', 'Mackerel', 'Agouti', 'Speckled', 'Classic', 'Wisp', 'Sokoke', 'Singlestripe', 'Ticked', 'Marbled', 'Bengal', 'Smoke', 'Rosette']):
             self.make_group('markings/markings', (a, 0), f'mark{i}')
             
-        for a, i in enumerate(['None', 'Test', 'Twilight', 'Bun', 'Curled']):
+        for a, i in enumerate(['None', 'Test', 'Twilight', 'Bun', 'Curled', 'YoungLuna']):
             self.make_group('manes/manelines', (a, 0), f'manelines{i}')
             
-        for a, i in enumerate(['None', 'Test', 'Twilight', 'Bun', 'Curled']):
+        for a, i in enumerate(['None', 'Test', 'Twilight', 'Bun', 'Curled', 'YoungLuna']):
             self.make_group('manes/manecolor', (a, 0), f'manecolor{i}')
             
-        for a, i in enumerate(['None', 'Test', 'Twilight', 'Bun', 'Curled']):
+        for a, i in enumerate(['None', 'Test', 'Twilight', 'Bun', 'Curled', 'YoungLuna']):
             self.make_group('manes/manecolor2', (a, 0), f'manecolor2{i}')
 
         # Eyes
