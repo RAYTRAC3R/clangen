@@ -1403,8 +1403,9 @@ class Pelt():
         }
 
         # Start with determining the base color name
+        color_name = cat.pelt.tint
         for re in game.tint_category_names["tint_names"]["ID_prefixes"]:
-            color_name = cat.pelt.tint.replace(re, '')
+            color_name = color_name.replace(f'{re}', '')
         if color_name in renamed_colors:
             color_name = renamed_colors[color_name]
         
