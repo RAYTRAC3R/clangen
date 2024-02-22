@@ -120,11 +120,18 @@ class NewCatEvents:
                                       )
         
         blood_parent = None
+        blood_parent2 = None
         if new_cat_event.litter:
             # If we have a litter joining, assign them a blood parent for
             # relation-tracking purposes
             thought = "Is happy their kits are safe"
             blood_parent = create_new_cat(Cat, Relationship,
+                                          status=random.choice(["loner", "kittypet"]),
+                                          alive=False,
+                                          thought=thought,
+                                          age=random.randint(15,120),
+                                          outside=True)[0]
+            blood_parent2 = create_new_cat(Cat, Relationship,
                                           status=random.choice(["loner", "kittypet"]),
                                           alive=False,
                                           thought=thought,
@@ -138,6 +145,7 @@ class NewCatEvents:
             # Set the blood parent, if one was created.
             # Also set adoptive parents if needed. 
             new_cat.parent1 = blood_parent.ID if blood_parent else None
+            new_cat.parent2 = blood_parent2.ID if blood_parent2 else None
             if "adoption" in new_cat_event.tags and cat.ID not in new_cat.adoptive_parents:
                 new_cat.adoptive_parents.append(cat.ID)
                 

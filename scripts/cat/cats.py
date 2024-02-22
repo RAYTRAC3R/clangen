@@ -313,6 +313,7 @@ class Cat():
 
             # APPEARANCE
             if missing_parent is not None:
+                print(missing_parent)
                 self.pelt = Pelt.generate_new_pelt(self.gender, [Cat.fetch_cat(i) for i in (self.parent1, self.parent2) if i], self.age, self.missing_parent)
             else:
                 self.pelt = Pelt.generate_new_pelt(self.gender, [Cat.fetch_cat(i) for i in (self.parent1, self.parent2) if i], self.age)
