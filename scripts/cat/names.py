@@ -155,7 +155,7 @@ class Name():
     def give_suffix(self, pelt, biome, tortiepattern):
         if pelt is None or pelt == 'SingleColour':
             self.suffix = random.choice(self.names_dict["normal_suffixes"])
-            print(self.suffix)
+            #print(self.suffix)
         else:
             named_after_pelt = not random.getrandbits(2)  # Chance for True is '1/8'.
             named_after_biome = not random.getrandbits(3)  # 1/8
