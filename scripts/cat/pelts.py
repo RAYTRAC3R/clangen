@@ -346,9 +346,9 @@ class Pelt():
             "para_adult": para_adult_sprite if para_adult_sprite is not None else 0,
         }        
         self.cat_sprites['newborn'] = 20
-        self.cat_sprites['para_young'] = 17
-        self.cat_sprites["sick_adult"] = 18
-        self.cat_sprites["sick_young"] = 19
+        self.cat_sprites['para_young'] = self.cat_sprites['adolescent']
+        self.cat_sprites["sick_adult"] = self.cat_sprites["adult"]
+        self.cat_sprites["sick_young"] = self.cat_sprites["adolescent"]
         
         self.reverse = reverse
         self.skin = skin
