@@ -185,7 +185,7 @@ class Sprites():
             self.make_group('fadedarkforest', (i, 0), f'fadedf{i}')
 
         # white patches
-        for a, i in enumerate(['FULLWHITE', 'ANY', 'TUXEDO', 'LITTLE', 'COLOURPOINT', 'VAN', 'ANYTWO',
+        for a, i in enumerate(['FULLWHITE', 'AJFRECKLES', 'LUNAPATCH', 'APPALOOSAONE', 'APPALOOSATWO', 'TOBIANOONE', 'TOBIANOTWO',
             'MOON', 'PHANTOM', 'POWDER', 'BLEACHED', 'SAVANNAH', 'FADESPOTS', 'PEBBLESHINE']):
             self.make_group('whitepatches', (a, 0), f'white{i}')
         for a, i in enumerate(['EXTRA', 'ONEEAR', 'BROKEN', 'LIGHTTUXEDO', 'BUZZARDFANG', 'RAGDOLL', 
