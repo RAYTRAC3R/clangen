@@ -187,10 +187,10 @@ class Pelt():
         'GREY', 'CYAN', 'EMERALD', 'PALEBLUE', 'PALEYELLOW', 'GOLD', 'HEATHERBLUE', 'COPPER', 'SAGE', 'COBALT',
         'SUNLITICE', 'GREENYELLOW', 'BRONZE', 'SILVER'
     ]
-    little_white = ['ANY']
-    mid_white = ['TUXEDO']
-    high_white = ['LITTLE']
-    mostly_white = ['COLOURPOINT']
+    little_white = ['AJFRECKLES']
+    mid_white = ['LUNAPATCH']
+    high_white = ['APPALOOSAONE', 'TOBIANOTWO']
+    mostly_white = ['APPALOOSATWO', 'TOBIANOONE']
     point_markings = ['RAGDOLL', 'SEPIAPOINT', 'MINKPOINT', 'SEALPOINT']
     vit = ['VITILIGO', 'VITILIGOTWO', 'MOON', 'PHANTOM', 'KARPATI', 'POWDER', 'BLEACHED', 'SMOKEY']
     white_sprites = [
@@ -479,18 +479,18 @@ class Pelt():
 
 
         #First, convert from some old names that may be in white_patches. 
-        if self.white_patches == 'POINTMARK':
-            self.white_patches = "SEALPOINT"
-        elif self.white_patches == 'PANTS2':
-            self.white_patches = 'PANTSTWO'
-        elif self.white_patches == 'ANY2':
-            self.white_patches = 'ANYTWO'
-        elif self.white_patches == "VITILIGO2":
-            self.white_patches = "VITILIGOTWO"
-            
-        if self.vitiligo == "VITILIGO2":
-            self.vitiligo = "VITILIGOTWO"
-        
+        if self.white_patches == 'ANY':
+            self.white_patches = "AJFRECKLES"
+        elif self.white_patches == 'TUXEDO':
+            self.white_patches = 'LUNAPATCH'
+        elif self.white_patches == 'LITTLE':
+            self.white_patches = 'APPALOOSAONE'
+        elif self.white_patches == "COLOURPOINT":
+            self.white_patches = "APPALOOSATWO"
+        elif self.white_patches == "VAN":
+            self.white_patches = "TOBIANOONE"
+        elif self.white_patches == "ANYTWO":
+            self.white_patches == "TOBIANOTWO"
         
         # Move white_patches that should be in vit or points. 
         if self.white_patches in Pelt.vit:
