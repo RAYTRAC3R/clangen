@@ -11,6 +11,8 @@ Mod creator: RAYTRAC3R
 
 Creator of PrismGen (code used for coloring system): muxasii
 
+ClanGen discord users who helped with mane and pattern sprites: the.trypo.puppeteer, eragonarose
+
 <s>## Downloads
 ### Stable
 Stable versions can be downloaded directly from the [official ClanGen website](https://clangen.io/download)
