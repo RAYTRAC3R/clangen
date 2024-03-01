@@ -240,7 +240,7 @@
 		]
 	},
     "cat_sprites": {
-        "sick_sprites": true,
+        "sick_sprites": false,
         "comment": "Set this to false to disable sick sprites."
     },
 	"patrol_generation": {
