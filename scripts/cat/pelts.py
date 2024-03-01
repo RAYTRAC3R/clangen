@@ -142,11 +142,11 @@ class Pelt():
         'SUNLITICE', 'GREENYELLOW', 'BRONZE', 'SILVER'
     ]
     little_white = ['AJFRECKLES']
-    mid_white = ['LUNAPATCH']
+    mid_white = ['LUNAPATCH', 'SPLASH']
     high_white = ['APPALOOSAONE', 'TOBIANOTWO']
     mostly_white = ['APPALOOSATWO', 'TOBIANOONE']
     point_markings = ['RAGDOLL', 'SEPIAPOINT', 'MINKPOINT', 'SEALPOINT']
-    vit = ['VITILIGO', 'VITILIGOTWO', 'MOON', 'PHANTOM', 'KARPATI', 'POWDER', 'BLEACHED', 'SMOKEY']
+    vit = ['VITILIGO', 'VITILIGOTWO', 'PHANTOM', 'KARPATI', 'POWDER', 'BLEACHED', 'SMOKEY']
     white_sprites = [
         little_white, mid_white, high_white, mostly_white, point_markings, vit, 'FULLWHITE']
 
@@ -322,6 +322,8 @@ class Pelt():
             self.white_patches = "TOBIANOONE"
         elif self.white_patches == "ANYTWO":
             self.white_patches == "TOBIANOTWO"
+        elif self.white_patches == "MOON":
+            self.white_patches == "SPLASH"
         
         # Move white_patches that should be in vit or points. 
         if self.white_patches in Pelt.vit:
@@ -897,7 +899,7 @@ class Pelt():
         # ------------------------------------------------------------------------------------------------------------#
 
 
-        chosen_white = random.randint(1, 100) <= 25
+        chosen_white = random.randint(1, 100) <= 30
 
         # Adjustments to pelt chosen based on if the pelt has white in it or not.
         if chosen_pelt == "Calico":
