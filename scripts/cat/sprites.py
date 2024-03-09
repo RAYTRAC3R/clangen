@@ -186,7 +186,7 @@ class Sprites():
 
         # white patches
         for a, i in enumerate(['FULLWHITE', 'AJFRECKLES', 'LUNAPATCH', 'APPALOOSAONE', 'APPALOOSATWO', 'TOBIANOONE', 'TOBIANOTWO',
-            'SPLASH', 'PHANTOM', 'POWDER', 'BLEACHED', 'SAVANNAH', 'FADESPOTS', 'PEBBLESHINE']):
+            'SPLASH', 'VITONE', 'VITTWO', 'BLEACHED', 'SAVANNAH', 'FADESPOTS', 'PEBBLESHINE']):
             self.make_group('whitepatches', (a, 0), f'white{i}')
         for a, i in enumerate(['EXTRA', 'ONEEAR', 'BROKEN', 'LIGHTTUXEDO', 'BUZZARDFANG', 'RAGDOLL', 
             'LIGHTSONG', 'VITILIGO', 'BLACKSTAR', 'PIEBALD', 'CURVED', 'PETAL', 'SHIBAINU', 'OWL']):
