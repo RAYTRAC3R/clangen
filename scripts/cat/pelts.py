@@ -146,7 +146,7 @@ class Pelt():
     high_white = ['APPALOOSAONE', 'TOBIANOTWO']
     mostly_white = ['APPALOOSATWO', 'TOBIANOONE']
     point_markings = ['RAGDOLL', 'SEPIAPOINT', 'MINKPOINT', 'SEALPOINT']
-    vit = ['VITILIGO', 'VITILIGOTWO', 'PHANTOM', 'KARPATI', 'POWDER', 'BLEACHED', 'SMOKEY']
+    vit = ['VITONE', 'VITTWO']
     white_sprites = [
         little_white, mid_white, high_white, mostly_white, point_markings, vit, 'FULLWHITE']
 
@@ -324,6 +324,10 @@ class Pelt():
             self.white_patches == "TOBIANOTWO"
         elif self.white_patches == "MOON":
             self.white_patches == "SPLASH"
+        elif self.white_patches == "PHANTOM":
+            self.white_patches == "VITONE"
+        elif self.white_patches == "POWDER":
+            self.white_patches == "VITTWO"
         
         # Move white_patches that should be in vit or points. 
         if self.white_patches in Pelt.vit:
