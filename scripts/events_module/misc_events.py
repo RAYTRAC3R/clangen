@@ -191,7 +191,6 @@ class MiscEvents():
             acc_list.extend(Pelt.herb_accessories)
         if "COLLAR" in possible_accs:
             acc_list.extend(Pelt.twoleg_accessories)
-            cat.pelt.accessory_category = "twoleg"
 
         print(possible_accs)
         print(Pelt.herb_accessories)

@@ -118,28 +118,28 @@ class Pelt():
     accessories = ["bow", "collar", "bell", "nylon"]
     accessory_patterns = {
         "bow": ["dots", "stripes", "gradient1", "gradient2", "gradient3", "gradient4"],
-        "collar": [None],
-        "bell": [None],
-        "nylon": [None],
-        "berries": [None],
-        "petals": [None],
-        "catmint": [None],
-        "laurel": [None],
-        "nettle": [None],
-        "poppy": [None],
-        "flowers": [None],
-        "earleaves": [None],
-        "maple": [None],
-        "lavender": [None],
-        "bluebells": [None],
-        "leaves": [None],
-        "berries2": [None],
-        "seed": [None],
-        "stalk": [None],
-        "feathers": [None],
-        "moth": [None],
-        "largemoth": [None],
-        "cicada": [None]
+        "collar": False,
+        "bell": False,
+        "nylon": False,
+        "berries": False,
+        "petals": False,
+        "catmint": False,
+        "laurel": False,
+        "nettle": False,
+        "poppy": False,
+        "flowers": False,
+        "earleaves": False,
+        "maple": False,
+        "lavender": False,
+        "bluebells": False,
+        "leaves": False,
+        "berries2": False,
+        "seed": False,
+        "stalk": False,
+        "feathers": False,
+        "moth": False,
+        "largemoth": False,
+        "cicada": False
     }
 
     twoleg_accessories = ["bow", "collar", "bell", "nylon"]
@@ -1137,6 +1137,7 @@ class Pelt():
             self.scars.remove('HALFTAIL')
 
     def init_accessories(self, age):
+        pattern_list = []
         if age == "newborn": 
             self.accessory_type = None
             self.accessory_color = None
@@ -1155,9 +1156,7 @@ class Pelt():
                 choice(Pelt.wild_accessories),
                 choice(Pelt.herb_accessories)])
 
-            if self.accessory_type in Pelt.accessory_categories["twoleg"]:
-                self.accessory_category = "twoleg"
-            elif self.accessory_type in Pelt.accessory_categories["leaf"]:
+            if self.accessory_type in Pelt.accessory_categories["leaf"]:
                 self.accessory_category = "leaf"
             elif self.accessory_type in Pelt.accessory_categories["flower"]:
                 self.accessory_category = "flower"
@@ -1193,13 +1192,13 @@ class Pelt():
                 possible_colors = sprites.accessory_tints["possible_tints"][f"monochrome_{self.accessory_category}"].copy()
                 self.accessory_shade = choice(possible_colors)
             
-            if None not in Pelt.accessory_patterns[f"{self.accessory_type}"]:
-                pattern_list = Pelt.accessory_patterns[f"{self.accessory_type}"].copy()
+            if Pelt.accessory_patterns[f"{self.accessory_type}"]:
+                pattern_list.extend(Pelt.accessory_patterns[f"{self.accessory_type}"])
                 totaloptions = len(Pelt.accessory_patterns[f"{self.accessory_type}"])
-                pattern_count = random.randint(0, totaloptions)
+                pattern_count = random.randint(1, totaloptions)
                 
-                i = 1
-                while i <= pattern_count:
+                i = 0
+                while i < pattern_count:
                     print(pattern_count)
                     pattern_choice = choice(pattern_list)
                     pattern_list.remove(pattern_choice) # remove from pattern list to ensure no duplicates
@@ -1211,10 +1210,10 @@ class Pelt():
                     self.accessory_pattern.append(pattern_choice)
                     self.accessory_p_color.append(p_color)
 
-                    if self.accessory_p_color in sprites.accessory_tints["possible_tints"][f"warm_{self.accessory_category}"]:
+                    if self.accessory_p_color[i] in sprites.accessory_tints["possible_tints"][f"warm_{self.accessory_category}"]:
                         possible_colors = sprites.accessory_tints["possible_tints"][f"warm_{self.accessory_category}"].copy()
                         self.accessory_p_shade.append(choice(possible_colors))
-                    elif self.accessory_p_color in sprites.accessory_tints["possible_tints"][f"cool_{self.accessory_category}"]:
+                    elif self.accessory_p_color[i] in sprites.accessory_tints["possible_tints"][f"cool_{self.accessory_category}"]:
                         possible_colors = sprites.accessory_tints["possible_tints"][f"cool_{self.accessory_category}"].copy()
                         self.accessory_p_shade.append(choice(possible_colors))
                     else:
@@ -1222,7 +1221,7 @@ class Pelt():
                         self.accessory_p_shade.append(choice(possible_colors))
 
                     i += 1
-
+                pattern_list.clear()
             # accent color
             possible_colors = sprites.accessory_tints["possible_tints"][f"{self.accessory_category}_accent"].copy()
             self.acc_accent_color = choice(possible_colors)
@@ -1232,10 +1231,12 @@ class Pelt():
             self.accessory_shade = None
             self.acc_accent_color = None
 
+
     def create_accessory(self, acc):
         """
         Generates accessory 
         """
+        pattern_list = []
         # honestly I have no idea if I could've just used init_accessories but then again... it would've been a bit too scuffed to add whatever was chosen in misc_events
         # I love programming
         self.accessory_type = choice(acc)
@@ -1265,7 +1266,7 @@ class Pelt():
         else:
             print("failed")
  
-        possible_colors = sprites.accessory_tints["possible_tints"][f"{self.accessory_category}"].copy()
+        possible_colors = sprites.accessory_tints["possible_tints"][f"{self.accessory_category}"]
         self.accessory_color = choice(possible_colors)
 
         if self.accessory_color in sprites.accessory_tints["possible_tints"][f"warm_{self.accessory_category}"]:
@@ -1278,35 +1279,37 @@ class Pelt():
             possible_colors = sprites.accessory_tints["possible_tints"][f"monochrome_{self.accessory_category}"].copy()
             self.accessory_shade = choice(possible_colors)
 
-        if None not in Pelt.accessory_patterns[f"{self.accessory_type}"]:
-            pattern_list = Pelt.accessory_patterns[f"{self.accessory_type}"].copy()
+        if Pelt.accessory_patterns[f"{self.accessory_type}"]:
+            pattern_list.extend(Pelt.accessory_patterns[f"{self.accessory_type}"])
             totaloptions = len(Pelt.accessory_patterns[f"{self.accessory_type}"])
-            pattern_count = random.randint(0, totaloptions)
+            pattern_count = random.randint(1, totaloptions)
 
-            i = 1
-            while i <= pattern_count:
+            i = 0
+            while i < pattern_count:
                 pattern_choice = choice(pattern_list)
                 pattern_list.remove(pattern_choice) # remove from pattern list to ensure no duplicates
 
                 self.accessory_pattern.append(pattern_choice)
 
-                if self.accessory_p_color in sprites.accessory_tints["possible_tints"][f"warm_{self.accessory_category}"]:
+                possible_colors = sprites.accessory_tints["possible_tints"][f"{self.accessory_category}"].copy()
+                
+                p_color = choice(possible_colors)
+                self.accessory_p_color.append(p_color)
+
+                if self.accessory_p_color[i] in sprites.accessory_tints["possible_tints"][f"warm_{self.accessory_category}"]:
                     possible_colors = sprites.accessory_tints["possible_tints"][f"warm_{self.accessory_category}"].copy()
                     self.accessory_p_shade.append(choice(possible_colors))
-                elif self.accessory_p_color in sprites.accessory_tints["possible_tints"][f"cool_{self.accessory_category}"]:
+                elif self.accessory_p_color[i] in sprites.accessory_tints["possible_tints"][f"cool_{self.accessory_category}"]:
                     possible_colors = sprites.accessory_tints["possible_tints"][f"cool_{self.accessory_category}"].copy()
                     self.accessory_p_shade.append(choice(possible_colors))
                 else:
                     possible_colors = sprites.accessory_tints["possible_tints"][f"monochrome_{self.accessory_category}"].copy()
                     self.accessory_p_shade.append(choice(possible_colors))
                 
-                possible_colors = sprites.accessory_tints["possible_tints"][f"{self.accessory_category}"].copy()
-
-                p_color = choice(possible_colors)
-                self.accessory_p_color.append(p_color)
 
                 i += 1
 
+            pattern_list.clear()
         # accent color
         possible_colors = sprites.accessory_tints["possible_tints"][f"{self.accessory_category}_accent"].copy()
         self.acc_accent_color = choice(possible_colors)
@@ -1318,7 +1321,6 @@ class Pelt():
 {self.accessory_p_color}
 {self.accessory_p_shade}
 """)
-        
 
     def init_pattern(self):
         if self.name in Pelt.torties:
