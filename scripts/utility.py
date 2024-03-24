@@ -337,7 +337,7 @@ def create_new_cat(Cat,
             if kittypet:
                 name = choice(names.names_dict["loner_names"])
                 if choice([1, 2]) == 1:
-                    accessory = choice(Pelt.collars)
+                    accessory = choice(Pelt.twoleg_accessories)
             elif loner and choice([1, 2]) == 1:  # try to give name from full loner name list
                 name = choice(names.names_dict["loner_names"])
             else:
@@ -386,7 +386,7 @@ def create_new_cat(Cat,
 
         # give em a collar if they got one
         if accessory:
-            new_cat.pelt.accessory = accessory
+            Pelt.create_accessory(new_cat.pelt, Pelt.twoleg_accessories)
 
         # give apprentice aged cat a mentor
         if new_cat.age == 'adolescent':
@@ -481,7 +481,7 @@ def create_outside_cat(Cat, status, backstory, alive=True, thought=None):
                   gender=choice(['female', 'male']),
                   backstory=backstory)
     if status == 'kittypet':
-        new_cat.pelt.accessory = choice(Pelt.collars)
+        Pelt.create_accessory(new_cat.pelt, Pelt.twoleg_accessories)
     new_cat.outside = True
 
     if not alive:
@@ -1023,9 +1023,9 @@ def event_text_adjust(Cat,
         cat_dict["m_c"] = (str(cat.name), choice(cat.pronouns))
         cat_dict["p_l"] = cat_dict["m_c"]
     if "acc_plural" in text:
-        text = text.replace("acc_plural", str(ACC_DISPLAY[cat.pelt.accessory]["plural"]))
+        text = text.replace("acc_plural", str(ACC_DISPLAY[cat.pelt.accessory_type]["plural"]))
     if "acc_singular" in text:
-        text = text.replace("acc_singular", str(ACC_DISPLAY[cat.pelt.accessory]["singular"]))
+        text = text.replace("acc_singular", str(ACC_DISPLAY[cat.pelt.accessory_type]["singular"]))
 
     if other_cat:
         if other_cat.pronouns:
@@ -1469,26 +1469,6 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
         eye_pupil = sprites.sprites['eyes' + 'pupil' + cat_sprite].copy()
         eye_pupil.blit(eye_pupil_tint, (0, 0), special_flags=pygame.BLEND_RGB_ADD)
         eyes.blit(eye_pupil, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-        
-        """markings = sprites.sprites['mark' + cat.pelt.marking + cat_sprite].copy().convert_alpha()
-            markings.blit(base_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-
-            if cat.pelt.underfur:
-                # draw underfur
-                m_underfur = sprites.sprites['underfur' + cat.pelt.underfur + cat_sprite].copy()
-                m_underfur.blit(under_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-                markings.blit(m_underfur, (0, 0), special_flags=pygame.BLEND_ADD)
-
-            if cat.pelt.marking_blend == "add":
-                markings.blit(mark_tint, (0, 0), special_flags=pygame.BLEND_RGB_ADD)
-            elif cat.pelt.marking_blend == "multiply":
-                markings.blit(mark_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-            else:
-                markings.blit(mark_tint, (0, 0))
-            markings.blit(mark_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
-            markings.blit(sprites.sprites['mark' + cat.pelt.marking + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
-            
-            ^^ this is for reference for me lol ignore this"""
 
         new_sprite.blit(eyes, (0, 0))
 
@@ -1537,13 +1517,80 @@ def generate_sprite(cat, life_state=None, scars_hidden=False, acc_hidden=False, 
                     new_sprite.blit(sprites.sprites['scars' + scar + cat_sprite], (0, 0), special_flags=blendmode)
 
         # draw accessories
-        if not acc_hidden:        
-            if cat.pelt.accessory in cat.pelt.plant_accessories:
-                new_sprite.blit(sprites.sprites['acc_herbs' + cat.pelt.accessory + cat_sprite], (0, 0))
-            elif cat.pelt.accessory in cat.pelt.wild_accessories:
-                new_sprite.blit(sprites.sprites['acc_wild' + cat.pelt.accessory + cat_sprite], (0, 0))
-            elif cat.pelt.accessory in cat.pelt.collars:
-                new_sprite.blit(sprites.sprites['collars' + cat.pelt.accessory + cat_sprite], (0, 0))
+        if not acc_hidden:
+            if cat.pelt.accessory_type:
+                acc_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                acc_tint.fill(tuple(sprites.accessory_tints["tint_colours"][f"{cat.pelt.accessory_color}_{cat.pelt.accessory_category}"]))
+
+                accent_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                accent_tint.fill(tuple(sprites.accessory_tints["tint_colours"][f"{cat.pelt.acc_accent_color}_{cat.pelt.accessory_category}_accent"]))
+
+                accent_s_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                accent_s_tint.fill(tuple(sprites.accessory_tints["tint_colours"][f"s_{cat.pelt.acc_accent_color}_{cat.pelt.accessory_category}_accent"]))
+                
+                acc_shade_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                acc_shade_tint.fill(tuple(sprites.accessory_tints["tint_colours"][f"s_{cat.pelt.accessory_shade}_{cat.pelt.accessory_category}"]))
+                
+                # base
+                acc = sprites.sprites[cat.pelt.accessory_type + 'base' + cat_sprite].copy()
+                acc.blit(acc_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                # draw shading
+                acc_shade = sprites.sprites[cat.pelt.accessory_type + 'shade' + cat_sprite].copy()
+                acc_shade.blit(acc_shade_tint, (0, 0), special_flags=pygame.BLEND_RGB_ADD)
+                acc.blit(acc_shade, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                i = 0
+                # draw pattern
+                for acc_pattern in cat.pelt.accessory_pattern:
+                    
+                    acc_p_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    acc_p_tint.fill(tuple(sprites.accessory_tints["tint_colours"][f"{cat.pelt.accessory_p_color[i]}_{cat.pelt.accessory_category}"]))
+
+                    acc_s_tint = pygame.Surface((sprites.size, sprites.size)).convert_alpha()
+                    acc_s_tint.fill(tuple(sprites.accessory_tints["tint_colours"][f"s_{cat.pelt.accessory_p_shade[i]}_{cat.pelt.accessory_category}"]))
+
+                    # help
+                    accessory_pattern = sprites.sprites[cat.pelt.accessory_type + f"{acc_pattern}" + cat_sprite].copy().convert_alpha()
+                    accessory_pattern.blit(acc_p_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                    acc_shade = sprites.sprites[cat.pelt.accessory_type + 'shade' + cat_sprite].copy()
+                    acc_shade.blit(acc_s_tint, (0, 0), special_flags=pygame.BLEND_RGB_ADD)
+                    accessory_pattern.blit(acc_shade, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+            
+                    accessory_pattern.blit(sprites.sprites[cat.pelt.accessory_type + acc_pattern + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+                    acc.blit(accessory_pattern, (0, 0))
+
+                    i += 1
+
+                # draw accent
+                    """ 
+                accent = sprites.sprites[cat.pelt.accessory_type + 'accent' + cat_sprite].copy().convert_alpha()
+                accent.blit(accent_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                acc_shade = sprites.sprites[cat.pelt.accessory_type + 'shade' + cat_sprite].copy()
+                acc_shade.blit(accent_s_tint, (0, 0), special_flags=pygame.BLEND_RGB_ADD)
+                accent.blit(acc_shade, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+        
+                accent.blit(sprites.sprites[cat.pelt.accessory_type + 'accent' + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+                acc.blit(accent, (0, 0), special_flags=pygame.BLEND_RGB_MULT) """
+
+                
+                accessory_accent = sprites.sprites[cat.pelt.accessory_type + 'accent' + cat_sprite].copy().convert_alpha()
+                accessory_accent.blit(accent_tint, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+
+                acc_shade = sprites.sprites[cat.pelt.accessory_type + 'shade' + cat_sprite].copy()
+                acc_shade.blit(accent_s_tint, (0, 0), special_flags=pygame.BLEND_RGB_ADD)
+                accessory_accent.blit(acc_shade, (0, 0), special_flags=pygame.BLEND_RGB_MULT)
+        
+                accessory_accent.blit(sprites.sprites[cat.pelt.accessory_type + 'accent' + cat_sprite], (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
+                acc.blit(accessory_accent, (0, 0))
+
+                # draw lineart
+                acc_line = sprites.sprites[cat.pelt.accessory_type + 'line' + cat_sprite].copy()
+                acc.blit(acc_line, (0, 0))
+
+                new_sprite.blit(acc, (0, 0))
 
         # Apply fading fog
         if cat.pelt.opacity <= 97 and not cat.prevent_fading and game.clan.clan_settings["fading"] and dead:

@@ -1,0 +1,737 @@
+{
+  "possible_tints": 
+ {
+    "twoleg": [
+      
+      "red", 
+      "orange",
+      "yellow", "corn", "mellow", 
+      "green",
+      "blue",
+      "purple",
+      "pink",
+      "black", "gray", "white"
+    
+    ],
+
+    "twoleg_accent": [
+
+      "silver",
+      "gold",
+      "darkgold",
+      "copper"
+
+    ],
+
+    "berry": [
+      "blue",
+      "goose",
+      "cloud",
+      "currant",
+      "acai",
+      "elder",
+      "red",
+      "pink",
+      "black",
+      "white"
+
+    ],
+
+    "berry_accent": [
+      "green",
+      "mint",
+      "hunter",
+      "blue",
+      "deep"
+
+    ],
+
+    "leaf": [
+      "green",
+      "mint",
+      "hunter",
+      "blue",
+      "deep",
+      "yellow",
+      "dried"
+
+    ],
+
+    "leaf_accent": [
+      "green",
+      "mint",
+      "hunter",
+      "blue",
+      "deep",
+      "yellow",
+      "dried"
+
+    ],
+
+    "seed": [
+      "green",
+      "mint",
+      "hunter",
+      "blue",
+      "deep",
+      "yellow",
+      "dried"
+    ],
+
+    "seed_accent": [
+      "green",
+      "mint",
+      "hunter",
+      "blue",
+      "deep",
+      "yellow",
+      "dried"
+
+    ],
+
+    "stalk": [
+      "rye",
+      "wheat",
+      "oat",
+      "green"
+    ],
+
+    "stalk_accent": [
+      "rye",
+      "wheat",
+      "oat",
+      "green"
+    ],
+
+    "flower": [
+      "red",
+      "orange",
+      "yellow",
+      "green",
+      "blue",
+      "purple",
+      "pink",
+      "black", "gray", "white"
+    ],    
+
+    "flower_accent": [
+      "green",
+      "mint",
+      "hunter",
+      "blue",
+      "deep",
+      "yellow",
+      "orange",
+      "red"
+    ],
+
+    "flower_nl": [
+      "red",
+      "orange",
+      "yellow",
+      "green",
+      "blue",
+      "purple",
+      "pink",
+      "black", "gray", "white"
+    ],
+
+    "flower_nl_accent": [
+      "red",
+      "orange",
+      "yellow",
+      "green",
+      "blue",
+      "purple",
+      "pink",
+      "black", "gray", "white"
+    ],
+
+    "moth": [
+      "cream",
+      "white"
+    ],
+
+    "moth_accent": [
+      "cream",
+      "white"
+    ],
+
+    "feathers": [
+      "red",
+      "blue",
+      "black", "gray", "white"
+    ],
+
+    "feathers_accent": [
+      "none"
+    ],
+
+    "cicada": [
+      "brown", "tan", "cream"
+    ],
+
+    "cicada_accent": [
+      "none"
+    ],
+
+    "warm_feathers": [
+      "red"
+    ],
+    "cool_feathers": [
+      "blue"
+    ],
+    "monochrome_feathers": [
+      "black", "gray", "white"
+    ],  
+
+    "warm_moth": [
+      "cream", "white"
+    ],
+    "cool_moth": [],
+    "monochrome_moth": [],  
+    
+    "warm_cicada": [
+      "brown", "tan", "cream"
+    ],
+    "cool_cicada": [],
+    "monochrome_cicada": [],  
+    
+    "warm_stalk": [
+      "rye",
+      "wheat",
+      "oat"
+    ],
+    "cool_stalk": [
+      "green"
+    ],
+    "monochrome_stalk": [],  
+    
+    "warm_flower": [
+      "red",
+      "orange",
+      "yellow"
+    ],
+    "cool_flower": [
+      "green",
+      "blue",
+      "purple"
+    ],
+    "monochrome_flower": [
+      "red",
+      "orange",
+      "yellow",
+      "green",
+      "blue",
+      "purple",
+      "pink",
+      "black", "gray", "white"
+    ],  
+    
+    "warm_flower_nl": [
+      "red",
+      "orange",
+      "yellow"
+    ],
+    "cool_flower_nl": [
+      "green",
+      "blue",
+      "purple"
+    ],
+    "monochrome_flower_nl": [
+      "red",
+      "orange",
+      "yellow",
+      "green",
+      "blue",
+      "purple",
+      "pink",
+      "black", "gray", "white"
+    ],  
+
+    "warm_twoleg": ["red", "orange", "yellow", "corn", "mellow", "pink"],
+    "cool_twoleg": ["green", "blue", "purple"],
+    "monochrome_twoleg": [
+      "black", "gray", "white",
+      "red", "orange", "yellow", "corn", "mellow", "pink",
+      "green", "blue", "purple"
+    ],
+    
+    "warm_berry": [
+      "red",
+      "pink"
+    ],
+    "cool_berry": [
+      "blue",
+      "black"
+    ],
+    "monochrome_berry": [
+      "black",
+      "blue",
+      "red",
+      "pink"
+    ],
+
+    "warm_leaf": [
+      "yellow",
+      "dried",
+      "orange",
+      "red"
+    ],
+    "cool_leaf": [
+      "green",
+      "mint",
+      "hunter",
+      "blue",
+      "deep"
+    ],
+    "monochrome_leaf": [
+      "green",
+      "mint",
+      "hunter",
+      "blue",
+      "deep",
+      "yellow",
+      "dried",
+      "orange",
+      "red"
+    ],
+
+    "warm_seed": [
+      "yellow",
+      "dried",
+      "orange",
+      "red"
+    ],
+    "cool_seed": [
+      "green",
+      "mint",
+      "hunter",
+      "blue",
+      "deep"
+    ],
+    "monochrome_seed": [
+      "green",
+      "mint",
+      "hunter",
+      "blue",
+      "deep",
+      "yellow",
+      "dried",
+      "orange",
+      "red"
+    ]
+
+  },
+  "tint_colours":
+  {
+    "------- twoleg COLORS -------": [0, 0, 0],
+    "red_twoleg": [255, 5, 10],
+    "s_red_twoleg": [100, 0, 0],
+
+    "orange_twoleg": [255, 198, 0],
+    "s_orange_twoleg": [180, 100, 50],
+
+    "blue_twoleg": [60, 100, 255],
+    "s_blue_twoleg": [40, 80, 205],
+
+    "white_twoleg": [255, 255, 255],
+    "s_white_twoleg": [95, 90, 205],
+
+    "gray_twoleg": [95, 95, 100],
+    "s_gray_twoleg": [20, 22, 25],
+
+    "yellow_twoleg": [255, 212, 71],
+    "s_yellow_twoleg": [180, 122, 21],
+
+    "green_twoleg": [46, 110, 60],
+    "s_green_twoleg": [70, 101, 3],
+
+    "corn_twoleg": [255, 223, 117],
+    "s_corn_twoleg": [200, 130, 57],
+
+    "purple_twoleg": [112, 24, 126],
+    "s_purple_twoleg": [52, 39, 101],
+
+    "mellow_twoleg": [237, 208, 29],
+    "s_mellow_twoleg": [190, 138, 0],
+
+    "pink_twoleg": [213, 96, 175],
+    "s_pink_twoleg": [91, 10, 93],
+
+    "black_twoleg": [40, 40, 41],
+    "s_black_twoleg": [7, 3, 16],
+    
+    "------- twoleg ACCENTS -------": [0, 0, 0],
+
+    "silver_twoleg_accent": [200, 200, 225],
+    "s_silver_twoleg_accent": [5, 5, 20],
+
+    "gold_twoleg_accent": [255, 221, 102],
+    "s_gold_twoleg_accent": [189, 117, 28],
+
+    "darkgold_twoleg_accent": [189, 131, 43],
+    "s_darkgold_twoleg_accent": [150, 87, 9],
+
+    "copper_twoleg_accent": [207, 108, 48],
+    "s_copper_twoleg_accent": [66, 25, 4],
+
+    "------- berry COLORS -------": [0, 0, 0],
+    "red_berry": [240, 10, 60],
+    "s_red_berry": [30, 0, 0],
+
+    "blue_berry": [255, 5, 10],
+    "s_blue_berry": [100, 0, 0],
+
+    "pink_berry": [240, 20, 190],
+    "s_pink_berry": [90, 0, 30],
+
+    "black_berry": [25, 10, 50],
+    "s_black_berry": [5, 0, 15],
+
+    "goose_berry": [197, 230, 138],
+    "s_goose_berry": [197, 230, 138],
+
+    "cloud_berry": [222, 138, 64],
+    "s_cloud_berry": [230, 93, 34],
+
+    "currant_berry": [240, 124, 120],
+    "s_currant_berry": [184, 17, 11],
+
+    "acai_berry": [51, 12, 20],
+    "s_acai_berry": [15, 1, 11],
+
+    "elder_berry": [36, 36, 56],
+    "s_elder_berry": [0, 0, 0],
+
+    "white_berry": [255, 255, 255],
+    "s_white_berry": [191, 177, 159],
+
+    "------- berry ACCENTS -------": [0, 0, 0],
+    "green_berry_accent": [69, 153, 52],
+    "s_green_berry_accent": [16, 79, 20],
+    
+    "mint_berry_accent": [100, 179, 109],
+    "s_mint_berry_accent": [40, 117, 44],
+    
+    "hunter_berry_accent": [14, 51, 21],
+    "s_hunter_berry_accent": [0, 18, 12],
+
+    "blue_berry_accent": [23, 135, 70],
+    "s_blue_berry_accent": [1, 64, 58],
+    
+    "deep_berry_accent": [10, 38, 16],
+    "s_deep_berry_accent": [1, 18, 2],
+
+    "------- leaf COLORS -------": [0, 0, 0],
+    "green_leaf": [69, 153, 52],
+    "s_green_leaf": [16, 79, 20],
+    
+    "mint_leaf": [100, 179, 109],
+    "s_mint_leaf": [40, 117, 44],
+    
+    "hunter_leaf": [14, 51, 21],
+    "s_hunter_leaf": [0, 18, 12],
+
+    "blue_leaf": [23, 135, 70],
+    "s_blue_leaf": [1, 64, 58],
+    
+    "deep_leaf": [10, 38, 16],
+    "s_deep_leaf": [1, 18, 2],
+
+    "yellow_leaf": [230, 175, 80],
+    "s_yellow_leaf": [99, 51, 12],
+    
+    "dried_leaf": [107, 79, 46],
+    "s_dried_leaf": [61, 34, 15],
+    
+    "orange_leaf": [237, 138, 52],
+    "s_orange_leaf": [99, 42, 9],
+    
+    "red_leaf": [163, 58, 23],
+    "s_red_leaf": [46, 8, 4],
+
+    "------- leaf ACCENTS -------": [0, 0, 0],
+    "green_leaf_accent": [69, 153, 52],
+    "s_green_leaf_accent": [16, 79, 20],
+    
+    "mint_leaf_accent": [100, 179, 109],
+    "s_mint_leaf_accent": [40, 117, 44],
+    
+    "hunter_leaf_accent": [14, 51, 21],
+    "s_hunter_leaf_accent": [0, 18, 12],
+
+    "blue_leaf_accent": [23, 135, 70],
+    "s_blue_leaf_accent": [1, 64, 58],
+    
+    "deep_leaf_accent": [10, 38, 16],
+    "s_deep_leaf_accent": [1, 18, 2],
+
+    "yellow_leaf_accent": [230, 175, 80],
+    "s_yellow_leaf_accent": [156, 103, 6],
+    
+    "dried_leaf_accent": [107, 79, 46],
+    "s_dried_leaf_accent": [84, 44, 8],
+    
+    "orange_leaf_accent": [237, 138, 52],
+    "s_orange_leaf_accent": [158, 64, 9],
+    
+    "red_leaf_accent": [163, 58, 23],
+    "s_red_leaf_accent": [74, 17, 10],
+
+    "------- seed COLORS -------": [0, 0, 0],
+    "green_seed": [69, 153, 52],
+    "s_green_seed": [16, 79, 20],
+    
+    "mint_seed": [100, 179, 109],
+    "s_mint_seed": [40, 117, 44],
+    
+    "hunter_seed": [14, 51, 21],
+    "s_hunter_seed": [0, 18, 12],
+
+    "blue_seed": [23, 135, 70],
+    "s_blue_seed": [1, 64, 58],
+    
+    "deep_seed": [10, 38, 16],
+    "s_deep_seed": [1, 18, 2],
+
+    "yellow_seed": [230, 175, 80],
+    "s_yellow_seed": [99, 51, 12],
+    
+    "dried_seed": [107, 79, 46],
+    "s_dried_seed": [61, 34, 15],
+    
+    "orange_seed": [237, 138, 52],
+    "s_orange_seed": [99, 42, 9],
+    
+    "red_seed": [163, 58, 23],
+    "s_red_seed": [46, 8, 4],
+
+    "------- seed ACCENTS -------": [0, 0, 0],
+    "green_seed_accent": [69, 153, 52],
+    "s_green_seed_accent": [16, 79, 20],
+    
+    "mint_seed_accent": [100, 179, 109],
+    "s_mint_seed_accent": [40, 117, 44],
+    
+    "hunter_seed_accent": [14, 51, 21],
+    "s_hunter_seed_accent": [0, 18, 12],
+
+    "blue_seed_accent": [23, 135, 70],
+    "s_blue_seed_accent": [1, 64, 58],
+    
+    "deep_seed_accent": [10, 38, 16],
+    "s_deep_seed_accent": [1, 18, 2],
+
+    "yellow_seed_accent": [230, 175, 80],
+    "s_yellow_seed_accent": [156, 103, 6],
+    
+    "dried_seed_accent": [107, 79, 46],
+    "s_dried_seed_accent": [84, 44, 8],
+    
+    "orange_seed_accent": [237, 138, 52],
+    "s_orange_seed_accent": [158, 64, 9],
+    
+    "red_seed_accent": [163, 58, 23],
+    "s_red_seed_accent": [74, 17, 10],
+
+    "------- flower COLORS -------": [0, 0, 0],
+    "red_flower": [255, 5, 10],
+    "s_red_flower": [100, 0, 0],
+
+    "orange_flower": [255, 198, 0],
+    "s_orange_flower": [180, 100, 50],
+
+    "blue_flower": [60, 100, 255],
+    "s_blue_flower": [40, 80, 205],
+
+    "white_flower": [255, 255, 255],
+    "s_white_flower": [95, 90, 205],
+
+    "gray_flower": [95, 95, 100],
+    "s_gray_flower": [20, 22, 25],
+
+    "yellow_flower": [255, 212, 71],
+    "s_yellow_flower": [180, 122, 21],
+
+    "green_flower": [46, 110, 60],
+    "s_green_flower": [70, 101, 3],
+
+    "purple_flower": [112, 24, 126],
+    "s_purple_flower": [52, 39, 101],
+
+    "pink_flower": [213, 96, 175],
+    "s_pink_flower": [91, 10, 93],
+
+    "black_flower": [40, 40, 41],
+    "s_black_flower": [7, 3, 16],
+
+    "------- flower ACCENTS -------": [0, 0, 0],
+    "green_flower_accent": [69, 153, 52],
+    "s_green_flower_accent": [16, 79, 20],
+    
+    "mint_flower_accent": [100, 179, 109],
+    "s_mint_flower_accent": [40, 117, 44],
+    
+    "hunter_flower_accent": [14, 51, 21],
+    "s_hunter_flower_accent": [0, 18, 12],
+
+    "blue_flower_accent": [23, 135, 70],
+    "s_blue_flower_accent": [1, 64, 58],
+    
+    "deep_flower_accent": [10, 38, 16],
+    "s_deep_flower_accent": [1, 18, 2],
+
+    "yellow_flower_accent": [230, 175, 80],
+    "s_yellow_flower_accent": [156, 103, 6],
+    
+    "dried_flower_accent": [107, 79, 46],
+    "s_dried_flower_accent": [84, 44, 8],
+    
+    "orange_flower_accent": [237, 138, 52],
+    "s_orange_flower_accent": [158, 64, 9],
+    
+    "red_flower_accent": [163, 58, 23],
+    "s_red_flower_accent": [74, 17, 10],
+
+    "------- flower_nl COLORS -------": [0, 0, 0],
+    "red_flower_nl": [255, 5, 10],
+    "s_red_flower_nl": [100, 0, 0],
+
+    "orange_flower_nl": [255, 198, 0],
+    "s_orange_flower_nl": [180, 100, 50],
+
+    "blue_flower_nl": [60, 100, 255],
+    "s_blue_flower_nl": [40, 80, 205],
+
+    "white_flower_nl": [255, 255, 255],
+    "s_white_flower_nl": [95, 90, 205],
+
+    "gray_flower_nl": [95, 95, 100],
+    "s_gray_flower_nl": [20, 22, 25],
+
+    "yellow_flower_nl": [255, 212, 71],
+    "s_yellow_flower_nl": [180, 122, 21],
+
+    "green_flower_nl": [46, 110, 60],
+    "s_green_flower_nl": [70, 101, 3],
+
+    "purple_flower_nl": [112, 24, 126],
+    "s_purple_flower_nl": [52, 39, 101],
+
+    "pink_flower_nl": [213, 96, 175],
+    "s_pink_flower_nl": [91, 10, 93],
+
+    "black_flower_nl": [40, 40, 41],
+    "s_black_flower_nl": [7, 3, 16],
+
+    "------- flower_nl ACCENTS -------": [0, 0, 0],
+    "red_flower_nl_accent": [247, 207, 195],
+    "s_red_flower_nl_accent": [247, 207, 195],
+
+    "orange_flower_nl_accent": [245, 218, 198],
+    "s_orange_flower_nl_accent": [245, 218, 198],
+
+    "blue_flower_nl_accent": [218, 245, 245],
+    "s_blue_flower_nl_accent": [218, 245, 245],
+
+    "white_flower_nl_accent": [255, 255, 255],
+    "s_white_flower_nl_accent": [247, 235, 195],
+
+    "gray_flower_nl_accent": [217, 213, 202],
+    "s_gray_flower_nl_accent": [217, 213, 202],
+
+    "yellow_flower_nl_accent": [242, 223, 170],
+    "s_yellow_flower_nl_accent": [242, 223, 170],
+
+    "green_flower_nl_accent": [215, 240, 187],
+    "s_green_flower_nl_accent": [215, 240, 187],
+
+    "purple_flower_nl_accent": [202, 192, 237],
+    "s_purple_flower_nl_accent": [202, 192, 237],
+
+    "pink_flower_nl_accent": [237, 192, 212],
+    "s_pink_flower_nl_accent": [237, 192, 212],
+
+    "black_flower_nl_accent": [141, 145, 153],
+    "s_black_flower_nl_accent": [141, 145, 153],
+
+    "------- stalk COLORS -------": [0, 0, 0],
+    "rye_stalk": [212, 173, 102],
+    "s_rye_stalk": [173, 125, 61],
+
+    "wheat_stalk": [181, 136, 69],
+    "s_wheat_stalk": [133, 89, 36],
+
+    "oat_stalk": [166, 131, 78],
+    "s_oat_stalk": [94, 65, 35],
+
+    "green_stalk": [163, 201, 97],
+    "s_green_stalk": [91, 135, 46],
+
+    "------- stalk ACCENTS -------": [0, 0, 0],
+    "rye_stalk_accent": [237, 203, 140],
+    "s_rye_stalk_accent": [173, 134, 85],
+
+    "wheat_stalk_accent": [224, 200, 137],
+    "s_wheat_stalk_accent": [150, 122, 65],
+
+    "oat_stalk_accent": [209, 185, 134],
+    "s_oat_stalk_accent": [161, 126, 74],
+
+    "green_stalk_accent": [200, 232, 144],
+    "s_green_stalk_accent": [72, 107, 37],
+
+    "------- moth COLORS -------": [0, 0, 0],
+    "cream_moth": [227, 212, 161],
+    "s_cream_moth": [143, 111, 71],
+
+    "white_moth": [255, 252, 245],
+    "s_white_moth": [176, 156, 123],
+
+    "------- moth ACCENTS -------": [0, 0, 0],
+    "cream_moth_accent": [227, 212, 161],
+    "s_cream_moth_accent": [143, 111, 71],
+
+    "white_moth_accent": [255, 252, 245],
+    "s_white_moth_accent": [176, 156, 123],
+
+    "brown_moth_accent": [74, 54, 32],
+    "s_brown_moth_accent": [28, 17, 8],
+
+    "------- cicada COLORS -------": [0, 0, 0],
+    "brown_cicada": [89, 63, 43],
+    "s_brown_cicada": [36, 20, 11],
+
+    "tan_cicada": [143, 117, 91],
+    "s_tan_cicada": [71, 42, 21],
+
+    "cream_cicada": [227, 212, 161],
+    "s_cream_cicada": [143, 111, 71],
+
+    "------- cicada ACCENTS -------": [0, 0, 0],
+    "none_cicada_accent": [0, 0, 0],
+    "s_none_cicada_accent": [0, 0, 0],
+
+    "------- feathers COLORS -------": [0, 0, 0],
+    "red_feathers": [189, 50, 47],
+    "s_red_feathers": [64, 6, 5],
+
+    "blue_feathers": [45, 96, 140],
+    "s_blue_feathers": [12, 25, 46],
+
+    "black_feathers": [12, 12, 13],
+    "s_black_feathers": [0, 0, 0],
+
+    "gray_feathers": [134, 136, 138],
+    "s_gray_feathers": [38, 42, 46],
+
+    "white_feathers": [255, 252, 250],
+    "s_white_feathers": [97, 102, 105],
+
+    "------- feathers ACCENTS -------": [0, 0, 0],
+    "none_feathers_accent": [0, 0, 0],
+    "s_none_feathers_accent": [0, 0, 0]
+
+  }
+}

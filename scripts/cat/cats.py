@@ -1741,10 +1741,10 @@ class Cat():
             return
 
         # remove accessories if need be
-        if 'NOTAIL' in self.pelt.scars and self.pelt.accessory in ['RED FEATHERS', 'BLUE FEATHERS', 'JAY FEATHERS']:
-            self.pelt.accessory = None
-        if 'HALFTAIL' in self.pelt.scars and self.pelt.accessory in ['RED FEATHERS', 'BLUE FEATHERS', 'JAY FEATHERS']:
-            self.pelt.accessory = None
+        if 'NOTAIL' in self.pelt.scars and self.pelt.accessory_type in Pelt.tail_accessories:
+            self.pelt.accessory_type = None
+        if 'HALFTAIL' in self.pelt.scars and self.pelt.accessory_type in Pelt.tail_accessories:
+            self.pelt.accessory_type = None
 
         condition = PERMANENT[name]
         new_condition = False
@@ -2941,7 +2941,7 @@ class Cat():
                 "skin": self.pelt.skin,
                 "skill_dict": self.skills.get_skill_dict(),
                 "scars": self.pelt.scars if self.pelt.scars else [],
-                "accessory": self.pelt.accessory,
+                "accessory_dict": self.get_accessory_dict(),
                 "experience": self.experience,
                 "dead_moons": self.dead_for,
                 "current_apprentice": [appr for appr in self.apprentice],
@@ -2953,9 +2953,23 @@ class Cat():
                 "prevent_fading": self.prevent_fading,
                 "favourite": self.favourite,
             }
+            
+    def get_accessory_dict(self):
+        """accessory dictionary waeh normal tuesday y'know"""
+        return {
+            "accessory": self.pelt.accessory_type,
+            "type": self.pelt.accessory_category,
+            "color": self.pelt.accessory_color,
+            "shade": self.pelt.accessory_shade,
+
+            "accent_color": self.pelt.acc_accent_color,
+
+            "pattern": self.pelt.accessory_pattern,
+            "pattern_color": self.pelt.accessory_p_color,
+            "pattern_shade": self.pelt.accessory_p_shade
+        }
 
 
-        
 # ---------------------------------------------------------------------------- #
 #                               END OF CAT CLASS                               #
 # ---------------------------------------------------------------------------- #
