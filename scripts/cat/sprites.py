@@ -48,6 +48,12 @@ class Sprites():
         except:
             print("ERROR: Reading Eye Tints")
 
+        try:
+            with open("sprites/dicts/accessories_tint.json", 'r') as read_file:
+                self.accessory_tints = ujson.loads(read_file.read())
+        except:
+            print("ERROR: Reading Accessory Tints")
+
         self.eye_random = self.eye_tints["enable_random"]
             
     def spritesheet(self, a_file, name):
@@ -124,8 +130,8 @@ class Sprites():
 
         for x in [
             'lineart', 'base', 'overlays/underfur', 'overlays/overfur', 'markings/markings', 'eyes/eyes',
-            'whitepatches', 'eyes', 'eyes2', 'skin', 'scars', 'missingscars',
-            'collars', 'bellcollars', 'bowcollars', 'nyloncollars',
+            'whitepatches', 'skin', 'scars', 'missingscars',
+            'accessories/accessories', 'accessories/patterns', 'accessories/herbaccessories', 'accessories/wildaccessories',
             'shadersnewwhite', 'lineartdead', 'tortiepatchesmasks', 
             'medcatherbs', 'lineartdf', 'lightingnew', 'fademask',
             'fadestarclan', 'fadedarkforest'
@@ -251,8 +257,66 @@ class Sprites():
                 ["LEFTEAR", "RIGHTEAR", "NOTAIL", "NOLEFTEAR", "NORIGHTEAR", "NOEAR", "HALFTAIL", "NOPAW"]):
             self.make_group('missingscars', (a, 0), f'scars{i}')
 
-            # Accessories
-        for a, i in enumerate([
+        # Accessories
+        # 0: bow, 1: collar, 2: nylon collar, 3: bell collar
+        # accent are things like leaves and metal just to be recolored :)
+        for a, i in enumerate(['base', 'shade', 'line', 'accent']):
+            self.make_group('accessories/accessories', (a, 0), f'bow{i}')
+        for a, i in enumerate(['base', 'shade', 'line', 'accent']):
+            self.make_group('accessories/accessories', (a, 1), f'collar{i}')
+        for a, i in enumerate(['base', 'shade', 'line', 'accent']):
+            self.make_group('accessories/accessories', (a, 2), f'nylon{i}')
+        for a, i in enumerate(['base', 'shade', 'line', 'accent']):
+            self.make_group('accessories/accessories', (a, 3), f'bell{i}')
+
+        # Natural accessories
+        for a, i in enumerate(['base', 'shade', 'line', 'accent']):
+            self.make_group('accessories/herbaccessories', (a, 0), f'berries{i}')
+        for a, i in enumerate(['base', 'shade', 'line', 'accent']):
+            self.make_group('accessories/herbaccessories', (a, 1), f'nettle{i}')
+        for a, i in enumerate(['base', 'shade', 'line', 'accent']):
+            self.make_group('accessories/herbaccessories', (a, 2), f'earleaves{i}')
+        for a, i in enumerate(['base', 'shade', 'line', 'accent']):
+            self.make_group('accessories/herbaccessories', (a, 3), f'poppy{i}')
+        for a, i in enumerate(['base', 'shade', 'line', 'accent']):
+            self.make_group('accessories/herbaccessories', (a, 4), f'flowers{i}')
+        for a, i in enumerate(['base', 'shade', 'line', 'accent']):
+            self.make_group('accessories/herbaccessories', (a, 5), f'laurel{i}')
+        for a, i in enumerate(['base', 'shade', 'line', 'accent']):
+            self.make_group('accessories/herbaccessories', (a, 6), f'catmint{i}')
+        for a, i in enumerate(['base', 'shade', 'line', 'accent']):
+            self.make_group('accessories/herbaccessories', (a, 7), f'maple{i}')
+        for a, i in enumerate(['base', 'shade', 'line', 'accent']):
+            self.make_group('accessories/herbaccessories', (a, 8), f'lavender{i}')
+        for a, i in enumerate(['base', 'shade', 'line', 'accent']):
+            self.make_group('accessories/herbaccessories', (a, 9), f'bluebells{i}')
+        for a, i in enumerate(['base', 'shade', 'line', 'accent']):
+            self.make_group('accessories/herbaccessories', (a, 10), f'leaves{i}')
+        for a, i in enumerate(['base', 'shade', 'line', 'accent']):
+            self.make_group('accessories/herbaccessories', (a, 10), f'petals{i}')
+        for a, i in enumerate(['base', 'shade', 'line', 'accent']):
+            self.make_group('accessories/herbaccessories', (a, 11), f'berries2{i}')
+        for a, i in enumerate(['base', 'shade', 'line', 'accent']):
+            self.make_group('accessories/herbaccessories', (a, 12), f'seed{i}')
+        for a, i in enumerate(['base', 'shade', 'line', 'accent']):
+            self.make_group('accessories/herbaccessories', (a, 13), f'stalk{i}')
+
+        # Wild accessories
+        for a, i in enumerate(['base', 'shade', 'line', 'accent']):
+            self.make_group('accessories/wildaccessories', (a, 0), f'moth{i}')
+        for a, i in enumerate(['base', 'shade', 'line', 'accent']):
+            self.make_group('accessories/wildaccessories', (a, 1), f'cicada{i}')
+        for a, i in enumerate(['base', 'shade', 'line', 'accent']):
+            self.make_group('accessories/wildaccessories', (a, 2), f'feathers{i}')
+        for a, i in enumerate(['base', 'shade', 'line', 'accent']):
+            self.make_group('accessories/wildaccessories', (a, 3), f'largemoth{i}')
+
+        # Accessories patterns
+        for a, i in enumerate(['dots', 'stripes', 'gradient1', 'gradient2', 'gradient3', 'gradient4']):
+            self.make_group('accessories/patterns', (a, 0), f'bow{i}')
+
+
+        """ for a, i in enumerate([
             "MAPLE LEAF", "HOLLY", "BLUE BERRIES", "FORGET ME NOTS", "RYE STALK", "LAUREL"]):
             self.make_group('medcatherbs', (a, 0), f'acc_herbs{i}')
         for a, i in enumerate([
@@ -301,7 +365,7 @@ class Sprites():
                 ["GREENNYLON", "RAINBOWNYLON", "BLACKNYLON", "SPIKESNYLON", "WHITENYLON"]):
             self.make_group('nyloncollars', (a, 1), f'collars{i}')
         for a, i in enumerate(["PINKNYLON", "PURPLENYLON", "MULTINYLON", "INDIGONYLON"]):
-            self.make_group('nyloncollars', (a, 2), f'collars{i}')
+            self.make_group('nyloncollars', (a, 2), f'collars{i}') """
             
 
 # CREATE INSTANCE 

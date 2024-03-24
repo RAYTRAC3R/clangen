@@ -1413,7 +1413,7 @@ class Events:
             return
 
         # check if cat already has acc
-        if cat.pelt.accessory:
+        if cat.pelt.accessory_type:
             self.ceremony_accessory = False
             return
 

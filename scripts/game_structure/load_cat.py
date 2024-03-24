@@ -124,10 +124,17 @@ def json_load():
                 white_patches=cat["white_patches"],
                 skin=cat["skin"],
                 scars=cat["scars"] if "scars" in cat else [],
-                accessory=cat["accessory"],
+                accessory_type=cat["accessory_dict"]["accessory"] if "accessory_dict" in cat else cat["accessory"],
+                accessory_category=cat["accessory_dict"]["type"] if "accessory_dict" in cat else 0,
+                accessory_color=cat["accessory_dict"]["color"] if "accessory_dict" in cat else 0,
+                accessory_shade=cat["accessory_dict"]["color"] if "accessory_dict" in cat else 0,
+                acc_accent_color=cat["accessory_dict"]["accent_color"] if "accessory_dict" in cat else 0,
+                accessory_pattern=cat["accessory_dict"]["pattern"] if "accessory_dict" in cat else [],
+                accessory_p_color=cat["accessory_dict"]["pattern_color"] if "accessory_dict" in cat else [],
+                accessory_p_shade=cat["accessory_dict"]["pattern_shade"] if "accessory_dict" in cat else [],
                 opacity=cat["opacity"] if "opacity" in cat else 100
             )
-            
+
             # Runs a bunch of apperence-related convertion of old stuff. 
             new_cat.pelt.check_and_convert(convert)
             
@@ -350,7 +357,7 @@ def csv_load(all_cats):
                     attr[0])
                 the_cat.skill = attr[25]
                 if len(attr) > 28:
-                    the_cat.pelt.accessory = attr[28]
+                    the_cat.pelt.accessory_type = attr[28]
                 if len(attr) > 29:
                     the_cat.specialty2 = attr[29]
                 else:

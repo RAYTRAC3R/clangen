@@ -30,7 +30,7 @@ from scripts.clan_resources.freshkill import FRESHKILL_ACTIVE
 #             change how accessory info displays on cat profiles               #
 # ---------------------------------------------------------------------------- #
 def accessory_display_name(cat):
-    accessory = cat.pelt.accessory
+    accessory = cat.pelt.accessory_type
 
     if accessory is None:
         return ''
@@ -322,7 +322,7 @@ class ProfileScreen(Screens):
                 self.build_profile()
                 self.update_disabled_buttons_and_text()
             elif event.ui_element == self.destroy_accessory_button:
-                self.the_cat.pelt.accessory = None
+                self.the_cat.pelt.accessory_type = None
                 self.clear_profile()
                 self.build_profile()
                 self.update_disabled_buttons_and_text()
@@ -689,9 +689,9 @@ class ProfileScreen(Screens):
         # NEWLINE ----------
 
         # ACCESSORY
-        if the_cat.pelt.accessory:
+        if the_cat.pelt.accessory_type:
             output += "\n"
-            output += 'accessory: ' + str(ACC_DISPLAY[the_cat.pelt.accessory]["default"])
+            output += 'accessory: ' + f"{the_cat.pelt.accessory_color} " + str(ACC_DISPLAY[the_cat.pelt.accessory_type]["default"])
             # NEWLINE ----------
 
         # PARENTS
@@ -1870,7 +1870,7 @@ class ProfileScreen(Screens):
             else:
                 self.kill_cat_button.disable()
 
-            if self.the_cat.pelt.accessory:
+            if self.the_cat.pelt.accessory_type:
                 self.destroy_accessory_button.enable()
             else:
                 self.destroy_accessory_button.disable()

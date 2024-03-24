@@ -102,9 +102,9 @@
         ],
         "event_text": "m_c found a mysterious acc_singular growing in the frost and decided to wear it.",
         "accessories": [
-            "FORGET ME NOTS",
-            "BLUEBELLS",
-            "POPPY"
+            "flowers",
+            "bluebells",
+            "poppy"
         ]
     },
     {
@@ -158,12 +158,10 @@
         ],
         "event_text": "m_c always seems to have acc_plural stuck in {PRONOUN/m_c/poss} fur.",
         "accessories": [
-            "HERBS",
-            "PETALS",
-            "DRY HERBS",
-            "RED FEATHERS",
-            "BLUE FEATHERS",
-            "JAY FEATHERS"
+            "leaves",
+            "petals",
+            "leaves",
+            "feathers"
         ]
     },
     {
@@ -420,7 +418,7 @@
         ],
         "event_text": "r_c gives m_c the prettiest fallen leaf {PRONOUN/r_c/subject} can find. m_c wears it with pride.",
         "accessories": [
-            "MAPLE LEAF"
+            "maple"
         ]
     },
     {
@@ -434,7 +432,7 @@
         ],
         "event_text": "m_c and r_c spend the evening chasing cicadas around camp. m_c keeps a trophy of {PRONOUN/m_c/poss} catch on {PRONOUN/m_c/poss} pelt.",
         "accessories": [
-            "CICADA WINGS"
+            "cicada"
         ]
     },
     {

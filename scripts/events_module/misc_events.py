@@ -188,10 +188,14 @@ class MiscEvents():
         if "WILD" in possible_accs:
             acc_list.extend(Pelt.wild_accessories)
         if "PLANT" in possible_accs:
-            acc_list.extend(Pelt.plant_accessories)
+            acc_list.extend(Pelt.herb_accessories)
         if "COLLAR" in possible_accs:
-            acc_list.extend(Pelt.collars)
+            acc_list.extend(Pelt.twoleg_accessories)
+            cat.pelt.accessory_category = "twoleg"
 
+        print(possible_accs)
+        print(Pelt.herb_accessories)
+        
         for acc in possible_accs:
             if acc not in ["WILD", "PLANT", "COLLAR"]:
                 acc_list.append(acc)
@@ -203,8 +207,7 @@ class MiscEvents():
                 except ValueError:
                     print(f'attempted to remove {acc} from possible acc list, but it was not in the list!')
 
-
-        cat.pelt.accessory = random.choice(acc_list)
+        Pelt.create_accessory(cat.pelt, acc_list)
 
     @staticmethod
     def handle_murder_self_reveals(cat):

@@ -1,6 +1,7 @@
 import random
 
 from scripts.cat.cats import Cat
+from scripts.cat.pelts import Pelt
 from scripts.cat.history import History
 from scripts.conditions import get_amount_cat_for_one_medic, medical_cats_condition_fulfilled
 from scripts.game_structure.game_essentials import game
@@ -158,8 +159,8 @@ class Scar_Events():
 
             specialty = random.choice(scar_pool)
             if specialty in ["NOTAIL", "HALFTAIL"]:
-                if cat.pelt.accessory in ["RED FEATHERS", "BLUE FEATHERS", "JAY FEATHERS"]:
-                    cat.pelt.accessory = None
+                if cat.pelt.accessory_type in Pelt.tail_accessories:
+                    cat.pelt.accessory_type = None
 
             # combining left/right variations into the both version
             if "NOLEFTEAR" in cat.pelt.scars and specialty == 'NORIGHTEAR':
