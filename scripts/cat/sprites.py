@@ -258,7 +258,6 @@ class Sprites():
             self.make_group('missingscars', (a, 0), f'scars{i}')
 
         # Accessories
-        # 0: bow, 1: collar, 2: nylon collar, 3: bell collar
         # accent are things like leaves and metal just to be recolored :)
         for a, i in enumerate(['base', 'shade', 'line', 'accent']):
             self.make_group('accessories/accessories', (a, 0), f'bow{i}')
