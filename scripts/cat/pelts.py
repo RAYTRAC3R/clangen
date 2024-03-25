@@ -259,9 +259,9 @@ class Pelt():
                  accessory_color:str=None,
                  accessory_shade:str=None,
                  acc_accent_color:str=None,
-                 accessory_pattern:list=[],
-                 accessory_p_color:list=[],
-                 accessory_p_shade:list=[],
+                 accessory_pattern:list=None,
+                 accessory_p_color:list=None,
+                 accessory_p_shade:list=None,
                  paralyzed:bool=False,
                  opacity:int=100,
                  scars:list=None,
@@ -328,9 +328,9 @@ class Pelt():
 
         self.acc_accent_color = acc_accent_color
 
-        self.accessory_pattern = accessory_pattern
-        self.accessory_p_color = accessory_p_color
-        self.accessory_p_shade = accessory_p_shade
+        self.accessory_pattern = accessory_pattern if isinstance(accessory_pattern, list) else []
+        self.accessory_p_color = accessory_p_color if isinstance(accessory_p_color, list) else []
+        self.accessory_p_shade = accessory_p_shade if isinstance(accessory_p_shade, list) else []
 
         self.paralyzed = paralyzed
         self.opacity = opacity
