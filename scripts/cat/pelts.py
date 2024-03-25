@@ -1195,7 +1195,7 @@ class Pelt():
             if Pelt.accessory_patterns[f"{self.accessory_type}"]:
                 pattern_list.extend(Pelt.accessory_patterns[f"{self.accessory_type}"])
                 totaloptions = len(Pelt.accessory_patterns[f"{self.accessory_type}"])
-                pattern_count = random.randint(1, totaloptions)
+                pattern_count = random.randint(0, totaloptions)
                 
                 i = 0
                 while i < pattern_count:
@@ -1282,7 +1282,7 @@ class Pelt():
         if Pelt.accessory_patterns[f"{self.accessory_type}"]:
             pattern_list.extend(Pelt.accessory_patterns[f"{self.accessory_type}"])
             totaloptions = len(Pelt.accessory_patterns[f"{self.accessory_type}"])
-            pattern_count = random.randint(1, totaloptions)
+            pattern_count = random.randint(0, totaloptions)
 
             i = 0
             while i < pattern_count:
