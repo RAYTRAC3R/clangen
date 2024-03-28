@@ -182,7 +182,7 @@ class Sprites():
         for a, i in enumerate(['FULLWHITE', 'AJFRECKLES', 'LUNAPATCH', 'APPALOOSAONE', 'APPALOOSATWO', 'TOBIANOONE', 'TOBIANOTWO',
             'SPLASH', 'VITONE', 'VITTWO', 'SABINO', 'SAVANNAH', 'FADESPOTS', 'PEBBLESHINE']):
             self.make_group('whitepatches', (a, 0), f'white{i}')
-        for a, i in enumerate(['EXTRA', 'ONEEAR', 'BROKEN', 'LIGHTTUXEDO', 'BUZZARDFANG', 'RAGDOLL', 
+        for a, i in enumerate(['OVERO', 'ONEEAR', 'BROKEN', 'LIGHTTUXEDO', 'BUZZARDFANG', 'RAGDOLL', 
             'LIGHTSONG', 'VITILIGO', 'BLACKSTAR', 'PIEBALD', 'CURVED', 'PETAL', 'SHIBAINU', 'OWL']):
             self.make_group('whitepatches', (a, 1), f'white{i}')
         # ryos white patches
