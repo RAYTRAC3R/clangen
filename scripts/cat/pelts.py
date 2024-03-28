@@ -122,7 +122,7 @@ class Pelt():
     exotic = ["Bengal", "Marbled", "Masked"]
     torties = ["Tortie", "Calico"]
     pelt_categories = [tabbies, spotted, plain, exotic, torties]
-    marking_weights = [20, 10, 40, 5, 0]
+    marking_weights = [20, 10, 20, 10, 0]
 
     # SPRITE NAMES
     single_colours = [
@@ -1562,6 +1562,9 @@ class Pelt():
             color_name = f"{color_name} with a {cat.pelt.marking_tint} horn gradient"
         elif cat.pelt.marking == "Tabby" and cat.pelt.race == "Alicorn":
             color_name = f"{color_name} with a {cat.pelt.marking_tint} horn and wing gradient"
+            
+        if cat.pelt.marking == "Masked":
+            color_name = f"{color_name} with {cat.pelt.marking_tint} dappled legs"
 
         return color_name
     
