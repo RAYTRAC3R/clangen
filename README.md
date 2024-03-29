@@ -13,6 +13,8 @@ Creator of PrismGen (code used for coloring system): muxasii
 
 ClanGen discord users who helped with mane and pattern sprites: the.trypo.puppeteer, eragonarose
 
+Main Pony Sprite based on lineart by MLP Vector Club
+
 <s>## Downloads
 ### Stable
 Stable versions can be downloaded directly from the [official ClanGen website](https://clangen.io/download)
