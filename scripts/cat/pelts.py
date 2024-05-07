@@ -63,6 +63,7 @@ class Pelt():
     eye_shade_categories = ["dark", "medium", "light"]
     e_shade_weights = sprites.eye_tints["tint_categories"]["shade_weights"]
 
+
     blend_modes = ["add", "multiply", None]
 
     # Overlay types
