@@ -80,6 +80,10 @@ class Pelt():
     tortiebases = ["Tabby", "Ticked", "Mackerel", "Classic", "Sokoke", "Agouti", "Wisp", "Speckled", "Rosette", None, "Smoke", "Singlestripe", "Bengal", "Marbled", "Masked"]
 
     manestyles = ['None', 'Test', 'Twilight', 'Bun', 'Curled', 'YoungLuna']
+    straightmanes = ['Test', 'Twilight']
+    wavymanes = ['Bun', 'YoungLuna']
+    curledmanes = ['Curled']
+    sillymanes = ['None']
 
     pelt_length = ["short", "medium", "long"]
     eye_colours = ['YELLOW', 'AMBER', 'HAZEL', 'PALEGREEN', 'GREEN', 'BLUE', 'DARKBLUE', 'GREY', 'CYAN', 'EMERALD', 'PALEBLUE', 
@@ -366,7 +370,7 @@ class Pelt():
         new_pelt.init_eyes(parents, missing_parent)
         new_pelt.init_tint()
         new_pelt.init_pattern()
-        new_pelt.init_mane()
+        new_pelt.init_mane(parents, missing_parent)
         
         return new_pelt
     
@@ -667,6 +671,7 @@ class Pelt():
         par_markcolors = set()
         par_markshades = set()
         par_peltcategories = set()
+        par_manecolors = set()
         combo_peltcolors = list()
         combo_markcolors = list()
         par_pelts = []
@@ -683,6 +688,10 @@ class Pelt():
                 # Gather pelt tints
                 par_peltcolors.add(p.pelt.tint_color)
                 par_peltshades.add(p.pelt.tint_shade)
+                
+                par_manecolors.add(p.pelt.mane_color)
+                if p.pelt.mane_color2 is not None:
+                    par_manecolors.add(p.pelt.mane_color2)
 
                 # Gather tortie tints
                 if p.pelt.name in Pelt.torties:
@@ -710,6 +719,7 @@ class Pelt():
                 par_peltcolors.add(None)
                 par_peltlength.add(None)
                 par_peltshades.add(None)
+                par_manecolors.add(None)
 
         # If this list is empty, something went wrong.
         if not par_peltcolors:
@@ -733,11 +743,16 @@ class Pelt():
 
             par_markcolors.add(str(missing_parent["marking_color"]))
             par_markshades.add(str(missing_parent["marking_shade"]))
+            
+            par_manecolors.add(str(missing_parent["mane_color"]))
+            if missing_parent["mane_color2"] is not None:
+                par_manecolors.add(str(missing_parent["mane_color2"]))
 
             # Gather if they have white in their pelt.
             par_white.append(str(missing_parent["white"]))
 
-
+        print(par_manecolors)
+        
         if game.config_inheritance == "true":
             if game.inheritance_type == "color_categories":
 
@@ -856,6 +871,14 @@ class Pelt():
         
         if game.inheritance_type == "color_combos" and game.tint_inheritance[f"{game.inheritance_preset}"]["marking_inheritance"] == "true":
             chosen_marking_color = random.choices(mark_colors, weights=mark_weights, k=1)[0]
+            
+            if game.tint_pools["use_color_pool"] == "true": 
+                chosen_marking_shade = random.choices(Pelt.shade_categories, weights=weights, k=1)[0]
+            else:
+                chosen_marking_shade = random.choices(Pelt.marking_shade_categories, weights=(sprites.markings_tints["tint_categories"]["shade_weights"]), k=1)[0]
+
+                self.tortie_marking_color = random.choices(Pelt.marking_color_categories, weights=(sprites.markings_tints["tint_categories"]["color_weights"]), k=1)[0]
+                self.tortie_marking_shade = random.choices(Pelt.marking_shade_categories, weights=(sprites.markings_tints["tint_categories"]["shade_weights"]), k=1)[0]
         elif game.tint_inheritance[f"{game.inheritance_preset}"]["marking_inheritance"] == "true":
             chosen_marking_color = random.choices(par_markcolors, k=1)[0]
 
@@ -871,7 +894,8 @@ class Pelt():
                 # Marking color
                 possible_colors = game.tint_pools["color_presets"][f"{game.tint_preset}"]["color_pools"]["marking_pool"][f"{self.tint_color}"]
                 chosen_marking_color = random.choices(possible_colors, k=1)[0]
-
+                chosen_marking_shade = random.choices(Pelt.shade_categories, weights=weights, k=1)[0]
+                
                 weights = game.tint_pools["color_presets"][f"{game.tint_preset}"]["shade_weights"]["marking_pool"][f"{self.tint_shade}"]
 
                 # Tortie marking is picked in the pattern init
@@ -1711,8 +1735,32 @@ class Pelt():
             self.mane_color2 = choice(color_tints)
         #print(color_tints)
             
-    def init_mane(self):
-        self.mane_style = choice(random.choices(Pelt.manestyles, weights=[1,5,5,5,5,5]))
+    def init_mane(self, parents, missing_parent):
+        texturedict = {
+            'None': "silly",
+            'Test': "straight",
+            'Twilight': "straight",
+            'Bun': "wavy",
+            'Curled': "curled",
+            'YoungLuna': "wavy"
+            }
+        
+        if not parents:
+            self.mane_style = choice(random.choices(Pelt.manestyles, weights=[1,5,5,5,5,5]))
+        else:
+            for p in parents:
+                parentmane = choice([i.pelt.mane_style for i in parents])
+                print(parentmane)
+                texture = texturedict[parentmane]
+        
+            if texture is "straight":
+                self.mane_style = choice(random.choices(Pelt.straightmanes, weights=[1,1]))
+            elif texture is "wavy":
+                self.mane_style = choice(random.choices(Pelt.wavymanes, weights=[1,1]))
+            elif texture is "curled":
+                self.mane_style = choice(random.choices(Pelt.curledmanes, weights=[1]))
+            else:
+                self.mane_style = choice(random.choices(Pelt.sillymanes, weights=[1]))
         #self.mane_color = self.marking_tint
 
     @property
