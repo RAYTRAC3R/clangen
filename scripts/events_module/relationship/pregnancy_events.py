@@ -731,7 +731,9 @@ class Pregnancy_Events():
                     random.choices(Pelt.eye_color_categories, weights=Pelt.e_color_weights, k=1)[0],
                     random.choices(Pelt.eye_color_categories, weights=Pelt.e_color_weights, k=1)[0],
                     random.choices(Pelt.pelt_categories, weights=Pelt.marking_weights, k=1)[0], 
-                    random.choices(Pelt.pelt_length, k=1)[0], 
+                    random.choices(Pelt.pelt_length, k=1)[0],
+                    random.choices(Pelt.marking_color_categories, weights=Pelt.m_color_weights, k=1)[0],
+                    random.choices(Pelt.marking_color_categories, weights=Pelt.m_color_weights, k=1)[0]
                     ]
                 blood_parent_missing = dict({
                     "tint_color": bp_sel[0], 
@@ -743,6 +745,8 @@ class Pregnancy_Events():
                     "eye_p_color": bp_sel[6],
                     "marking": bp_sel[7],
                     "length": bp_sel[8],
+                    "mane_color": bp_sel[9],
+                    "mane_color2": bp_sel[10],
                     "white": bool(random.getrandbits(1))})
                 kit = Cat(parent1=cat.ID, moons=0, backstory=backstory, status='newborn', missing_parent=dict(blood_parent_missing))
                 kit.thought = f"Snuggles up to the belly of {cat.name}"
