@@ -245,29 +245,6 @@ class Sprites:
         for a, i in enumerate(['SHILOH', 'FRECKLED', 'HEARTBEAT']):
             self.make_group('tortiepatchesmasks', (a, 4), f"tortiemask{i}")
 
-        for row, patches in enumerate(white_patches):
-            for col, patch in enumerate(patches):
-                self.make_group('whitepatches', (col, row), f'white{patch}')
-
-        # Define colors and categories
-        color_categories = [
-            ['WHITE', 'PALEGREY', 'SILVER', 'GREY', 'DARKGREY', 'GHOST', 'BLACK'],
-            ['CREAM', 'PALEGINGER', 'GOLDEN', 'GINGER', 'DARKGINGER', 'SIENNA'],
-            ['LIGHTBROWN', 'LILAC', 'BROWN', 'GOLDEN-BROWN', 'DARKBROWN', 'CHOCOLATE']
-        ]
-
-        color_types = [
-            'singlecolours', 'tabbycolours', 'marbledcolours', 'rosettecolours',
-            'smokecolours', 'tickedcolours', 'speckledcolours', 'bengalcolours',
-            'mackerelcolours', 'classiccolours', 'sokokecolours', 'agouticolours',
-            'singlestripecolours', 'maskedcolours'
-        ]
-
-        for row, colors in enumerate(color_categories):
-            for col, color in enumerate(colors):
-                for color_type in color_types:
-                    self.make_group(color_type, (col, row), f'{color_type[:-7]}{color}')
-
         # tortiepatchesmasks
         tortiepatchesmasks = [
             ['ONE', 'TWO', 'THREE', 'FOUR', 'REDTAIL', 'DELILAH', 'HALF', 'STREAK', 'MASK', 'SMOKE'],
@@ -410,26 +387,6 @@ class Sprites:
         for a, i in enumerate(["PINKNYLON", "PURPLENYLON", "MULTINYLON", "INDIGONYLON"]):
             self.make_group('nyloncollars', (a, 2), f'collars{i}') """
             
-
-        # collars
-        for row, collars in enumerate(collars_data):
-            for col, collar in enumerate(collars):
-                self.make_group('collars', (col, row), f'collars{collar}')
-
-        # bellcollars
-        for row, bellcollars in enumerate(bellcollars_data):
-            for col, bellcollar in enumerate(bellcollars):
-                self.make_group('bellcollars', (col, row), f'collars{bellcollar}')
-
-        # bowcollars
-        for row, bowcollars in enumerate(bowcollars_data):
-            for col, bowcollar in enumerate(bowcollars):
-                self.make_group('bowcollars', (col, row), f'collars{bowcollar}')
-
-        # nyloncollars
-        for row, nyloncollars in enumerate(nyloncollars_data):
-            for col, nyloncollar in enumerate(nyloncollars):
-                self.make_group('nyloncollars', (col, row), f'collars{nyloncollar}')
 
     def load_symbols(self):
         """
