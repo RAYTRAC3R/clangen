@@ -308,7 +308,7 @@ class Cat:
 
         # These things should only run when generating a new cat, rather than loading one in.
         if not loading_cat:
-            self.init_generate_cat(skill_dict)
+            self.init_generate_cat(skill_dict, missing_parent)
 
         # In camp status
         self.in_camp = 1
@@ -407,7 +407,7 @@ class Cat:
                 ):
                     self.age = key_age
 
-    def init_generate_cat(self, skill_dict):
+    def init_generate_cat(self, skill_dict, missing_parent:dict=()):
         """
         Used to roll a new cat
         :param skill_dict: TODO what is a skill dict exactly
@@ -446,6 +446,7 @@ class Cat:
             self.gender,
             [Cat.fetch_cat(i) for i in (self.parent1, self.parent2) if i],
             self.age,
+            missing_parent
         )
 
         # Personality
