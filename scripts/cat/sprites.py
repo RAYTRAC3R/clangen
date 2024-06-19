@@ -392,7 +392,7 @@ class Sprites:
         """
         loads clan symbols
         """
-
+        self.size = 50
         if os.path.exists('resources/dicts/clan_symbols.json'):
             with open('resources/dicts/clan_symbols.json') as read_file:
                 self.symbol_dict = ujson.loads(read_file.read())
@@ -416,6 +416,7 @@ class Sprites:
                                     sprites_x=1, sprites_y=1, no_index=True)
 
             y_pos += 1
+        self.size = 64
 
     def dark_mode_symbol(self, symbol):
         """Change the color of the symbol to dark mode, then return it
