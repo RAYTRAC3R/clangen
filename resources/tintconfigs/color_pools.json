@@ -1,0 +1,266 @@
+{
+    "comment": 
+    ["Disabled by default. This is used to restrict colors for torties and markings just to make sure there isn't anything too outlandish.",
+    "Can be used to make better realism.",
+    "preset_select is for selecting preset."],
+    "use_color_pool": "false",
+    "preset": "base",
+
+    "comment":
+    ["Color presets for if you want to have different sorts of selections. There are two base mod additions, realism and base.", 
+    "Realism restricts color combinations to be purely based on realism - ONLY SELECT THIS IF YOU ARE USING THE REALISTIC COLOR TINTS"],
+
+    "color_presets":
+    {
+    "comment":
+    ["Template for preset templates. Explanations on how each individual thing works are within comments for ease of editing."],
+    "preset_template":
+    {
+        
+        "color_pools":
+        {
+            "comment":
+            ["For selection of tortie pelt base color according to what the pelt color is."],
+            "tortie_pool":
+            {            
+            "comment":
+            ["The template works as so: 'pelt color': ['color choice', 'color choice']",
+            "e.g if pelt is red, choose between orange and yellow"],
+
+            "red": ["orange", "yellow"],
+            "orange": ["red", "orange"],
+            "yellow": ["red", "orange", "yellow"]
+            },
+    
+            "comment":
+            ["For selection of marking color according to what the pelt color is."],
+            "marking_pool":
+            {
+            "comment":
+            ["Same as tortie pool. The template works as so: 'pelt color': ['color choice', 'color choice']",
+            "e.g if pelt is red, choose between orange and yellow"],
+
+            "red": ["orange", "yellow"],
+            "orange": ["red", "orange"],
+            "yellow": ["red", "orange", "yellow"]
+
+            }
+        },
+        
+        "shade_weights":
+        {
+    
+            "comment":
+            ["Sets the weights per shade. Higher, more likely. Lower, less likely.",
+            "[DARK, MEDIUM, LIGHT] is the order"],
+
+            "tortie_pool":
+            {            
+            "dark": [70, 50, 30],
+            "medium": [60, 70, 30],
+            "light": [0, 50, 70]
+            },
+
+            "marking_pool":
+            {
+            "dark": [70, 50, 30],
+            "medium": [1, 70, 30],
+            "light": [0, 30, 70]
+            }
+        }
+        
+
+    },
+
+    "base":
+    {
+
+        "color_pools":
+        {
+            "comment":
+            ["For selection of tortie pelt base color according to what the pelt color is."],
+            "tortie_pool":
+            {            
+            "comment":
+            ["The template works as so: 'pelt color': ['color choice', 'color choice']",
+            "e.g if pelt is red, choose between orange and yellow"],
+
+            "red": ["yellow", "green", "blue", "purple", "pink", "mono", "real_mono", "real_brown"],
+            "orange": ["green", "blue", "purple", "pink", "mono", "real_mono"],
+            "yellow": ["red", "blue", "purple", "pink", "mono", "real_mono", "real_brown"],
+            "green": ["blue", "purple", "pink", "real_mono", "real_brown"],
+            "blue": ["red", "orange", "yellow", "green", "pink", "real_brown", "mono", "real_mono", "real_orange"],
+            "purple": ["red", "orange", "green", "blue", "yellow", "mono", "real_mono", "real_brown", "real_orange"],
+            "pink": ["red", "orange", "yellow", "green", "purple", "mono", "real_brown"],
+            "mono": ["red", "orange", "yellow", "green", "blue", "purple", "pink", "mono", "real_mono", "real_brown", "real_orange"],
+            "real_brown": ["red", "yellow", "green", "blue", "purple", "pink", "mono", "real_mono", "real_orange"],
+            "real_orange": ["green", "blue", "purple", "pink", "mono", "real_mono", "real_brown"],
+            "real_mono": ["red", "orange", "yellow", "green", "blue", "purple", "pink", "mono", "real_mono", "real_brown", "real_orange"]
+            },
+    
+            "comment":
+            ["For selection of marking color according to what the pelt color is."],
+            "marking_pool":
+            {
+            "comment":
+            ["Same as tortie pool. The template works as so: 'pelt color': ['color choice', 'color choice']",
+            "e.g if pelt is red, choose between orange and yellow"],
+
+            "red": ["red", "orange", "yellow", "blue", "purple", "pink", "mono", "real_mono", "real_orange", "real_brown"],
+            "orange": ["red", "orange", "yellow", "blue", "purple", "pink", "mono", "real_mono", "real_orange", "real_brown"],
+            "yellow": ["red", "orange", "yellow", "blue", "purple", "pink", "mono", "real_mono", "real_orange", "real_brown"],
+            "green": ["orange", "yellow", "green", "blue", "purple", "pink", "mono", "real_mono", "real_orange", "real_brown"],
+            "blue": ["red", "orange", "green", "blue", "purple", "pink", "mono", "real_mono", "real_orange", "real_brown"],
+            "purple": ["red", "orange", "yellow", "green", "blue", "purple", "pink", "mono", "real_mono", "real_orange", "real_brown"],
+            "pink": ["red", "orange", "yellow", "green", "blue", "purple", "pink", "mono", "real_mono", "real_orange", "real_brown"],
+            "mono": ["red", "orange", "yellow", "green", "blue", "purple", "pink", "mono", "real_mono", "real_orange", "real_brown"],
+            "real_brown": ["red", "orange", "yellow", "green", "blue", "purple", "pink", "mono", "real_mono", "real_orange", "real_brown"],
+            "real_orange": ["red", "orange", "yellow", "green", "blue", "purple", "pink", "mono", "real_mono", "real_orange", "real_brown"],
+            "real_mono": ["red", "orange", "yellow", "green", "blue", "purple", "pink", "mono", "real_mono", "real_orange", "real_brown"]
+
+            }
+        },
+        
+        "shade_weights":
+        {
+    
+            "comment":
+            ["Sets the weights per shade. Higher, more likely. Lower, less likely.",
+            "[DARK, MEDIUM, LIGHT] is the order"],
+
+            "tortie_pool":
+            {            
+            "dark": [70, 50, 30],
+            "medium": [60, 70, 30],
+            "light": [0, 50, 70]
+            },
+
+            "marking_pool":
+            {
+            "dark": [70, 50, 30],
+            "medium": [1, 70, 30],
+            "light": [0, 30, 70]
+            }
+        }
+
+    },
+
+    "realistic":
+    {
+
+        "color_pools":
+        {
+            "comment":
+            ["For selection of tortie pelt base color according to what the pelt color is."],
+            "tortie_pool":
+            {            
+            "comment":
+            ["The template works as so: 'pelt color': ['color choice', 'color choice']",
+            "e.g if pelt is red, choose between orange and yellow"],
+
+            "real_brown": ["real_mono", "real_orange", "real_brown"],
+            "real_orange": ["real_mono", "real_brown"],
+            "real_mono": ["real_mono", "real_brown", "real_orange"]
+            },
+    
+            "comment":
+            ["For selection of marking color according to what the pelt color is."],
+            "marking_pool":
+            {
+            "comment":
+            ["Same as tortie pool. The template works as so: 'pelt color': ['color choice', 'color choice']",
+            "e.g if pelt is red, choose between orange and yellow"],
+
+            "real_brown": ["real_orange", "real_brown"],
+            "real_orange": ["real_orange", "real_brown"],
+            "real_mono": ["real_mono", "real_orange", "real_brown"]
+
+            }
+        },
+        
+        "shade_weights":
+        {
+    
+            "comment":
+            ["Sets the weights per shade. Higher, more likely. Lower, less likely.",
+            "[DARK, MEDIUM, LIGHT] is the order"],
+
+            "tortie_pool":
+            {            
+            "dark": [0, 50, 0],
+            "medium": [60, 70, 30],
+            "light": [0, 10, 70]
+            },
+
+            "marking_pool":
+            {
+            "dark": [70, 50, 30],
+            "medium": [0, 50, 30],
+            "light": [0, 10, 70]
+            }
+        }
+
+    },
+
+    "clangen":
+    {
+
+        "color_pools":
+        {
+            "comment":
+            ["For selection of tortie pelt base color according to what the pelt color is."],
+            "tortie_pool":
+            {            
+            "comment":
+            ["The template works as so: 'pelt color': ['color choice', 'color choice']",
+            "e.g if pelt is red, choose between orange and yellow"],
+
+            "cg_brown": ["cg_ginger", "cg_black"],
+            "cg_white": ["cg_ginger", "cg_brown"],
+            "cg_black": ["cg_ginger", "cg_brown"],
+            "cg_ginger": ["cg_black", "cg_brown", "cg_white"]
+            },
+    
+            "comment":
+            ["For selection of marking color according to what the pelt color is."],
+            "marking_pool":
+            {
+            "comment":
+            ["Same as tortie pool. The template works as so: 'pelt color': ['color choice', 'color choice']",
+            "e.g if pelt is red, choose between orange and yellow"],
+
+            "cg_brown": ["cg_brown"],
+            "cg_white": ["cg_white"],
+            "cg_black": ["cg_black"],
+            "cg_ginger": ["cg_ginger"]
+
+            }
+        },
+        
+        "shade_weights":
+        {
+    
+            "comment":
+            ["Sets the weights per shade. Higher, more likely. Lower, less likely.",
+            "[DARK, MEDIUM, LIGHT] is the order"],
+
+            "tortie_pool":
+            {            
+            "dark": [10, 20, 20],
+            "medium": [20, 70, 70],
+            "light": [20, 60, 70]
+            },
+
+            "marking_pool":
+            {
+            "dark": [70, 50, 0],
+            "medium": [0, 50, 30],
+            "light": [0, 50, 70]
+            }
+        }
+
+    }
+
+
+    }
+}

@@ -177,3 +177,7 @@ cache/
 download.tmp
 version.ini
 *.xml
+sprites/base.mdp
+sprites/markings/markings.mdp
+sprites/sprite template2.mdp
+sprites/manes/manecolor.mdp

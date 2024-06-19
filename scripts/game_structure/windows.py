@@ -609,33 +609,25 @@ class ChangeCatName(UIWindow):
                     use_suffix = self.suffix_entry_box.text
                 else:
                     use_suffix = self.the_cat.name.suffix
-                self.prefix_entry_box.set_text(
-                    Name(
-                        self.the_cat.status,
-                        None,
-                        use_suffix,
-                        self.the_cat.pelt.colour,
-                        self.the_cat.pelt.eye_colour,
-                        self.the_cat.pelt.name,
-                        self.the_cat.pelt.tortiepattern,
-                    ).prefix
-                )
+                self.prefix_entry_box.set_text(Name(self.the_cat.status,
+                                                    None,
+                                                    use_suffix,
+                                                    self.the_cat.pelt.name,
+                                                    self.the_cat.pelt.eye_color,
+                                                    self.the_cat.pelt.name,
+                                                    self.the_cat.pelt.tortiepattern).prefix)
             elif event.ui_element == self.random_suffix:
                 if self.prefix_entry_box.text:
                     use_prefix = self.prefix_entry_box.text
                 else:
                     use_prefix = self.the_cat.name.prefix
-                self.suffix_entry_box.set_text(
-                    Name(
-                        self.the_cat.status,
-                        use_prefix,
-                        None,
-                        self.the_cat.pelt.colour,
-                        self.the_cat.pelt.eye_colour,
-                        self.the_cat.pelt.name,
-                        self.the_cat.pelt.tortiepattern,
-                    ).suffix
-                )
+                self.suffix_entry_box.set_text(Name(self.the_cat.status,
+                                                    use_prefix,
+                                                    None,
+                                                    self.the_cat.pelt.name,
+                                                    self.the_cat.pelt.eye_color,
+                                                    self.the_cat.pelt.name,
+                                                    self.the_cat.pelt.tortiepattern).suffix)
             elif event.ui_element == self.toggle_spec_block_on:
                 self.specsuffic_hidden = True
                 self.suffix_entry_box.enable()

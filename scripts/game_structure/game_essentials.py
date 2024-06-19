@@ -180,6 +180,11 @@ class Game:
     cat_class = None
     config = {}
     prey_config = {}
+    tint_pools = {}
+    tint_inheritance = {}
+    config_inheritance = False
+    inheritance_type = None
+    tint_preset = None
 
     rpc = None
 
@@ -197,9 +202,23 @@ class Game:
         with open(f"resources/prey_config.json", "r") as read_file:
             self.prey_config = ujson.loads(read_file.read())
 
-        if self.config["fun"]["april_fools"]:
-            self.config["fun"]["newborns_can_roam"] = True
-            self.config["fun"]["newborns_can_patrol"] = True
+        with open(f"resources/tintconfigs/color_pools.json", 'r') as read_file:
+            self.tint_pools = ujson.loads(read_file.read())
+
+        with open(f"resources/tintconfigs/color_inheritance.json", 'r') as read_file:
+            self.tint_inheritance = ujson.loads(read_file.read())
+
+        with open(f"resources/tintconfigs/tint_naming.json", 'r') as read_file:
+            self.tint_category_names = ujson.loads(read_file.read())
+
+        if self.config['fun']['april_fools']:
+            self.config['fun']['newborns_can_roam'] = True
+            self.config['fun']['newborns_can_patrol'] = True
+        
+        self.tint_preset = self.tint_pools["preset"]
+        self.inheritance_preset = self.tint_inheritance["preset"]
+        self.config_inheritance = self.tint_inheritance["enabled"]
+        self.inheritance_type = self.tint_inheritance["inheritance_type"]
 
     def update_game(self):
         if self.current_screen != self.switches["cur_screen"]:

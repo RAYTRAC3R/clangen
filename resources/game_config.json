@@ -187,7 +187,11 @@
 		"direct_inheritance": 15,
 		"wildcard_tortie": 9,
 		"vit_chance": 8,
-		"random_point_chance": 5
+		"random_point_chance": 5,
+		"marking_blend_weights": [1, 600, 2],
+		"comment": [
+			"Marking blend weights are (ADD, MULTIPLY, NO BLEND)"
+		]
 	},
 	"cat_name_controls": {
 		"always_name_after_appearance": false,
@@ -200,7 +204,7 @@
 		]
 	},
 	"accessory_generation": {
-		"base_acc_chance": 150,
+		"base_acc_chance": 10,
 		"med_modifier": -80,
 		"baby_modifier": -20,
 		"elder_modifier": 20,
@@ -238,7 +242,7 @@
 		]
 	},
     "cat_sprites": {
-        "sick_sprites": true,
+        "sick_sprites": false,
         "comment": "Set this to false to disable sick sprites."
     },
 	"patrol_generation": {
@@ -250,7 +254,7 @@
 		"best_stat_modifier": 10,
 		"fail_stat_cat_modifier": -15,
 		"chance_of_romance_patrol": 16,
-		"debug_ensure_patrol_id": null,
+		"debug_ensure_patrol_id": "gen_bord_newcatkittypet1",
 		"comment": [
 			"the Cruel Season difficulty modifier needs to have a space rather than an underscore,",
 			"due to how it's written in the save files. So don't try to 'fix' it."
@@ -286,7 +290,7 @@
 		"war_injury_modifier": 100
 	},
 	"clan_creation": {
-		"rerolls": 3,
+		"rerolls": -1,
 		"comment": "Set this to -1 for it to be infinite"
 	},
 	"graduation": {

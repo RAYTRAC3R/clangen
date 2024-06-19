@@ -774,8 +774,263 @@ class PatrolOutcome:
                         break  # Break - only one parent ever gives birth
 
         return " ".join(results)
+            
+    def __create_new_cat_block(self, i:int, attribute_list: List[str], patrol:'Patrol') -> List[Cat]: 
+        """Creates a single new_cat block """
+        
+        thought = choice(["Is looking around the camp with wonder", "Is getting used to their new home"])
+        
+        # GATHER BIO PARENTS
+        parent1 = None
+        parent2 = None
+        for tag in attribute_list:
+            match = re.match(r"parent:([,0-9]+)", tag)
+            if not match:
+                continue
+            
+            parent_indexes = match.group(1).split(",")
+            if not parent_indexes:
+                continue
+            
+            parent_indexes = [int(index) for index in parent_indexes]
+            for index in parent_indexes:
+                if index >= i:
+                    continue
+                
+                if parent1 is None:
+                    parent1 = patrol.new_cats[index][0]
+                else:
+                    parent2 = patrol.new_cats[index][0]
+            break
+        
+        # GATHER MATES
+        in_patrol_cats = {
+            "p_l": patrol.patrol_leader,
+            "r_c": patrol.patrol_random_cat,
+        }
+        if self.stat_cat:
+            in_patrol_cats["s_c"] = self.stat_cat
+        give_mates = []
+        for tag in attribute_list:
+            match = re.match(r"mate:([_,0-9a-zA-Z]+)", tag)
+            if not match:
+                continue
+            
+            mate_indexes = match.group(1).split(",")
+            
+            # TODO: make this less ugly
+            for index in mate_indexes:
+                if index in in_patrol_cats:
+                    if in_patrol_cats[index] in ("apprentice", "medicine cat apprentice"):
+                        print("Can't give apprentices mates")
+                        continue
+                    
+                    give_mates.append(in_patrol_cats[index])
+                        
+                try:
+                    index = int(index)
+                except ValueError:
+                    print(f"mate-index not correct: {index}")
+                    continue
+                
+                if index >= i:
+                    continue
+                
+                give_mates.extend(patrol.new_cats[index])
+        
+        
+        # DETERMINE GENDER
+        if "male" in attribute_list:
+            gender = "male"
+        elif "female" in attribute_list:
+            gender = "female"
+        elif "can_birth" in attribute_list and not game.clan.clan_settings["same sex birth"]:
+            gender = "female"
+        else:
+            gender = None
+        
+        # WILL THE CAT GET A NEW NAME?
+        if "new_name" in attribute_list:
+            new_name = True
+        elif "old_name" in attribute_list:
+            new_name = False
+        else:
+            new_name = choice([True, False])
+        
+        # STATUS - must be handled before backstories. 
+        status = None
+        for _tag in attribute_list:
+            match = re.match(r"status:(.+)", _tag)
+            if not match:
+                continue
+            
+            if match.group(1) in ("newborn", "kitten", "elder", "apprentice", "warrior", 
+                                  "mediator apprentice", "mediator", "medicine cat apprentice", 
+                                  "medicine cat"):
+                status = match.group(1)
+                break
+        
+        # SET AGE
+        age = None
+        for _tag in attribute_list:
+            match = re.match(r"age:(.+)", _tag)
+            if not match:
+                continue
+            
+            if match.group(1) in Cat.age_moons:
+                age = randint(Cat.age_moons[match.group(1)][0], Cat.age_moons[match.group(1)][1])
+                break
+            
+            # Set same as first mate.
+            if match.group(1) == "mate" and give_mates:
+                age = randint(Cat.age_moons[give_mates[0].age][0], 
+                              Cat.age_moons[give_mates[0].age][1])
+                break
+                
+            if match.group(1) == "has_kits":
+                age = randint(19, 120)
+                break
+                
+        
+        # CAT TYPES AND BACKGROUND
+        if "kittypet" in attribute_list:
+            cat_type = "kittypet"
+        elif "rogue" in attribute_list:
+            cat_type = "rogue"
+        elif "loner" in attribute_list:
+            cat_type = "loner"
+        elif "clancat" in attribute_list:
+            cat_type = "former Clancat"
+        else:
+            cat_type = choice(['kittypet', 'loner', 'former Clancat'])
+        
+        # LITTER
+        litter = False
+        if "litter" in attribute_list:
+            litter = True
+            if status not in ("kitten", "newborn"):
+                status = "kitten"
+        
+        # CHOOSE DEFAULT BACKSTORY BASED ON CAT TYPE, STATUS.
+        if status in ("kitten", "newborn"):
+            chosen_backstory = choice(BACKSTORIES["backstory_categories"]["abandoned_backstories"])
+        elif status == "medicine cat" and cat_type == "former Clancat":
+            chosen_backstory = choice(["medicine_cat", "disgraced1"])
+        elif status == "medicine cat":
+            chosen_backstory = choice(["wandering_healer1", "wandering_healer2"])
+        else:
+            if cat_type == "former Clancat":
+                x = "former_clancat"
+            else:
+                x = cat_type
+            chosen_backstory = choice(BACKSTORIES["backstory_categories"].get(f"{x}_backstories", ["outsider1"]))
+        
+        # OPTION TO OVERRIDE DEFAULT BACKSTORY
+        for _tag in attribute_list:
+            match = re.match(r"backstory:(.+)", _tag)
+            if match:
+                stor = [x for x in match.group(1).split(",") if x in BACKSTORIES["backstories"]]
+                if not stor:
+                    continue
+                
+                chosen_backstory = choice(stor)
+                break
+        
+        # KITTEN THOUGHT
+        if status in ("kitten", "newborn"):
+            thought = "Is snuggled safe in the nursery"
+        
+        # MEETING - DETERMINE IF THIS IS AN OUTSIDE CAT
+        outside = False
+        if "meeting" in attribute_list:
+            outside = True
+            status = cat_type
+            new_name = False
+            thought = "Is wondering about the new cats they just met"
+            
+        # IS THE CAT DEAD?
+        alive = True
+        if "dead" in attribute_list:
+            alive = False
+            thought = "Explores a new starry world"
 
-    def _handle_mentor_app(self, patrol: 'Patrol') -> str:
+        # Now, it's time to generate the new cat
+        # This is a bit of a pain, but I can't re-write this function
+        new_cats = create_new_cat(Cat,
+                                Relationship,
+                                new_name=new_name,
+                                loner=cat_type in ["loner", "rogue"],
+                                kittypet=cat_type == "kittypet",
+                                other_clan=cat_type == 'former Clancat',
+                                kit=False if litter else status in ["kitten", "newborn"],  # this is for singular kits, litters need this to be false
+                                litter=litter,
+                                backstory=chosen_backstory,
+                                status=status,
+                                age=age,
+                                gender=gender,
+                                thought=thought,
+                                alive=alive,
+                                outside=outside,
+                                parent1=parent1.ID if parent1 else None,
+                                parent2=parent2.ID if parent2 else None
+                                 )
+        
+        # Add relations to biological parents, if needed
+        # Also relations to cat generated in the same block - they are littermates
+        # Also make mates
+        # DON'T ADD RELATION TO CATS IN THE PATROL
+        # That is done in the relationships block of the patrol, to give control for writing. 
+        for n_c in new_cats:
+            
+            # Set Mates
+            for inter_cat in give_mates:
+                if n_c == inter_cat or n_c.ID in inter_cat.mate:
+                    continue
+                
+                # This is some duplicate work, since this trigger inheritance re-calcs
+                # TODO: Optimize
+                n_c.set_mate(inter_cat)
+            
+            #Relations to cats in the same block (littermates)
+            for inter_cat in new_cats:
+                if n_c == inter_cat:
+                    continue
+                
+                y = random.randrange(0, 20)
+                start_relation = Relationship(n_c, inter_cat, False, True)
+                start_relation.platonic_like += 30 + y
+                start_relation.comfortable = 10 + y
+                start_relation.admiration = 15 + y
+                start_relation.trust = 10 + y
+                n_c.relationships[inter_cat.ID] = start_relation
+                
+            # Relations to bio parents. 
+            for par in (parent1, parent2):
+                if not par:
+                    continue
+                
+                y = random.randrange(0, 20)
+                start_relation = Relationship(par, n_c, False, True)
+                start_relation.platonic_like += 30 + y
+                start_relation.comfortable = 10 + y
+                start_relation.admiration = 15 + y
+                start_relation.trust = 10 + y
+                par.relationships[n_c.ID] = start_relation
+                
+                y = random.randrange(0, 20)
+                start_relation = Relationship(n_c, par, False, True)
+                start_relation.platonic_like += 30 + y
+                start_relation.comfortable = 10 + y
+                start_relation.admiration = 15 + y
+                start_relation.trust = 10 + y
+                n_c.relationships[par.ID] = start_relation
+                
+            # Update inheritance
+            n_c.create_inheritance_new_cat() 
+                
+        return new_cats
+                 
+    def _handle_mentor_app(self, patrol:'Patrol') -> str:
         """Handles mentor inflence on apprentices """
 
         for cat in patrol.patrol_cats:

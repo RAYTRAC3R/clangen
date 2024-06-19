@@ -52,41 +52,66 @@ def json_load():
     # create new cat objects
     for i, cat in enumerate(cat_data):
         try:
-
-            new_cat = Cat(
-                ID=cat["ID"],
-                prefix=cat["name_prefix"],
-                suffix=cat["name_suffix"],
-                specsuffix_hidden=(
-                    cat["specsuffix_hidden"] if "specsuffix_hidden" in cat else False
-                ),
-                gender=cat["gender"],
-                status=cat["status"],
-                parent1=cat["parent1"],
-                parent2=cat["parent2"],
-                moons=cat["moons"],
-                eye_colour=cat["eye_colour"],
-                loading_cat=True,
-            )
-
-            if cat["eye_colour"] == "BLUE2":
-                cat["eye_colour"] = "COBALT"
-            if cat["eye_colour"] in ["BLUEYELLOW", "BLUEGREEN"]:
-                if cat["eye_colour"] == "BLUEYELLOW":
-                    cat["eye_colour2"] = "YELLOW"
-                elif cat["eye_colour"] == "BLUEGREEN":
-                    cat["eye_colour2"] = "GREEN"
-                cat["eye_colour"] = "BLUE"
-            if "eye_colour2" in cat:
-                if cat["eye_colour2"] == "BLUE2":
-                    cat["eye_colour2"] = "COBALT"
-
+            
+            new_cat = Cat(ID=cat["ID"],
+                        prefix=cat["name_prefix"],
+                        suffix=cat["name_suffix"],
+                        specsuffix_hidden=(cat["specsuffix_hidden"] if 'specsuffix_hidden' in cat else False),
+                        gender=cat["gender"],
+                        status=cat["status"],
+                        parent1=cat["parent1"],
+                        parent2=cat["parent2"],
+                        moons=cat["moons"],
+                        eye_color=cat["eye_color"],
+                        loading_cat=True)
+                        
             new_cat.pelt = Pelt(
                 name=cat["pelt_name"],
+                eye_color=cat["eye_color"],
+                eye_shade=cat["eye_shade"],
+                eye_tint=cat["eye_tint"],
+                eye_s_color=cat["eye_shade_color"],
+                eye_s_shade=cat["eye_shade_shade"],
+                eye_s_tint=cat["eye_shade_tint"],
+                eye_p_color=cat["eye_pupil_color"],
+                eye_p_shade=cat["eye_pupil_shade"],
+                eye_p_tint=cat["eye_pupil_tint"],
+                eye2_color=cat["eye2_color"] if "eye2_color" in cat else None,
+                eye2_shade=cat["eye2_shade"],
+                eye2_tint=cat["eye2_tint"],
+                eye2_s_color=cat["eye2_shade_color"],
+                eye2_s_shade=cat["eye2_shade_shade"],
+                eye2_s_tint=cat["eye2_shade_tint"],
+                eye2_p_color=cat["eye2_pupil_color"],
+                eye2_p_shade=cat["eye2_pupil_shade"],
+                eye2_p_tint=cat["eye2_pupil_tint"],
+                marking=cat["marking"],
+                marking_shade=cat["marking_shade"],
+                marking_color=cat["marking_color"],
+                marking_tint=cat["marking_tint"],
+                marking_blend=cat["marking_blend"],
+                tint_shade=cat["tint_shade"],
+                tint_color=cat["tint_color"],
+                tint=cat["tint"],
+                underfur=cat["underfur"],
+                underfur_tint=cat["underfur_tint"],
+                overfur=cat["overfur"],
+                overfur_tint=cat["overfur_tint"],
+                pattern=cat["pattern"],
+                tortiepattern=cat["tortie_pattern"],
+                tortie_color=cat["tortie_color"],
+                tortie_shade=cat["tortie_shade"],
+                tortie_tint=cat["tortie_tint"],
+                tortie_marking_color=cat["tortie_color"],
+                tortie_marking_shade=cat["tortie_shade"],
+                tortie_marking_tint=cat["tortie_tint"],
+                tortie_underfur_tint=cat["tortie_underfur_tint"],
+                tortie_overfur_tint=cat["tortie_overfur_tint"],
+                mane_style=cat["mane_style"] if "mane_style" in cat else "Test",
+                mane_color=cat["mane_color"] if "mane_color" in cat else cat["marking_color"],
+                mane_color2=cat["mane_color2"] if "mane_color2" in cat else cat["mane_color"],
+                race=cat["race"] if "race" in cat else "Earth",
                 length=cat["pelt_length"],
-                colour=cat["pelt_color"],
-                eye_color=cat["eye_colour"],
-                eye_colour2=cat["eye_colour2"] if "eye_colour2" in cat else None,
                 paralyzed=cat["paralyzed"],
                 kitten_sprite=(
                     cat["sprite_kitten"]
@@ -120,18 +145,20 @@ def json_load():
                     else "offwhite"
                 ),
                 white_patches=cat["white_patches"],
-                tortiebase=cat["tortie_base"],
-                tortiecolour=cat["tortie_color"],
-                tortiepattern=cat["tortie_pattern"],
-                pattern=cat["pattern"],
                 skin=cat["skin"],
-                tint=cat["tint"] if "tint" in cat else "none",
                 scars=cat["scars"] if "scars" in cat else [],
-                accessory=cat["accessory"],
-                opacity=cat["opacity"] if "opacity" in cat else 100,
+                accessory_type=cat["accessory_dict"]["accessory"] if "accessory_dict" in cat else cat["accessory"],
+                accessory_category=cat["accessory_dict"]["type"] if "accessory_dict" in cat else 0,
+                accessory_color=cat["accessory_dict"]["color"] if "accessory_dict" in cat else 0,
+                accessory_shade=cat["accessory_dict"]["color"] if "accessory_dict" in cat else 0,
+                acc_accent_color=cat["accessory_dict"]["accent_color"] if "accessory_dict" in cat else 0,
+                accessory_pattern=cat["accessory_dict"]["pattern"] if "accessory_dict" in cat else [],
+                accessory_p_color=cat["accessory_dict"]["pattern_color"] if "accessory_dict" in cat else [],
+                accessory_p_shade=cat["accessory_dict"]["pattern_shade"] if "accessory_dict" in cat else [],
+                opacity=cat["opacity"] if "opacity" in cat else 100
             )
 
-            # Runs a bunch of apperence-related convertion of old stuff.
+            # Runs a bunch of apperence-related convertion of old stuff. 
             new_cat.pelt.check_and_convert(convert)
 
             # converting old specialty saves into new scar parameter
@@ -141,10 +168,8 @@ def json_load():
                 if cat["specialty2"] is not None:
                     new_cat.pelt.scars.append(cat["specialty2"])
 
-            new_cat.adoptive_parents = (
-                cat["adoptive_parents"] if "adoptive_parents" in cat else []
-            )
-
+            new_cat.adoptive_parents = cat["adoptive_parents"] if "adoptive_parents" in cat else []
+            
             new_cat.genderalign = cat["gender_align"]
             # new_cat.pronouns = cat["pronouns"]
             new_cat.pronouns = (
@@ -335,7 +360,7 @@ def csv_load(all_cats):
                     "1There was an error loading cat # " + str(attr[0])
                 )
                 the_pelt = Pelt(
-                    colour=attr[2], name=attr[11], length=attr[9], eye_color=attr[17]
+                    name=attr[11], length=attr[9], eye_color=attr[17]
                 )
                 game.switches["error_message"] = (
                     "2There was an error loading cat # " + str(attr[0])
@@ -405,7 +430,7 @@ def csv_load(all_cats):
                 )
                 the_cat.skill = attr[25]
                 if len(attr) > 28:
-                    the_cat.pelt.accessory = attr[28]
+                    the_cat.pelt.accessory_type = attr[28]
                 if len(attr) > 29:
                     the_cat.specialty2 = attr[29]
                 else:

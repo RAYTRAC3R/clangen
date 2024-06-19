@@ -143,6 +143,7 @@ class Cat:
         suffix=None,
         specsuffix_hidden=False,
         ID=None,
+        missing_parent=None,
         moons=None,
         example=False,
         faded=False,
@@ -197,6 +198,7 @@ class Cat:
         )
         self.parent1 = parent1
         self.parent2 = parent2
+        self.missing_parent = missing_parent
         self.adoptive_parents = []
         self.pelt = pelt if pelt else Pelt()
         self.former_mentor = []
@@ -306,7 +308,7 @@ class Cat:
 
         # These things should only run when generating a new cat, rather than loading one in.
         if not loading_cat:
-            self.init_generate_cat(skill_dict)
+            self.init_generate_cat(skill_dict, missing_parent)
 
         # In camp status
         self.in_camp = 1
@@ -323,8 +325,8 @@ class Cat:
                 status,
                 prefix,
                 suffix,
-                self.pelt.colour,
-                self.pelt.eye_colour,
+                self.pelt.tint_color,
+                self.pelt.eye_color,
                 self.pelt.name,
                 self.pelt.tortiepattern,
                 biome=biome,
@@ -405,7 +407,7 @@ class Cat:
                 ):
                     self.age = key_age
 
-    def init_generate_cat(self, skill_dict):
+    def init_generate_cat(self, skill_dict, missing_parent:dict=()):
         """
         Used to roll a new cat
         :param skill_dict: TODO what is a skill dict exactly
@@ -444,6 +446,7 @@ class Cat:
             self.gender,
             [Cat.fetch_cat(i) for i in (self.parent1, self.parent2) if i],
             self.age,
+            missing_parent
         )
 
         # Personality
@@ -953,42 +956,12 @@ class Cat:
         return output
 
     def describe_eyes(self):
-        """Get a human-readable description of this cat's eye colour"""
-        colour = str(self.pelt.eye_colour).lower()
-        colour2 = str(self.pelt.eye_colour2).lower()
+        colour = str(self.pelt.eye_s_color).lower()
+        colour2 = str(self.pelt.eye2_s_color).lower()
 
-        if colour == "palegreen":
-            colour = "pale green"
-        elif colour == "darkblue":
-            colour = "dark blue"
-        elif colour == "paleblue":
-            colour = "pale blue"
-        elif colour == "paleyellow":
-            colour = "pale yellow"
-        elif colour == "heatherblue":
-            colour = "heather blue"
-        elif colour == "blue2":
-            colour = "blue"
-        elif colour == "sunlitice":
-            colour = "sunlit ice"
-        elif colour == "greenyellow":
-            colour = "green-yellow"
-        if self.pelt.eye_colour2:
-            if colour2 == "palegreen":
-                colour2 = "pale green"
-            if colour2 == "darkblue":
-                colour2 = "dark blue"
-            if colour2 == "paleblue":
-                colour2 = "pale blue"
-            if colour2 == "paleyellow":
-                colour2 = "pale yellow"
-            if colour2 == "heatherblue":
-                colour2 = "heather blue"
-            if colour2 == "sunlitice":
-                colour2 = "sunlit ice"
-            if colour2 == "greenyellow":
-                colour2 = "green-yellow"
-            colour = colour + " and " + colour2
+        if self.pelt.eye2_color:
+            colour = colour + ' and ' + colour2
+            
         return colour
 
     def convert_history(self, died_by, scar_events):
@@ -2013,18 +1986,10 @@ class Cat:
             return
 
         # remove accessories if need be
-        if "NOTAIL" in self.pelt.scars and self.pelt.accessory in [
-            "RED FEATHERS",
-            "BLUE FEATHERS",
-            "JAY FEATHERS",
-        ]:
-            self.pelt.accessory = None
-        if "HALFTAIL" in self.pelt.scars and self.pelt.accessory in [
-            "RED FEATHERS",
-            "BLUE FEATHERS",
-            "JAY FEATHERS",
-        ]:
-            self.pelt.accessory = None
+        if 'NOTAIL' in self.pelt.scars and self.pelt.accessory_type in Pelt.tail_accessories:
+            self.pelt.accessory_type = None
+        if 'HALFTAIL' in self.pelt.scars and self.pelt.accessory_type in Pelt.tail_accessories:
+            self.pelt.accessory_type = None
 
         condition = PERMANENT[name]
         new_condition = False
@@ -3363,29 +3328,65 @@ class Cat:
                 "exiled": self.exiled,
                 "driven_out": self.driven_out,
                 "pelt_name": self.pelt.name,
-                "pelt_color": self.pelt.colour,
                 "pelt_length": self.pelt.length,
-                "sprite_kitten": self.pelt.cat_sprites["kitten"],
-                "sprite_adolescent": self.pelt.cat_sprites["adolescent"],
-                "sprite_adult": self.pelt.cat_sprites["adult"],
-                "sprite_senior": self.pelt.cat_sprites["senior"],
-                "sprite_para_adult": self.pelt.cat_sprites["para_adult"],
-                "eye_colour": self.pelt.eye_colour,
-                "eye_colour2": self.pelt.eye_colour2 if self.pelt.eye_colour2 else None,
+                "tint_shade": self.pelt.tint_shade,
+                "tint_color": self.pelt.tint_color,
+                "tint": self.pelt.tint,
+                "overfur": self.pelt.overfur,
+                "overfur_tint": self.pelt.overfur_tint,
+                "underfur": self.pelt.underfur,
+                "underfur_tint": self.pelt.underfur_tint,
+                "eye_color": self.pelt.eye_color,
+                "eye_shade": self.pelt.eye_shade,
+                "eye_tint": self.pelt.eye_tint,
+                "eye_shade_color": self.pelt.eye_s_color,
+                "eye_shade_shade": self.pelt.eye_s_shade,
+                "eye_shade_tint": self.pelt.eye_s_tint,
+                "eye_pupil_color": self.pelt.eye_p_color,
+                "eye_pupil_shade": self.pelt.eye_p_shade,
+                "eye_pupil_tint": self.pelt.eye_p_tint,
+                "eye2_color": self.pelt.eye2_color if self.pelt.eye2_color else None,
+                "eye2_shade": self.pelt.eye2_shade,
+                "eye2_tint": self.pelt.eye2_tint,
+                "eye2_shade_color": self.pelt.eye2_s_color,
+                "eye2_shade_shade": self.pelt.eye2_s_shade,
+                "eye2_shade_tint": self.pelt.eye2_s_tint,
+                "eye2_pupil_color": self.pelt.eye2_p_color,
+                "eye2_pupil_shade": self.pelt.eye2_p_shade,
+                "eye2_pupil_tint": self.pelt.eye2_p_tint,
+                "marking": self.pelt.marking,
+                "marking_shade": self.pelt.marking_shade,
+                "marking_color": self.pelt.marking_color,
+                "marking_tint": self.pelt.marking_tint,
+                "marking_blend": self.pelt.marking_blend,
+                "pattern": self.pelt.pattern,
+                "tortie_pattern": self.pelt.tortiepattern,
+                "tortie_color": self.pelt.tortie_color,
+                "tortie_shade": self.pelt.tortie_shade,
+                "tortie_tint": self.pelt.tortie_tint,
+                "tortie_marking_color": self.pelt.tortie_color,
+                "tortie_marking_shade": self.pelt.tortie_shade,
+                "tortie_marking_tint": self.pelt.tortie_tint,
+                "tortie_underfur_tint": self.pelt.tortie_underfur_tint,
+                "tortie_overfur_tint": self.pelt.tortie_overfur_tint,
+                "mane_style": self.pelt.mane_style,
+                "mane_color": self.pelt.mane_color,
+                "mane_color2": self.pelt.mane_color2,
+                "race": self.pelt.race,
+                "sprite_kitten": self.pelt.cat_sprites['kitten'],
+                "sprite_adolescent": self.pelt.cat_sprites['adolescent'],
+                "sprite_adult": self.pelt.cat_sprites['adult'],
+                "sprite_senior": self.pelt.cat_sprites['senior'],
+                "sprite_para_adult": self.pelt.cat_sprites['para_adult'],
                 "reverse": self.pelt.reverse,
                 "white_patches": self.pelt.white_patches,
                 "vitiligo": self.pelt.vitiligo,
                 "points": self.pelt.points,
                 "white_patches_tint": self.pelt.white_patches_tint,
-                "pattern": self.pelt.pattern,
-                "tortie_base": self.pelt.tortiebase,
-                "tortie_color": self.pelt.tortiecolour,
-                "tortie_pattern": self.pelt.tortiepattern,
                 "skin": self.pelt.skin,
-                "tint": self.pelt.tint,
                 "skill_dict": self.skills.get_skill_dict(),
                 "scars": self.pelt.scars if self.pelt.scars else [],
-                "accessory": self.pelt.accessory,
+                "accessory_dict": self.get_accessory_dict(),
                 "experience": self.experience,
                 "dead_moons": self.dead_for,
                 "current_apprentice": [appr for appr in self.apprentice],
@@ -3397,6 +3398,21 @@ class Cat:
                 "prevent_fading": self.prevent_fading,
                 "favourite": self.favourite,
             }
+            
+    def get_accessory_dict(self):
+        """accessory dictionary waeh normal tuesday y'know"""
+        return {
+            "accessory": self.pelt.accessory_type,
+            "type": self.pelt.accessory_category,
+            "color": self.pelt.accessory_color,
+            "shade": self.pelt.accessory_shade,
+
+            "accent_color": self.pelt.acc_accent_color,
+
+            "pattern": self.pelt.accessory_pattern,
+            "pattern_color": self.pelt.accessory_p_color,
+            "pattern_shade": self.pelt.accessory_p_shade
+        }
 
 
 # ---------------------------------------------------------------------------- #

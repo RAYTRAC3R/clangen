@@ -4,6 +4,7 @@ from random import choice, randint
 import ujson
 
 from scripts.cat.cats import Cat
+from scripts.cat.pelts import Pelt
 from scripts.cat.history import History
 from scripts.cat.names import names, Name
 from scripts.cat_relations.relationship import Relationship
@@ -722,7 +723,9 @@ class Pregnancy_Events:
             other_cat = None
 
         blood_parent = None
-
+        blood_parent2 = None
+        blood_parent_missing = None
+         
         ##### SELECT BACKSTORY #####
         if cat and cat.gender == "female":
             backstory = choice(["halfclan1", "outsider_roots1"])
@@ -763,33 +766,61 @@ class Pregnancy_Events:
                     if kits_amount == 1:
                         insert = "their kit is"
                     thought = f"Is glad that {insert} safe"
-                    blood_parent = create_new_cat(Cat,
-                                                  status=random.choice(["loner", "kittypet"]),
-                                                  alive=False,
-                                                  thought=thought,
-                                                  age=randint(15, 120),
-                                                  outside=True)[0]
+                    blood_parent = create_new_cat(Cat, Relationship,
+                                                status=random.choice(["loner", "kittypet"]),
+                                                alive=False,
+                                                thought=thought,
+                                                age=randint(15,120),
+                                                outside=True)[0]
+                    blood_parent2 = create_new_cat(Cat, Relationship,
+                                                status=random.choice(["loner", "kittypet"]),
+                                                alive=False,
+                                                thought=thought,
+                                                age=randint(15,120),
+                                                outside=True)[0]
                     blood_parent.thought = thought
-
-                kit = Cat(
-                    parent1=blood_parent.ID,
-                    moons=0,
-                    backstory=backstory,
-                    status='newborn')
-
-            elif cat and other_cat:
-                # Two parents provided
-                # The cat that gave birth is always parent1 so there is no need to check gender
-                kit = Cat(
-                    parent1=cat.ID, parent2=other_cat.ID, moons=0, status="newborn"
-                )
-                kit.thought = f"Snuggles up to the belly of {cat.name}"
+                    blood_parent2.thought = thought
+                
+                kit = Cat(parent1=blood_parent.ID, parent2=blood_parent2.ID, moons=0, backstory=backstory, status='newborn')
             else:
-                # A one blood parent litter is the only option left.
-                kit = Cat(
-                    parent1=cat.ID, moons=0, backstory=backstory, status="newborn"
-                )
-                kit.thought = f"Snuggles up to the belly of {cat.name}"
+                if other_cat is not None:
+                    # Two parents provided
+                    # The cat that gave birth is always parent1 so there is no need to check gender
+                    kit = Cat(
+                        parent1=cat.ID, parent2=other_cat.ID, moons=0, status="newborn"
+                    )
+                    kit.thought = f"Snuggles up to the belly of {cat.name}"
+                else:
+                    # A one blood parent litter is the only option left. 
+                    # create missing 
+                    bp_sel = [
+                        random.choices(Pelt.color_categories, weights=Pelt.color_weights, k=1)[0], 
+                        random.choices(Pelt.shade_categories, weights=Pelt.shade_weights, k=1)[0], 
+                        random.choices(Pelt.marking_color_categories, weights=Pelt.m_color_weights, k=1)[0], 
+                        random.choices(Pelt.marking_shade_categories, weights=Pelt.m_shade_weights, k=1)[0], 
+                        random.choices(Pelt.eye_color_categories, weights=Pelt.e_color_weights, k=1)[0], 
+                        random.choices(Pelt.eye_color_categories, weights=Pelt.e_color_weights, k=1)[0],
+                        random.choices(Pelt.eye_color_categories, weights=Pelt.e_color_weights, k=1)[0],
+                        random.choices(Pelt.pelt_categories, weights=Pelt.marking_weights, k=1)[0], 
+                        random.choices(Pelt.pelt_length, k=1)[0],
+                        random.choices(Pelt.marking_color_categories, weights=Pelt.m_color_weights, k=1)[0],
+                        random.choices(Pelt.marking_color_categories, weights=Pelt.m_color_weights, k=1)[0]
+                        ]
+                    blood_parent_missing = dict({
+                        "tint_color": bp_sel[0], 
+                        "tint_shade": bp_sel[1], 
+                        "marking_color": bp_sel[2], 
+                        "marking_shade": bp_sel[3], 
+                        "eye_color": bp_sel[4], 
+                        "eye_s_color": bp_sel[5], 
+                        "eye_p_color": bp_sel[6],
+                        "marking": bp_sel[7],
+                        "length": bp_sel[8],
+                        "mane_color": bp_sel[9],
+                        "mane_color2": bp_sel[10],
+                        "white": bool(random.getrandbits(1))})
+                    kit = Cat(parent1=cat.ID, moons=0, backstory=backstory, status='newborn', missing_parent=dict(blood_parent_missing))
+                    kit.thought = f"Snuggles up to the belly of {cat.name}"
 
             # Prevent duplicate prefixes in the same litter
             while kit.name.prefix in [kitty.name.prefix for kitty in all_kitten]:

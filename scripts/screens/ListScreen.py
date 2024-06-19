@@ -572,17 +572,17 @@ class ListScreen(Screens):
             self.df_bg.hide()
             self.ur_bg.hide()
             self.sc_bg.hide()
-            self.update_heading_text(f"{game.clan.name}Clan")
+            self.update_heading_text(f"{game.clan.name}")
         elif self.current_group == "cotc":
             self.df_bg.hide()
             self.ur_bg.hide()
             self.sc_bg.hide()
-            self.update_heading_text(f"Cats Outside the Clan")
+            self.update_heading_text(f"Ponies Outside the Town")
         elif self.current_group == "sc":
             self.df_bg.hide()
             self.ur_bg.hide()
             self.sc_bg.show()
-            self.update_heading_text(f"StarClan")
+            self.update_heading_text(f"Elysium")
         elif self.current_group == "ur":
             self.df_bg.hide()
             self.ur_bg.show()
@@ -592,7 +592,7 @@ class ListScreen(Screens):
             self.df_bg.show()
             self.ur_bg.hide()
             self.sc_bg.hide()
-            self.update_heading_text(f"Dark Forest")
+            self.update_heading_text(f"Tartarus")
 
     def get_cat_list(self):
         """
