@@ -75,8 +75,7 @@ class Pelt:
                     'OREO', 'SWOOP', 'MOTTLED', 'SIDEMASK', 'EYEDOT', 'BANDANA', 'PACMAN', 'STREAMSTRIKE', 'ORIOLE', 'CHIMERA', 'DAUB', 'EMBER', 'BLANKET',
                     'ROBIN', 'BRINDLE', 'PAIGE', 'ROSETAIL', 'SAFI', 'SMUDGED', 'DAPPLENIGHT', 'STREAK', 'MASK', 'CHEST', 'ARMTAIL', 'SMOKE', 'GRUMPYFACE',
                     'BRIE', 'BELOVED', 'BODY', 'SHILOH', 'FRECKLED', 'HEARTBEAT']
-    tortiebases = ['single', 'tabby', 'bengal', 'marbled', 'ticked', 'smoke', 'rosette', 'speckled', 'mackerel',
-                   'classic', 'sokoke', 'agouti', 'singlestripe', 'masked']
+    tortiebases = ["Tabby", "Ticked", "Mackerel", "Classic", "Sokoke", "Agouti", "Wisp", "Speckled", "Rosette", None, "Smoke", "Singlestripe", "Bengal", "Marbled", "Masked"]
 
     manestyles = ['None', 'Test', 'Twilight', 'Bun', 'Curled', 'YoungLuna']
     straightmanes = ['Test', 'Twilight']
@@ -202,7 +201,7 @@ class Pelt:
     little_white = ['AJFRECKLES']
     mid_white = ['LUNAPATCH', 'SPLASH']
     high_white = ['APPALOOSAONE', 'TOBIANOTWO', 'SABINO']
-    mostly_white = ['APPALOOSATWO', 'TOBIANOONE']
+    mostly_white = ['APPALOOSATWO', 'TOBIANOONE', 'DIAMONDOVERO']
     point_markings = ['RAGDOLL', 'SEPIAPOINT', 'MINKPOINT', 'SEALPOINT']
     vit = ['VITONE', 'VITTWO']
     white_sprites = [
@@ -371,7 +370,6 @@ class Pelt:
     @staticmethod
     def generate_new_pelt(gender:str, parents:tuple=(), age:str="adult", missing_parent:dict=()):
         new_pelt = Pelt()
-        
         pelt_white = new_pelt.init_pattern_color(parents, gender, missing_parent)
         new_pelt.init_white_patches(pelt_white, parents)
         new_pelt.init_sprite()
