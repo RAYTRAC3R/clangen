@@ -36,21 +36,21 @@
 
     "green_light": ["mint", "sage", "light green", "pale green", "pale mint", "pea green", "peppermint", "sprout", "wintermint", "honeydew", "celery", "seafoam", "light seafoam", "breeze"],
 
-    "blue_dark": ["teal", "midnight", "rhino", "marine blue", "regal blue", "night blue", "duskwood", "emerald blue", "elephant", "dark indigo", "black pearl", "deep sea blue", "blue ink", "moonlight", "storm blue"],
+    "blue_dark": ["teal", "midnight", "rhino", "marine blue", "regal blue", "night blue", "duskwood", "emerald blue", "elephant", "dark indigo", "black pearl", "deep sea blue", "blue ink", "moonlight", "storm blue", "twilight rhino"],
 
     "blue_medium": ["blue", "turquoise", "reef blue", "light turquoise", "jadeite", "lake blue", "light sapphire", "pacific blue", "green blue", "fountain blue", "celestial blue", "hydra blue", "peacock", "sapphire", "dark periwinkle", "denim"],
 
     "blue_light": ["celeste", "cadet blue", "sky blue", "lilac blue", "air blue", "eggshell blue", "frosted mint", "frost", "periwinkle blue", "light blue", "lavender blue", "lily", "ice", "electric blue"],
 
-    "purple_dark": ["raisin", "wine purple", "dark lavender", "purple iris", "twilight", "deep purple", "geode", "meteorite", "dark violet", "deep indigo"],
+    "purple_dark": ["raisin", "wine purple", "dark lavender", "purple iris", "twilight", "deep purple", "geode", "meteorite", "dark violet", "deep indigo", "twilight iris"],
 
     "purple_medium": ["lavender", "amethyst", "deep lilac", "light indigo", "soft purple", "wisteria", "pale purple", "dark orchid", "dream", "amethyst"],
 
-    "purple_light": ["periwinkle", "heather", "thistle", "lace purple", "light violet", "pale lavender", "chalk", "fog", "mauve", "violet"],
+    "purple_light": ["periwinkle", "heather", "thistle", "lace purple", "light violet", "pale lavender", "chalk", "fog", "mauve", "violet", "twilight wisteria"],
 
     "pink_dark": ["magenta", "rosewood", "prune", "blackberry", "eggplant", "mulberry", "plum", "red grape", "velvet", "cosmos", "belladonna"],
 
-    "pink_medium": ["rouge", "hot pink", "flamingo", "noble plum", "pink orchid", "raspberry", "pink", "bubblegum", "lotus", "fuchsia", "lavender pink", "rose", "orchid"],
+    "pink_medium": ["rouge", "hot pink", "flamingo", "noble plum", "pink orchid", "raspberry", "pink", "bubblegum", "lotus", "fuchsia", "lavender pink", "rose", "orchid", "twilight aura"],
 
     "pink_light": ["blush", "lilac", "cotton candy", "dawn", "puff", "baby pink", "light rose", "pale heart", "pink flare", "sweet pink", "snow pink", "carnation", "pale mauve", "misty rose"],
 
@@ -502,6 +502,11 @@
     "cg__ onyx": [25, 15, 14],
     "cg__ eclipse": [55, 34, 30],
     "cg__ ebony": [80, 45, 47],
-    "cg__ driftwood": [103, 79, 67]
+    "cg__ driftwood": [103, 79, 67],
+	"------- MLP COLORS -------": [0, 0, 0],
+	"twilight wisteria": [103, 79, 67],
+	"twilight rhino": [36, 56, 112],
+	"twilight iris": [102, 47, 137],
+	"twilight aura": [234, 66, 139]
   }
 }
